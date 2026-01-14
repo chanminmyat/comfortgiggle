@@ -1,0 +1,126 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-gray-900 text-gray-300">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <Image src="/logo.png" alt="Comfort Zone" width={150} height={84} className="h-10 w-auto" />
+              <h3 className="text-xl font-bold text-white">Comfort Zone</h3>
+            </div>
+            <p className="text-sm mb-4">
+              Premium interior design solutions to transform your space into a sanctuary of style and comfort.
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="#"
+                className="hover:text-amber-400 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="#"
+                className="hover:text-amber-400 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="#"
+                className="hover:text-amber-400 transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Products</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/products" className="hover:text-amber-400 transition-colors">
+                  All Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=furniture" className="hover:text-amber-400 transition-colors">
+                  Furniture
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=decor" className="hover:text-amber-400 transition-colors">
+                  Decor
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?featured=true" className="hover:text-amber-400 transition-colors">
+                  Featured Items
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/about" className="hover:text-amber-400 transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-amber-400 transition-colors">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-service" className="hover:text-amber-400 transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact Us</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                <span>123 Design Street, Suite 100<br />New York, NY 10001</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Phone className="h-5 w-5 text-amber-400 flex-shrink-0" />
+                <a href="tel:+1234567890" className="hover:text-amber-400 transition-colors">
+                  (123) 456-7890
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-amber-400 flex-shrink-0" />
+                <a href="mailto:info@comfortzone.com" className="hover:text-amber-400 transition-colors">
+                  info@comfortzone.com
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-800 pt-8 text-center text-sm">
+          <p>© {currentYear} Comfort Zone. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
