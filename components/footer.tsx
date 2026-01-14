@@ -159,18 +159,18 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                <span>123 Design Street, Suite 100<br />New York, NY 10001</span>
+                <span>8 The Green Suite B<br />Dover, DE 19901</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-amber-400 flex-shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-amber-400 transition-colors">
-                  (123) 456-7890
+                <a href="tel:+12028007298" className="hover:text-amber-400 transition-colors">
+                  1-202-800-7298
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-amber-400 flex-shrink-0" />
-                <a href="mailto:info@comfortzone.com" className="hover:text-amber-400 transition-colors">
-                  info@comfortzone.com
+                <a href="mailto:hello@comfortzone.com" className="hover:text-amber-400 transition-colors">
+                  hello@comfortzone.com
                 </a>
               </li>
             </ul>

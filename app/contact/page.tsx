@@ -41,8 +41,8 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Phone</h3>
                   <p className="text-gray-600 mb-2">Give us a call</p>
-                  <a href="tel:+1234567890" className="text-amber-700 hover:underline">
-                    (123) 456-7890
+                  <a href="tel:+12028007298" className="text-amber-700 hover:underline">
+                    1-202-800-7298
                   </a>
                 </CardContent>
               </Card>
@@ -54,8 +54,8 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Email</h3>
                   <p className="text-gray-600 mb-2">Send us a message</p>
-                  <a href="mailto:info@classiccomfort.com" className="text-amber-700 hover:underline">
-                    info@classiccomfort.com
+                  <a href="mailto:hello@comfortzone.com" className="text-amber-700 hover:underline">
+                    hello@comfortzone.com
                   </a>
                 </CardContent>
               </Card>
@@ -67,8 +67,8 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Location</h3>
                   <p className="text-gray-600">
-                    123 Design Street, Suite 100<br />
-                    New York, NY 10001
+                    8 The Green Suite B<br />
+                    Dover, DE 19901
                   </p>
                 </CardContent>
               </Card>
@@ -143,11 +143,11 @@ export default function ContactPage() {
                         <div className="space-y-2 text-gray-600">
                           <div className="flex justify-between">
                             <span>Monday - Friday</span>
-                            <span className="font-medium">9:00 AM - 6:00 PM</span>
+                            <span className="font-medium">9:00 AM - 5:00 PM EST</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Saturday</span>
-                            <span className="font-medium">10:00 AM - 5:00 PM</span>
+                            <span className="font-medium">10:00 AM - 3:00 PM EST</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Sunday</span>
