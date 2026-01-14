@@ -87,6 +87,66 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/accessibility-statement" className="hover:text-amber-400 transition-colors">
+                  Accessibility Statement
+                </Link>
+              </li>
+              <li>
+                <Link href="/anti-discrimination-policy" className="hover:text-amber-400 transition-colors">
+                  Anti-Discrimination Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/anti-fraud-policy" className="hover:text-amber-400 transition-colors">
+                  Anti-Fraud Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/clear-pricing-policy" className="hover:text-amber-400 transition-colors">
+                  Clear Pricing Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy" className="hover:text-amber-400 transition-colors">
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/data-processing-agreement" className="hover:text-amber-400 transition-colors">
+                  Data Processing Agreement
+                </Link>
+              </li>
+              <li>
+                <Link href="/dispute-resolution-chargeback-policy" className="hover:text-amber-400 transition-colors">
+                  Dispute Resolution & Chargeback Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/freelancer-third-party-provider-policy" className="hover:text-amber-400 transition-colors">
+                  Freelancer & Third-Party Provider Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/record-retention-policy" className="hover:text-amber-400 transition-colors">
+                  Record Retention Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/refund-return-policy" className="hover:text-amber-400 transition-colors">
+                  Refund & Return Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/security-information-security-policy" className="hover:text-amber-400 transition-colors">
+                  Security & Information Security Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/shipping-policy" className="hover:text-amber-400 transition-colors">
+                  Shipping Policy
+                </Link>
+              </li>
+              <li>
                 <Link href="/terms-of-service" className="hover:text-amber-400 transition-colors">
                   Terms of Service
                 </Link>

@@ -1,69 +1,250 @@
-'use client';
-
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 export default function TermsOfServicePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className='min-h-screen flex flex-col'>
       <Header />
 
-      <main className="flex-1 py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-            Terms of Service
-          </h1>
-          <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">
-            These terms govern use of our website and services. Please read them carefully.
-          </p>
+      <main className='flex-1 py-16'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-3xl mx-auto'>
+            <h1 className='text-4xl font-bold mb-6'>Terms of Service</h1>
 
-          <div className="max-w-3xl mx-auto space-y-8">
-            <section className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold mb-2">Overview</h2>
-              <p className="text-gray-600">
-                By accessing or using our services, you agree to these terms and all applicable
-                policies.
-              </p>
-            </section>
+            <div className='space-y-8 text-gray-700'>
+              <section className='space-y-3'>
+                <p className='text-sm text-gray-500'>
+                  Last Updated: December 2025 <br />
+                  Effective Date: December 1, 2025 <br />
+                  Website: www.comfortzone.com
+                </p>
+              </section>
 
-            <section className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold mb-2">Orders and Payments</h2>
-              <p className="text-gray-600">
-                Orders are subject to availability and confirmation. Pricing, taxes, and fees are
-                shown at checkout.
-              </p>
-            </section>
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  1. Acceptance of Terms
+                </h2>
+                <p>
+                  By accessing or using the website www.comfortzone.com ("Site")
+                  and the services provided by Comfort Zone ("Company," "we,"
+                  "us," or "our"), you agree to comply with and be bound by
+                  these Terms of Service ("Terms"). If you do not agree to these
+                  Terms, you may not access or use the Site or Services.
+                </p>
+                <p>
+                  These Terms apply to all visitors, users, clients, and
+                  freelancers who access the Site.
+                </p>
+              </section>
 
-            <section className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold mb-2">Shipping and Returns</h2>
-              <p className="text-gray-600">
-                Shipping timelines and return eligibility are outlined in our related policies.
-              </p>
-            </section>
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  2. Description of Services
+                </h2>
+                <p>
+                  Comfort Zone operates as a platform connecting users seeking
+                  professional advice ("Clients") with independent contractors
+                  providing virtual consultation services ("Freelancers").
+                </p>
 
-            <section className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold mb-2">User Responsibilities</h2>
-              <p className="text-gray-600">
-                You agree not to misuse the site, interfere with operations, or violate any laws
-                while using our services.
-              </p>
-            </section>
+                <div className='space-y-2'>
+                  <p className='font-medium text-gray-900'>2.1 Venue Only</p>
+                  <p>
+                    Comfort Zone serves solely as a venue to facilitate
+                    connections. We are not a party to any agreement between
+                    Clients and Freelancers and do not control or supervise the
+                    services provided.
+                  </p>
+                </div>
 
-            <section className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold mb-2">Limitation of Liability</h2>
-              <p className="text-gray-600">
-                To the fullest extent permitted by law, we are not liable for indirect or
-                consequential damages.
-              </p>
-            </section>
+                <div className='space-y-2'>
+                  <p className='font-medium text-gray-900'>
+                    2.2 No Employment Relationship
+                  </p>
+                  <p>
+                    Freelancers are independent contractors and are not
+                    employees, partners, or agents of Comfort Zone.
+                  </p>
+                </div>
+              </section>
 
-            <section className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold mb-2">Contact</h2>
-              <p className="text-gray-600">
-                For questions about these terms, please contact us through the details provided on
-                our website.
-              </p>
-            </section>
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  3. User Accounts
+                </h2>
+
+                <div className='space-y-2'>
+                  <p className='font-medium text-gray-900'>3.1 Eligibility</p>
+                  <p>
+                    You must be at least 18 years old to create an account. By
+                    using the Site, you represent that you meet this
+                    requirement.
+                  </p>
+                </div>
+
+                <div className='space-y-2'>
+                  <p className='font-medium text-gray-900'>
+                    3.2 Account Security
+                  </p>
+                  <p>
+                    You are responsible for maintaining the confidentiality of
+                    your account credentials and for all activities that occur
+                    under your account.
+                  </p>
+                </div>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  4. Payments and Billing
+                </h2>
+
+                <ul className='list-disc pl-5 space-y-1'>
+                  <li>
+                    Fees for virtual consults are clearly displayed at checkout
+                    and must be paid in full at the time of booking.
+                  </li>
+                  <li>
+                    Payments are processed through third-party providers such as
+                    Stripe or PayPal. We do not store full payment card details.
+                  </li>
+                  <li>
+                    Refunds are governed by our Dispute Resolution Policy. Late
+                    cancellations may be non-refundable.
+                  </li>
+                </ul>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  5. User Conduct
+                </h2>
+                <p>You agree not to:</p>
+                <ul className='list-decimal pl-5 space-y-1'>
+                  <li>Violate any applicable law or regulation.</li>
+                  <li>Harass, abuse, or harm others.</li>
+                  <li>Impersonate any person or entity.</li>
+                  <li>
+                    Circumvent platform fees by transacting outside Comfort
+                    Zone.
+                  </li>
+                </ul>
+                <p>
+                  We reserve the right to suspend or terminate accounts for
+                  violations of these rules.
+                </p>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  6. Intellectual Property
+                </h2>
+                <p>
+                  All content, code, design, and branding on the Site are the
+                  exclusive property of Comfort Zone and are protected by
+                  intellectual property laws.
+                </p>
+                <p>
+                  You retain ownership of content you upload but grant us a
+                  limited license to use it solely to provide the Services.
+                </p>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  7. Disclaimers and Limitation of Liability
+                </h2>
+                <p className='uppercase'>
+                  The site and services are provided “as is” and “as available”
+                  without warranties of any kind.
+                </p>
+                <p className='uppercase'>
+                  To the fullest extent permitted by law, Comfort Zone shall not
+                  be liable for any indirect, incidental, or consequential
+                  damages. Our total liability shall not exceed the amount paid
+                  by you in the past six (6) months.
+                </p>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  8. Dispute Resolution & Arbitration
+                </h2>
+                <p className='font-medium uppercase text-gray-900'>
+                  Please read carefully. This section affects your legal rights.
+                </p>
+                <p>
+                  Disputes will first be addressed informally by contacting
+                  hello@comfortzone.com. If unresolved, disputes will be
+                  resolved through binding arbitration in Delaware.
+                </p>
+                <p>
+                  Class actions and representative proceedings are not
+                  permitted.
+                </p>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  9. California Residents
+                </h2>
+                <p>
+                  California residents have additional rights under the CCPA and
+                  CPRA, including rights to access, delete, correct, and opt out
+                  of data sharing.
+                </p>
+                <p>
+                  Comfort Zone does not sell personal data. Requests may be
+                  submitted to hello@comfortzone.com.
+                </p>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  10. General Provisions
+                </h2>
+                <ul className='list-disc pl-5 space-y-1'>
+                  <li>
+                    These Terms are governed by the laws of the State of
+                    Delaware.
+                  </li>
+                  <li>
+                    If any provision is invalid, the remaining provisions remain
+                    in effect.
+                  </li>
+                  <li>We may update these Terms at any time.</li>
+                </ul>
+              </section>
+
+              <section className='space-y-3'>
+                <h2 className='text-2xl font-semibold text-gray-900'>
+                  Contact Us
+                </h2>
+                <div className='space-y-2'>
+                  <p>
+                    Comfort Zone <br />
+                    Address: 8 The Green Suite B, Dover, DE 19901
+                  </p>
+                  <p>Phone: 1-202-800-7298</p>
+                  <p>Email: hello@comfortzone.com</p>
+                  <p>
+                    Customer Service Hours:
+                    <br />
+                    Monday – Friday: 9:00 AM – 5:00 PM EST
+                    <br />
+                    Saturday: 10:00 AM – 3:00 PM EST
+                    <br />
+                    Sunday: Closed
+                  </p>
+                </div>
+              </section>
+
+              <section>
+                <p className='text-sm text-gray-500'>
+                  Last Updated: December 2025
+                </p>
+              </section>
+            </div>
           </div>
         </div>
       </main>
