@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image src="/logo.png" alt="Comfort Zone" width={150} height={84} className="h-10 w-auto" />
+              <Image src="/logo.png" alt="Comfort Zone" width={750} height={420} className="h-[100px] w-auto" />
               <h3 className="text-xl font-bold text-white">Comfort Zone</h3>
             </div>
             <p className="text-sm mb-4">
