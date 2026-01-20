@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,29 +17,7 @@ export function Footer() {
             <p className="text-sm mb-4">
               Premium interior design solutions to transform your space into a sanctuary of style and comfort.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="hover:text-amber-400 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="hover:text-amber-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="hover:text-amber-400 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-            </div>
+            <div className="hidden"></div>
           </div>
 
           <div>
