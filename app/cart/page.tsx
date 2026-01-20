@@ -13,6 +13,7 @@ import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, ArrowLeft } from 'lucide-
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const shippingFee = 30;
 
   useEffect(() => {
     loadCart();
@@ -186,12 +187,12 @@ export default function CartPage() {
                     </div>
                     <div className="flex justify-between text-gray-600">
                       <span>Shipping</span>
-                      <span className="font-semibold text-green-600">FREE</span>
+                      <span className="font-semibold">${shippingFee.toFixed(2)}</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between text-xl font-bold">
                       <span>Total</span>
-                      <span className="text-amber-700">${cartTotal.toFixed(2)}</span>
+                      <span className="text-amber-700">${(cartTotal + shippingFee).toFixed(2)}</span>
                     </div>
                   </div>
 

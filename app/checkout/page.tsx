@@ -20,6 +20,7 @@ export default function CheckoutPage() {
   const [cartTotal, setCartTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const shippingFee = 30;
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -265,7 +266,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex justify-between text-gray-600">
                       <span>Shipping</span>
-                      <span className="font-semibold text-green-600">FREE</span>
+                      <span className="font-semibold">${shippingFee.toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -273,7 +274,7 @@ export default function CheckoutPage() {
 
                   <div className="flex justify-between text-xl font-bold">
                     <span>Total</span>
-                    <span className="text-amber-700">${cartTotal.toFixed(2)}</span>
+                    <span className="text-amber-700">${(cartTotal + shippingFee).toFixed(2)}</span>
                   </div>
                 </CardContent>
               </Card>
