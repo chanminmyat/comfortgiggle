@@ -175,7 +175,7 @@ export default function TermsOfServicePage() {
                 </p>
                 <p>
                   Disputes will first be addressed informally by contacting
-                  hello@comfortzone.com. If unresolved, disputes will be
+                  hello@comfortzoneusa.cc. If unresolved, disputes will be
                   resolved through binding arbitration in Delaware.
                 </p>
                 <p>
@@ -195,7 +195,7 @@ export default function TermsOfServicePage() {
                 </p>
                 <p>
                   Comfort Zone does not sell personal data. Requests may be
-                  submitted to hello@comfortzone.com.
+                  submitted to hello@comfortzoneusa.cc.
                 </p>
               </section>
 
@@ -226,7 +226,7 @@ export default function TermsOfServicePage() {
                     Address: 8 The Green Suite B, Dover, DE 19901
                   </p>
                   <p>Phone: 1-202-800-7298</p>
-                  <p>Email: hello@comfortzone.com</p>
+                  <p>Email: hello@comfortzoneusa.cc</p>
                   <p>
                     Customer Service Hours:
                     <br />

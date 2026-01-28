@@ -178,7 +178,7 @@ export default function PrivacyPolicyPage() {
                   <li>Right to Correct inaccurate information.</li>
                   <li>Right to Request deletion under certain conditions.</li>
                 </ul>
-                <p>Requests can be submitted to hello@comfortzone.com.</p>
+                <p>Requests can be submitted to hello@comfortzoneusa.cc.</p>
               </section>
 
               <section className='space-y-3'>
@@ -227,7 +227,7 @@ export default function PrivacyPolicyPage() {
                     Address: 8 The Green Suite B, Dover, DE 19901
                   </p>
                   <p>Phone: 1-202-800-7298</p>
-                  <p>Email: hello@comfortzone.com</p>
+                  <p>Email: hello@comfortzoneusa.cc</p>
                 </div>
               </section>
 
