@@ -106,7 +106,7 @@ export default function ShippingPolicyPage() {
                 </h2>
                 <p>
                   You (the recipient) are responsible for providing a valid
-                  phone number and address. Comfort Zone is not liable for
+                  phone number and address. Comfort Giggle is not liable for
                   misdelivered packages due to incorrect information provided at
                   checkout.
                 </p>
@@ -118,7 +118,7 @@ export default function ShippingPolicyPage() {
                 </h2>
                 <p>For shipping inquiries, contact:</p>
                 <ul className='space-y-2'>
-                  <li>Email: hello@comfortzoneusa.cc</li>
+                  <li>Email: hello@comfortgiggle.com</li>
                   <li>Phone: 1-202-800-7298</li>
                 </ul>
               </section>

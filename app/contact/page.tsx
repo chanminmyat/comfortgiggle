@@ -57,10 +57,10 @@ export default function ContactPage() {
                   <h3 className='text-xl font-semibold mb-2'>Email</h3>
                   <p className='text-gray-600 mb-2'>Send us a message</p>
                   <a
-                    href='mailto:hello@comfortzoneusa.cc'
+                    href='mailto:hello@comfortgiggle.com'
                     className='text-amber-700 hover:underline'
                   >
-                    hello@comfortzoneusa.cc
+                    hello@comfortgiggle.com
                   </a>
                 </CardContent>
               </Card>
@@ -83,8 +83,8 @@ export default function ContactPage() {
               <div>
                 <h2 className='text-3xl font-bold mb-6'>Get In Touch</h2>
                 <p className='text-gray-600 mb-8'>
-                  Have a question about our products or services? Fill out the
-                  form below and our team will get back to you within 24 hours.
+                  Have a question about candle scents, shipping, or gift sets?
+                  Fill out the form below and our team will get back to you within 24 hours.
                 </p>
 
                 <Card>
@@ -171,8 +171,8 @@ export default function ContactPage() {
 
                 <div className='relative h-[400px] rounded-lg overflow-hidden'>
                   <img
-                    src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=800'
-                    alt='Store interior'
+                    src='https://images.pexels.com/photos/4207892/pexels-photo-4207892.jpeg?auto=compress&cs=tinysrgb&w=800'
+                    alt='Candle studio shelves'
                     className='w-full h-full object-cover'
                   />
                 </div>

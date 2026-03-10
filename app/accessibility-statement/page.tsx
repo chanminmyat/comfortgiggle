@@ -17,7 +17,7 @@ export default function AccessibilityStatementPage() {
                   Commitment
                 </h2>
                 <p>
-                  Comfort Zone is dedicated to ensuring digital accessibility
+                  Comfort Giggle is dedicated to ensuring digital accessibility
                   for people with disabilities. We are continually improving the
                   user experience for everyone and applying the relevant
                   accessibility standards.
@@ -44,7 +44,7 @@ export default function AccessibilityStatementPage() {
                 </p>
                 <ul className='space-y-2'>
                   <li>Phone: 1-202-800-7298</li>
-                  <li>Email: hello@comfortzoneusa.cc</li>
+                  <li>Email: hello@comfortgiggle.com</li>
                   <li>
                     Response Time: We aim to respond to feedback within 2
                     business days.

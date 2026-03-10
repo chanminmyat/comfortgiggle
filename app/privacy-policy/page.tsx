@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
                 <p className='text-sm text-gray-500'>
                   Last Updated: December 2025 <br />
                   Effective Date: December 1, 2025 <br />
-                  Website: www.comfortzone.com
+                  Website: www.comfortgiggle.com
                 </p>
               </section>
 
@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
                   1. Introduction
                 </h2>
                 <p>
-                  Comfort Zone ("we," "us," or "our") respects your privacy and
+                  Comfort Giggle ("we," "us," or "our") respects your privacy and
                   is committed to protecting your personal data. This Privacy
                   Policy explains how we collect, use, disclose, and safeguard
                   your information when you visit our website and use our
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
                   7. International Data Transfers
                 </h2>
                 <p>
-                  Comfort Zone is a U.S.-based company. If you access our
+                  Comfort Giggle is a U.S.-based company. If you access our
                   services from outside the United States, your information may
                   be transferred to and processed in the U.S.
                 </p>
@@ -178,7 +178,7 @@ export default function PrivacyPolicyPage() {
                   <li>Right to Correct inaccurate information.</li>
                   <li>Right to Request deletion under certain conditions.</li>
                 </ul>
-                <p>Requests can be submitted to hello@comfortzoneusa.cc.</p>
+                <p>Requests can be submitted to hello@comfortgiggle.com.</p>
               </section>
 
               <section className='space-y-3'>
@@ -223,11 +223,11 @@ export default function PrivacyPolicyPage() {
                 </h2>
                 <div className='space-y-2'>
                   <p>
-                    Comfort Zone Privacy Compliance Officer <br />
+                    Comfort Giggle Privacy Compliance Officer <br />
                     Address: 8 The Green Suite B, Dover, DE 19901
                   </p>
                   <p>Phone: 1-202-800-7298</p>
-                  <p>Email: hello@comfortzoneusa.cc</p>
+                  <p>Email: hello@comfortgiggle.com</p>
                 </div>
               </section>
 

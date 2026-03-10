@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
@@ -10,48 +9,47 @@ export function Footer() {
       <div className='container mx-auto px-4 py-12'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8'>
           <div>
-            <div className='flex items-center gap-3 mb-4'>
-              <Image
-                src='/logo.png'
-                alt='Comfort Zone'
-                width={750}
-                height={420}
-                className='h-[100px] w-auto'
-              />
-              <h3 className='text-xl font-bold text-white'>Comfort Zone</h3>
-            </div>
+            <h3 className='text-xl font-bold text-white mb-4'>Comfort Giggle</h3>
             <p className='text-sm mb-4'>
-              Premium interior design solutions to transform your space into a
-              sanctuary of style and comfort.
+              Small-batch candles crafted to bring warmth, calm, and cozy
+              atmosphere to every room.
             </p>
             <div className='hidden'></div>
           </div>
 
           <div>
-            <h4 className='text-white font-semibold mb-4'>Products</h4>
+            <h4 className='text-white font-semibold mb-4'>Shop Candles</h4>
             <ul className='space-y-2 text-sm'>
               <li>
                 <Link
                   href='/products'
                   className='hover:text-amber-400 transition-colors'
                 >
-                  All Products
+                  All Candles
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/products?category=furniture'
+                  href='/products?category=scented-candles'
                   className='hover:text-amber-400 transition-colors'
                 >
-                  Furniture
+                  Scented Candles
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/products?category=decor'
+                  href='/products?category=wax-melts'
                   className='hover:text-amber-400 transition-colors'
                 >
-                  Decor
+                  Wax Melts
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/products?category=gift-sets'
+                  className='hover:text-amber-400 transition-colors'
+                >
+                  Gift Sets
                 </Link>
               </li>
               <li>
@@ -59,7 +57,7 @@ export function Footer() {
                   href='/products?featured=true'
                   className='hover:text-amber-400 transition-colors'
                 >
-                  Featured Items
+                  Featured Candles
                 </Link>
               </li>
             </ul>
@@ -221,10 +219,10 @@ export function Footer() {
               <li className='flex items-center space-x-3'>
                 <Mail className='h-5 w-5 text-amber-400 flex-shrink-0' />
                 <a
-                  href='mailto:hello@comfortzoneusa.cc'
+                  href='mailto:hello@comfortgiggle.com'
                   className='hover:text-amber-400 transition-colors'
                 >
-                  hello@comfortzoneusa.cc
+                  hello@comfortgiggle.com
                 </a>
               </li>
             </ul>
@@ -232,7 +230,7 @@ export function Footer() {
         </div>
 
         <div className='border-t border-gray-800 pt-8 text-center text-sm'>
-          <p>© {currentYear} Comfort Zone. All rights reserved.</p>
+          <p>© {currentYear} Comfort Giggle. All rights reserved.</p>
         </div>
       </div>
     </footer>

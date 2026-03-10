@@ -34,7 +34,7 @@ export default function DisputeResolutionChargebackPolicyPage() {
                   contact Customer Service within 48 hours of the appointment.
                 </p>
                 <ul className='space-y-2'>
-                  <li>Email: hello@comfortzoneusa.cc</li>
+                  <li>Email: hello@comfortgiggle.com</li>
                   <li>
                     Review: We will review chat logs, call duration, and
                     deliverables to mediate a resolution.
@@ -42,7 +42,7 @@ export default function DisputeResolutionChargebackPolicyPage() {
                   <li>
                     Resolution: Remedies may include a partial refund, full
                     refund, or a credit for a future consult, at the sole
-                    discretion of Comfort Zone.
+                    discretion of Comfort Giggle.
                   </li>
                 </ul>
               </section>
@@ -53,7 +53,7 @@ export default function DisputeResolutionChargebackPolicyPage() {
                 </h2>
                 <p>
                   Filing a chargeback with your bank without first contacting
-                  Comfort Zone Support is a violation of our Terms.
+                  Comfort Giggle Support is a violation of our Terms.
                 </p>
                 <ul className='space-y-2'>
                   <li>

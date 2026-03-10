@@ -16,7 +16,7 @@ export default function TermsOfServicePage() {
                 <p className='text-sm text-gray-500'>
                   Last Updated: December 2025 <br />
                   Effective Date: December 1, 2025 <br />
-                  Website: www.comfortzone.com
+                  Website: www.comfortgiggle.com
                 </p>
               </section>
 
@@ -25,8 +25,8 @@ export default function TermsOfServicePage() {
                   1. Acceptance of Terms
                 </h2>
                 <p>
-                  By accessing or using the website www.comfortzone.com ("Site")
-                  and the services provided by Comfort Zone ("Company," "we,"
+                  By accessing or using the website www.comfortgiggle.com ("Site")
+                  and the services provided by Comfort Giggle ("Company," "we,"
                   "us," or "our"), you agree to comply with and be bound by
                   these Terms of Service ("Terms"). If you do not agree to these
                   Terms, you may not access or use the Site or Services.
@@ -42,7 +42,7 @@ export default function TermsOfServicePage() {
                   2. Description of Services
                 </h2>
                 <p>
-                  Comfort Zone operates as a platform connecting users seeking
+                  Comfort Giggle operates as a platform connecting users seeking
                   professional advice ("Clients") with independent contractors
                   providing virtual consultation services ("Freelancers").
                 </p>
@@ -50,7 +50,7 @@ export default function TermsOfServicePage() {
                 <div className='space-y-2'>
                   <p className='font-medium text-gray-900'>2.1 Venue Only</p>
                   <p>
-                    Comfort Zone serves solely as a venue to facilitate
+                    Comfort Giggle serves solely as a venue to facilitate
                     connections. We are not a party to any agreement between
                     Clients and Freelancers and do not control or supervise the
                     services provided.
@@ -63,7 +63,7 @@ export default function TermsOfServicePage() {
                   </p>
                   <p>
                     Freelancers are independent contractors and are not
-                    employees, partners, or agents of Comfort Zone.
+                    employees, partners, or agents of Comfort Giggle.
                   </p>
                 </div>
               </section>
@@ -126,7 +126,7 @@ export default function TermsOfServicePage() {
                   <li>Impersonate any person or entity.</li>
                   <li>
                     Circumvent platform fees by transacting outside Comfort
-                    Zone.
+                    Giggle.
                   </li>
                 </ul>
                 <p>
@@ -141,7 +141,7 @@ export default function TermsOfServicePage() {
                 </h2>
                 <p>
                   All content, code, design, and branding on the Site are the
-                  exclusive property of Comfort Zone and are protected by
+                  exclusive property of Comfort Giggle and are protected by
                   intellectual property laws.
                 </p>
                 <p>
@@ -159,7 +159,7 @@ export default function TermsOfServicePage() {
                   without warranties of any kind.
                 </p>
                 <p className='uppercase'>
-                  To the fullest extent permitted by law, Comfort Zone shall not
+                  To the fullest extent permitted by law, Comfort Giggle shall not
                   be liable for any indirect, incidental, or consequential
                   damages. Our total liability shall not exceed the amount paid
                   by you in the past six (6) months.
@@ -175,7 +175,7 @@ export default function TermsOfServicePage() {
                 </p>
                 <p>
                   Disputes will first be addressed informally by contacting
-                  hello@comfortzoneusa.cc. If unresolved, disputes will be
+                  hello@comfortgiggle.com. If unresolved, disputes will be
                   resolved through binding arbitration in Delaware.
                 </p>
                 <p>
@@ -194,8 +194,8 @@ export default function TermsOfServicePage() {
                   of data sharing.
                 </p>
                 <p>
-                  Comfort Zone does not sell personal data. Requests may be
-                  submitted to hello@comfortzoneusa.cc.
+                  Comfort Giggle does not sell personal data. Requests may be
+                  submitted to hello@comfortgiggle.com.
                 </p>
               </section>
 
@@ -222,11 +222,11 @@ export default function TermsOfServicePage() {
                 </h2>
                 <div className='space-y-2'>
                   <p>
-                    Comfort Zone <br />
+                    Comfort Giggle <br />
                     Address: 8 The Green Suite B, Dover, DE 19901
                   </p>
                   <p>Phone: 1-202-800-7298</p>
-                  <p>Email: hello@comfortzoneusa.cc</p>
+                  <p>Email: hello@comfortgiggle.com</p>
                   <p>
                     Customer Service Hours:
                     <br />

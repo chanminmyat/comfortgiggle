@@ -19,7 +19,7 @@ export default function AntiDiscriminationPolicyPage() {
                   Overview
                 </h2>
                 <p>
-                  Comfort Zone has a zero-tolerance policy for discrimination.
+                  Comfort Giggle has a zero-tolerance policy for discrimination.
                   We are an inclusive community welcoming individuals of all
                   backgrounds.
                 </p>
@@ -59,7 +59,7 @@ export default function AntiDiscriminationPolicyPage() {
                 </h2>
                 <p>
                   If you experience discrimination, report it immediately to
-                  hello@comfortzoneusa.cc. All reports are investigated with
+                  hello@comfortgiggle.com. All reports are investigated with
                   high priority.
                 </p>
               </section>
@@ -74,11 +74,11 @@ export default function AntiDiscriminationPolicyPage() {
                 </p>
                 <div className='space-y-2'>
                   <p>
-                    Comfort Zone Address: 300 S Biscayne Blvd Ste 3904, Miami,
+                    Comfort Giggle Address: 300 S Biscayne Blvd Ste 3904, Miami,
                     FL 33131
                   </p>
                   <p>Phone: 305-427-9067</p>
-                  <p>Email: hello@comfortzoneusa.cc</p>
+                  <p>Email: hello@comfortgiggle.com</p>
                 </div>
               </section>
 

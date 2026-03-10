@@ -15,7 +15,7 @@ export default function SecurityInformationSecurityPolicyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
                 <p>
-                  Comfort Zone is committed to maintaining the confidentiality, integrity, and
+                  Comfort Giggle is committed to maintaining the confidentiality, integrity, and
                   availability of client and freelancer data.
                 </p>
               </section>
@@ -45,7 +45,7 @@ export default function SecurityInformationSecurityPolicyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-gray-900">Incident Response</h2>
                 <p>
-                  In the event of a data breach, Comfort Zone will notify affected users and
+                  In the event of a data breach, Comfort Giggle will notify affected users and
                   relevant regulatory bodies within the timeframes mandated by Delaware law and
                   applicable federal regulations.
                 </p>

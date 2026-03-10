@@ -7,23 +7,23 @@ export default function AboutPage() {
   const values = [
     {
       icon: Award,
-      title: 'Quality Excellence',
-      description: 'We source only the finest materials and work with skilled artisans to ensure every piece meets our high standards.',
+      title: 'Handcrafted Quality',
+      description: 'We use premium wax blends, quality fragrance oils, and careful batch testing to ensure a consistent burn.',
     },
     {
       icon: Users,
       title: 'Customer Focus',
-      description: 'Your satisfaction is our priority. We provide personalized service and support throughout your journey with us.',
+      description: 'Your satisfaction is our priority, from first order to final burn. We are here to help with scent and gifting recommendations.',
     },
     {
       icon: Heart,
-      title: 'Passion for Design',
-      description: 'We are passionate about creating beautiful spaces that inspire and bring joy to everyday living.',
+      title: 'Scent Creativity',
+      description: 'We create fragrance blends that feel comforting, uplifting, and memorable across everyday moments.',
     },
     {
       icon: Target,
       title: 'Sustainable Practices',
-      description: 'We are committed to environmentally responsible practices and sourcing sustainable materials whenever possible.',
+      description: 'We continuously improve our packaging and production practices to reduce waste where possible.',
     },
   ];
 
@@ -36,7 +36,7 @@ export default function AboutPage() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+              backgroundImage: 'url(https://images.pexels.com/photos/4207892/pexels-photo-4207892.jpeg?auto=compress&cs=tinysrgb&w=1920)',
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
@@ -45,7 +45,7 @@ export default function AboutPage() {
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">About Us</h1>
             <p className="text-xl md:text-2xl max-w-2xl mx-auto">
-              Creating beautiful spaces with timeless design and exceptional quality
+              Handcrafting cozy candle experiences with care and quality
             </p>
           </div>
         </section>
@@ -56,16 +56,16 @@ export default function AboutPage() {
               <h2 className="text-4xl font-bold mb-6 text-center">Our Story</h2>
               <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
                 <p>
-                  Comfort Zone was founded with a simple yet powerful vision: to make premium interior design accessible to everyone. We believe that your home should be more than just a place to live—it should be a sanctuary that reflects your personality, supports your lifestyle, and brings you joy every single day.
+                  Comfort Giggle began with a simple idea: everyday spaces feel better with the right scent. We started small, hand-pouring candles in carefully tested batches for friends and family who wanted cozy, clean-burning candles they could trust.
                 </p>
                 <p>
-                  Since our inception, we've been committed to curating a collection of furniture and decor that combines timeless aesthetics with modern functionality. Each piece in our collection is carefully selected for its quality, design excellence, and ability to transform living spaces into havens of comfort and style.
+                  As demand grew, we expanded into a full collection of scented candles, wax melts, and gift sets designed for daily rituals, celebrations, and thoughtful gifting.
                 </p>
                 <p>
-                  Our team of interior design experts works tirelessly to stay ahead of trends while maintaining a focus on classic, enduring design principles. We partner with talented designers and manufacturers who share our commitment to excellence, ensuring that every product we offer meets our rigorous standards.
+                  Every Comfort Giggle product is built around three priorities: balanced fragrance, dependable burn performance, and a design that looks beautiful in any room.
                 </p>
                 <p>
-                  Today, Comfort Zone serves thousands of satisfied customers across the country, helping them create homes they love. Whether you're furnishing your first apartment or redesigning your dream home, we're here to make the process seamless, enjoyable, and rewarding.
+                  Today, Comfort Giggle serves candle lovers across the country. Whether you are setting the mood for a quiet night in or choosing gifts for someone special, we are here to make it easy and delightful.
                 </p>
               </div>
             </div>
@@ -100,19 +100,19 @@ export default function AboutPage() {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6">Why Choose Comfort Zone?</h2>
+              <h2 className="text-4xl font-bold mb-6">Why Choose Comfort Giggle?</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                 <div>
-                  <div className="text-5xl font-bold text-amber-700 mb-2">10+</div>
-                  <p className="text-xl text-gray-600">Years of Experience</p>
+                  <div className="text-5xl font-bold text-amber-700 mb-2">5+</div>
+                  <p className="text-xl text-gray-600">Years Crafting Candles</p>
                 </div>
                 <div>
-                  <div className="text-5xl font-bold text-amber-700 mb-2">5000+</div>
-                  <p className="text-xl text-gray-600">Happy Customers</p>
+                  <div className="text-5xl font-bold text-amber-700 mb-2">8k+</div>
+                  <p className="text-xl text-gray-600">Happy Candle Buyers</p>
                 </div>
                 <div>
                   <div className="text-5xl font-bold text-amber-700 mb-2">98%</div>
-                  <p className="text-xl text-gray-600">Satisfaction Rate</p>
+                  <p className="text-xl text-gray-600">Repeat Purchase Rate</p>
                 </div>
               </div>
             </div>

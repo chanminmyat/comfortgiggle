@@ -15,17 +15,17 @@ export default function FreelancerThirdPartyProviderPolicyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
                 <p>
-                  Comfort Zone operates as a platform connecting clients with independent freelance
+                  Comfort Giggle operates as a platform connecting clients with independent freelance
                   consultants. This policy outlines the standards and relationship between Comfort
-                  Zone, the Client, and the Freelancer.
+                  Giggle, the Client, and the Freelancer.
                 </p>
               </section>
 
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-gray-900">Independent Contractor Status</h2>
                 <p>
-                  All consultants and service providers listed on Comfort Zone are independent
-                  contractors, not employees of Comfort Zone. They retain full control over their
+                  All consultants and service providers listed on Comfort Giggle are independent
+                  contractors, not employees of Comfort Giggle. They retain full control over their
                   methods, schedules, and professional judgment during virtual consults.
                 </p>
               </section>
@@ -34,7 +34,7 @@ export default function FreelancerThirdPartyProviderPolicyPage() {
                 <h2 className="text-2xl font-semibold text-gray-900">Professional Conduct</h2>
                 <p>
                   Freelancers represent their own professional brands but must adhere to Comfort
-                  Zone’s community standards:
+                  Giggle&apos;s community standards:
                 </p>
                 <ul className="space-y-2">
                   <li>Punctuality: Freelancers must attend virtual consults at the scheduled time.</li>
@@ -52,7 +52,7 @@ export default function FreelancerThirdPartyProviderPolicyPage() {
               <section className="space-y-3">
                 <h2 className="text-2xl font-semibold text-gray-900">Non-Circumvention</h2>
                 <p>
-                  Freelancers and Clients agree not to circumvent the Comfort Zone platform. Any
+                  Freelancers and Clients agree not to circumvent the Comfort Giggle platform. Any
                   attempt to move payments or ongoing business relationships off-platform to avoid
                   fees will result in immediate suspension of both accounts.
                 </p>

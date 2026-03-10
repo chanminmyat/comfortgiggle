@@ -91,7 +91,7 @@ export default function ProductsPage() {
               Our Collection
             </h1>
             <p className="text-xl text-gray-600 text-center max-w-2xl mx-auto mb-8">
-              Discover our curated selection of premium furniture and decor pieces
+              Discover our curated selection of scented candles, wax melts, and cozy gift sets
             </p>
 
             <div className="max-w-xl mx-auto">

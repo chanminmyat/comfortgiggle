@@ -1,10 +1,10 @@
-# Comfort Zone - Premium Interior Design E-commerce
+# Comfort Giggle - Candle E-commerce Store
 
-A modern Next.js e-commerce application for interior design products with WooCommerce and WordPress integration.
+A modern Next.js e-commerce application for selling candles with WooCommerce and WordPress integration.
 
 ## Features
 
-- Beautiful, responsive design inspired by modern interior design websites
+- Beautiful, responsive design inspired by premium candle brands
 - WooCommerce integration for product management
 - WordPress checkout integration
 - Shopping cart functionality with local storage
@@ -35,7 +35,7 @@ A modern Next.js e-commerce application for interior design products with WooCom
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd classic-comfort
+cd comfort-giggle
 ```
 
 2. Install dependencies:
@@ -66,7 +66,7 @@ WORDPRESS_AUTH_TOKEN=your_wordpress_auth_token_here
 2. Go to WooCommerce > Settings > Advanced > REST API
 3. Click "Add key"
 4. Set the following:
-   - Description: Comfort Zone App
+   - Description: Comfort Giggle App
    - User: Select your admin user
    - Permissions: Read/Write
 5. Click "Generate API key"
@@ -90,7 +90,7 @@ npm start
 ## Project Structure
 
 ```
-classic-comfort/
+comfort-giggle/
 ├── app/
 │   ├── about/              # About page
 │   ├── cart/               # Shopping cart page

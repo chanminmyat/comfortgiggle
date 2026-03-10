@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ShoppingCart, Menu, X, Home, Package, Info, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { getCartItemCount } from '@/lib/cart';
@@ -23,7 +22,7 @@ export function Header() {
 
   const navLinks = [
     { href: '/', label: 'Home', icon: Home },
-    { href: '/products', label: 'Products', icon: Package },
+    { href: '/products', label: 'Candles', icon: Package },
     { href: '/about', label: 'About', icon: Info },
     { href: '/contact', label: 'Contact', icon: Phone },
   ];
@@ -32,9 +31,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-4">
         <div className="flex h-24 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3 py-2">
-            <Image src="/logo.png" alt="Comfort Zone" width={840} height={470} className="h-[110px] w-auto" />
-            <span className="text-lg font-semibold text-gray-900">Comfort Zone</span>
+          <Link href="/" className="flex items-center py-2">
+            <span className="text-lg font-semibold text-gray-900">Comfort Giggle</span>
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">

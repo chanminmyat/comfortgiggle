@@ -11,8 +11,8 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Comfort Zone - Premium Interior Design Solutions',
-  description: 'Discover exquisite interior design products and solutions. Transform your space with our curated collection of furniture, decor, and design services.',
+  title: 'Comfort Giggle - Handcrafted Candles for Cozy Spaces',
+  description: 'Shop scented candles, wax melts, and gift sets from Comfort Giggle. Hand-poured collections made to bring warmth and calm to your home.',
   openGraph: {
     images: [
       {
