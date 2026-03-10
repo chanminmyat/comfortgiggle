@@ -21,6 +21,8 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const shippingFee = 30;
+  const zelleRecipient = 'chris@comfortgiggles.com';
+  const orderTotal = cartTotal + shippingFee;
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -96,9 +98,24 @@ export default function CheckoutPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-gray-600">
-                      Thanks for your order request. We will review your details and reach out to
-                      confirm availability, delivery timing, and payment options.
+                      Thanks for your order request. Please complete payment via Zelle using the
+                      details below.
                     </p>
+                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+                      <p className="text-sm text-amber-900">
+                        <span className="font-semibold">Payment Method:</span> Zelle
+                      </p>
+                      <p className="text-sm text-amber-900">
+                        <span className="font-semibold">Transfer To:</span> {zelleRecipient}
+                      </p>
+                      <p className="text-sm text-amber-900">
+                        <span className="font-semibold">Amount:</span> ${orderTotal.toFixed(2)}
+                      </p>
+                      <p className="text-sm text-amber-900 mt-2">
+                        Please include your full name in the transfer note so we can match your
+                        payment quickly.
+                      </p>
+                    </div>
                     <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700 text-lg">
                       <Link href="/">Back to Home</Link>
                     </Button>
@@ -214,8 +231,15 @@ export default function CheckoutPage() {
                     <CardContent>
                       <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
                         <p className="text-sm text-amber-900">
-                          We are not accepting online payments yet. Submit your request and our
-                          team will contact you to finalize details.
+                          <span className="font-semibold">Payment Method:</span> Zelle
+                        </p>
+                        <p className="text-sm text-amber-900 mt-2">
+                          Please transfer <span className="font-semibold">${orderTotal.toFixed(2)}</span>{' '}
+                          to <span className="font-semibold">{zelleRecipient}</span> after submitting
+                          this order request.
+                        </p>
+                        <p className="text-sm text-amber-900 mt-2">
+                          Add your full name in the transfer note.
                         </p>
                       </div>
 
@@ -274,7 +298,7 @@ export default function CheckoutPage() {
 
                   <div className="flex justify-between text-xl font-bold">
                     <span>Total</span>
-                    <span className="text-amber-700">${(cartTotal + shippingFee).toFixed(2)}</span>
+                    <span className="text-amber-700">${orderTotal.toFixed(2)}</span>
                   </div>
                 </CardContent>
               </Card>

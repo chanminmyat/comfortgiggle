@@ -98,8 +98,8 @@ export default function Home() {
                 <div className="absolute -bottom-10 right-6 h-24 w-24 rounded-full bg-orange-200/70"></div>
                 <div className="relative h-[420px] overflow-hidden rounded-3xl shadow-2xl">
                   <img
-                    src="https://images.pexels.com/photos/671956/pexels-photo-671956.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                    alt="Cozy candle arrangement"
+                    src="https://images.pexels.com/photos/278508/pexels-photo-278508.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    alt="Close-up of a lit candle"
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -176,8 +176,8 @@ export default function Home() {
 
               <div className="relative h-[500px] rounded-lg overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.pexels.com/photos/278508/pexels-photo-278508.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Lit candle on wooden table"
+                  src="https://images.pexels.com/photos/4207892/pexels-photo-4207892.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Candle collection in studio"
                   className="w-full h-full object-cover"
                 />
               </div>

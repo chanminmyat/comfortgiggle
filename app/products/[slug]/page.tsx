@@ -10,7 +10,7 @@ import { addToCart } from '@/lib/cart';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { ShoppingCart, ArrowLeft, Package, Truck, Shield } from 'lucide-react';
+import { ShoppingCart, ArrowLeft, Package, Truck, Shield, Mail } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function ProductDetailPage() {
@@ -21,6 +21,10 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [customScent, setCustomScent] = useState('Lavender Dream');
+  const [customJarColor, setCustomJarColor] = useState('Amber Jar');
+  const [customSize, setCustomSize] = useState('8 oz');
+  const [customLabelText, setCustomLabelText] = useState('');
 
   useEffect(() => {
     if (slug) {
@@ -81,6 +85,29 @@ export default function ProductDetailPage() {
       </div>
     );
   }
+
+  const isCustomProduct =
+    product.slug === 'comfort-giggle-custom-candle' ||
+    product.tags?.some((tag) => tag.slug === 'custom');
+
+  const customRequestSubject = `Custom Candle Request - ${product.name}`;
+  const customRequestBody = [
+    'Hi Comfort Giggle team,',
+    '',
+    'I would like to order a custom candle with these options:',
+    `- Product: ${product.name}`,
+    `- Scent: ${customScent}`,
+    `- Jar Color: ${customJarColor}`,
+    `- Size: ${customSize}`,
+    `- Label Text: ${customLabelText || 'Not provided'}`,
+    '',
+    'Please send me the price based on these selections and share the next steps.',
+    '',
+    'Thank you!',
+  ].join('\n');
+  const customRequestMailto = `mailto:hello@comfortgiggle.com?subject=${encodeURIComponent(
+    customRequestSubject,
+  )}&body=${encodeURIComponent(customRequestBody)}`;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -197,35 +224,110 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <label className="font-semibold">Quantity:</label>
-                  <div className="flex items-center border rounded-md">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-4 py-2 hover:bg-gray-100"
-                    >
-                      -
-                    </button>
-                    <span className="px-6 py-2 border-x">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="px-4 py-2 hover:bg-gray-100"
-                    >
-                      +
-                    </button>
+              {isCustomProduct ? (
+                <div className="space-y-4 rounded-lg border border-amber-200 bg-amber-50 p-5">
+                  <h3 className="text-xl font-semibold text-gray-900">Create Your Custom Candle</h3>
+                  <p className="text-sm text-gray-700">
+                    Choose your preferences and send us your custom request. According to your choices, we will send you the price and production time.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-800 mb-2">Scent</label>
+                      <select
+                        value={customScent}
+                        onChange={(e) => setCustomScent(e.target.value)}
+                        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+                      >
+                        <option>Lavender Dream</option>
+                        <option>Vanilla Amber</option>
+                        <option>Citrus Morning</option>
+                        <option>Ocean Breeze</option>
+                        <option>Custom Blend</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-800 mb-2">Jar Color</label>
+                      <select
+                        value={customJarColor}
+                        onChange={(e) => setCustomJarColor(e.target.value)}
+                        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+                      >
+                        <option>Amber Jar</option>
+                        <option>Matte Black Jar</option>
+                        <option>Clear Glass Jar</option>
+                        <option>White Ceramic Jar</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-800 mb-2">Size</label>
+                      <select
+                        value={customSize}
+                        onChange={(e) => setCustomSize(e.target.value)}
+                        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+                      >
+                        <option>8 oz</option>
+                        <option>12 oz</option>
+                        <option>16 oz</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                        Label Text (optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={customLabelText}
+                        onChange={(e) => setCustomLabelText(e.target.value)}
+                        placeholder="e.g. Happy Birthday Emma"
+                        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button asChild className="bg-amber-600 hover:bg-amber-700">
+                      <a href={customRequestMailto}>
+                        <Mail className="mr-2 h-4 w-4" />
+                        Email Custom Request
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" className="border-amber-300 bg-white">
+                      <Link href="/contact">Contact Us</Link>
+                    </Button>
                   </div>
                 </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <label className="font-semibold">Quantity:</label>
+                    <div className="flex items-center border rounded-md">
+                      <button
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        className="px-4 py-2 hover:bg-gray-100"
+                      >
+                        -
+                      </button>
+                      <span className="px-6 py-2 border-x">{quantity}</span>
+                      <button
+                        onClick={() => setQuantity(quantity + 1)}
+                        className="px-4 py-2 hover:bg-gray-100"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
 
-                <Button
-                  size="lg"
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-lg py-6"
-                  onClick={handleAddToCart}
-                >
-                  <ShoppingCart className="mr-2 h-5 w-5" />
-                  Add to Cart - ${(parseFloat(product.price) * quantity).toFixed(2)}
-                </Button>
-              </div>
+                  <Button
+                    size="lg"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-lg py-6"
+                    onClick={handleAddToCart}
+                  >
+                    <ShoppingCart className="mr-2 h-5 w-5" />
+                    Add to Cart - ${(parseFloat(product.price) * quantity).toFixed(2)}
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>

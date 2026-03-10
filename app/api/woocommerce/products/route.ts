@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { SAMPLE_PRODUCTS } from '@/lib/sample-products';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_WOOCOMMERCE_URL || '';
 const CONSUMER_KEY = process.env.WOOCOMMERCE_CONSUMER_KEY || '';
@@ -43,17 +44,84 @@ const fetchWithRetry = async (url: string, init: RequestInit, retries = 2) => {
   throw new Error('Failed to fetch after retries.');
 };
 
-export async function GET(request: NextRequest) {
-  if (!API_BASE_URL || !CONSUMER_KEY || !CONSUMER_SECRET) {
-    return NextResponse.json(
-      { message: 'WooCommerce environment variables are not configured.' },
-      { status: 500 },
+const toPositiveInt = (value: string | null, fallback: number) => {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 1) {
+    return fallback;
+  }
+  return Math.floor(parsed);
+};
+
+const matchesCategory = (product: (typeof SAMPLE_PRODUCTS)[number], categoryValue: string) => {
+  const normalized = categoryValue.toLowerCase();
+  return product.categories.some(
+    (category) =>
+      category.slug.toLowerCase() === normalized ||
+      category.name.toLowerCase() === normalized ||
+      String(category.id) === categoryValue,
+  );
+};
+
+const getSampleProductsResponse = (searchParams: URLSearchParams) => {
+  const id = searchParams.get('id');
+  const slug = searchParams.get('slug');
+
+  if (id) {
+    const productId = Number(id);
+    const product = SAMPLE_PRODUCTS.find((item) => item.id === productId) || null;
+    return NextResponse.json(product);
+  }
+
+  if (slug) {
+    const product = SAMPLE_PRODUCTS.find((item) => item.slug === slug) || null;
+    return NextResponse.json(product);
+  }
+
+  let filtered = [...SAMPLE_PRODUCTS];
+
+  const category = searchParams.get('category');
+  if (category) {
+    filtered = filtered.filter((product) => matchesCategory(product, category));
+  }
+
+  const featured = searchParams.get('featured');
+  if (featured === 'true') {
+    filtered = filtered.filter((product) => product.featured);
+  }
+
+  const onSale = searchParams.get('on_sale');
+  if (onSale === 'true') {
+    filtered = filtered.filter((product) => product.on_sale);
+  }
+
+  const search = searchParams.get('search')?.trim().toLowerCase();
+  if (search) {
+    filtered = filtered.filter(
+      (product) =>
+        product.name.toLowerCase().includes(search) ||
+        product.description.toLowerCase().includes(search) ||
+        product.short_description.toLowerCase().includes(search),
     );
   }
 
+  const perPage = toPositiveInt(searchParams.get('per_page'), 12);
+  const page = toPositiveInt(searchParams.get('page'), 1);
+  const total = filtered.length;
+  const totalPages = total === 0 ? 0 : Math.ceil(total / perPage);
+  const start = (page - 1) * perPage;
+  const products = filtered.slice(start, start + perPage);
+
+  return NextResponse.json({ products, total, totalPages });
+};
+
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
   const slug = searchParams.get('slug');
+
+  if (!API_BASE_URL || !CONSUMER_KEY || !CONSUMER_SECRET) {
+    return getSampleProductsResponse(searchParams);
+  }
 
   try {
     let url = '';

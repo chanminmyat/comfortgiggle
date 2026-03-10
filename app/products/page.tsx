@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { fetchProducts, WooCommerceProduct } from '@/lib/woocommerce';
@@ -9,7 +10,7 @@ import { addToCart } from '@/lib/cart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ShoppingCart, Search } from 'lucide-react';
+import { ShoppingCart, Search, Wand2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import {
   Pagination,
@@ -23,6 +24,7 @@ import {
 import { toast } from 'sonner';
 
 export default function ProductsPage() {
+  const router = useRouter();
   const [products, setProducts] = useState<WooCommerceProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,8 +52,16 @@ export default function ProductsPage() {
     }
   };
 
-  const handleAddToCart = (product: WooCommerceProduct, e: React.MouseEvent) => {
+  const isCustomProduct = (product: WooCommerceProduct) =>
+    product.slug === 'comfort-giggle-custom-candle' ||
+    product.tags?.some((tag) => tag.slug === 'custom');
+
+  const handlePrimaryAction = (product: WooCommerceProduct, e: React.MouseEvent) => {
     e.preventDefault();
+    if (isCustomProduct(product)) {
+      router.push(`/products/${product.slug}`);
+      return;
+    }
     addToCart(product, 1);
     toast.success(`${product.name} added to cart!`);
   };
@@ -195,10 +205,19 @@ export default function ProductsPage() {
                       <CardFooter className="p-6 pt-0">
                         <Button
                           className="w-full bg-amber-600 hover:bg-amber-700"
-                          onClick={(e) => handleAddToCart(product, e)}
+                          onClick={(e) => handlePrimaryAction(product, e)}
                         >
-                          <ShoppingCart className="mr-2 h-4 w-4" />
-                          Add to Cart
+                          {isCustomProduct(product) ? (
+                            <>
+                              <Wand2 className="mr-2 h-4 w-4" />
+                              Customize
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingCart className="mr-2 h-4 w-4" />
+                              Add to Cart
+                            </>
+                          )}
                         </Button>
                       </CardFooter>
                     </Card>
