@@ -20,6 +20,7 @@ export default function CheckoutPage() {
   const [cartTotal, setCartTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const shippingFee = 30;
   const zelleRecipient = 'chris@comfortgiggles.com';
   const orderTotal = cartTotal + shippingFee;
@@ -243,18 +244,34 @@ export default function CheckoutPage() {
                         </p>
                       </div>
 
+                      <label className="flex items-start gap-3 mb-4 text-sm text-gray-600">
+                        <input
+                          type="checkbox"
+                          checked={acceptedTerms}
+                          onChange={(e) => setAcceptedTerms(e.target.checked)}
+                          required
+                          className="mt-1 h-4 w-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                        />
+                        <span>
+                          I agree to the{' '}
+                          <Link
+                            href="/terms-and-conditions"
+                            className="font-medium text-amber-700 underline underline-offset-2 hover:text-amber-800"
+                          >
+                            Terms & Conditions
+                          </Link>
+                          .
+                        </span>
+                      </label>
+
                       <Button
                         type="submit"
                         size="lg"
                         className="w-full bg-amber-600 hover:bg-amber-700 text-lg"
-                        disabled={loading}
+                        disabled={loading || !acceptedTerms}
                       >
                         {loading ? 'Submitting...' : 'Submit Order Request'}
                       </Button>
-
-                      <p className="text-sm text-gray-600 text-center mt-4">
-                        By submitting, you agree to our terms and conditions.
-                      </p>
                     </CardContent>
                   </Card>
                 </form>
