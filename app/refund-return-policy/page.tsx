@@ -58,7 +58,7 @@ export default function RefundReturnPolicyPage() {
                 </h2>
                 <ol className='list-decimal list-inside space-y-2'>
                   <li>
-                    Contact us at hello@comfortgiggle.com or call 1-202-800-7298
+                    Contact us at hello@comfortgiggles.com or call 1-202-800-7298
                     within the 30-day window.
                   </li>
                   <li>
@@ -161,7 +161,7 @@ export default function RefundReturnPolicyPage() {
                 </h2>
                 <p>For any questions regarding returns or refunds, contact:</p>
                 <ul className='space-y-2'>
-                  <li>Email: hello@comfortgiggle.com</li>
+                  <li>Email: hello@comfortgiggles.com</li>
                   <li>
                     Phone: 1-202-800-7298 (Customer Service: Mon–Fri 9 AM–5 PM
                     EST, Sat 10 AM–3 PM EST)

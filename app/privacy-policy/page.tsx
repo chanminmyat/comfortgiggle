@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
                 <p className='text-sm text-gray-500'>
                   Last Updated: December 2025 <br />
                   Effective Date: December 1, 2025 <br />
-                  Website: www.comfortgiggle.com
+                  Website: www.comfortgiggles.com
                 </p>
               </section>
 
@@ -178,7 +178,7 @@ export default function PrivacyPolicyPage() {
                   <li>Right to Correct inaccurate information.</li>
                   <li>Right to Request deletion under certain conditions.</li>
                 </ul>
-                <p>Requests can be submitted to hello@comfortgiggle.com.</p>
+                <p>Requests can be submitted to hello@comfortgiggles.com.</p>
               </section>
 
               <section className='space-y-3'>
@@ -227,7 +227,7 @@ export default function PrivacyPolicyPage() {
                     Address: 8 The Green Suite B, Dover, DE 19901
                   </p>
                   <p>Phone: 1-202-800-7298</p>
-                  <p>Email: hello@comfortgiggle.com</p>
+                  <p>Email: hello@comfortgiggles.com</p>
                 </div>
               </section>
 

@@ -1,11 +1,12 @@
 import { PolicyPage } from "@/components/policy-page";
+import { businessInfo } from "@/lib/business-info";
 
 export default function RefundPolicyPage() {
   return (
     <PolicyPage
       title='Refund Policy'
       effectiveDate='May 15, 2026'
-      intro='At Classic Comfort Clothing, customer satisfaction is important to us. Please review our refund and return policy below.'
+      intro='At Comfort Giggle, customer satisfaction is important to us. Please review our refund and return policy below.'
       sections={[
         {
           title: '1. Returns',
@@ -54,10 +55,10 @@ export default function RefundPolicyPage() {
         {
           title: '7. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            businessInfo.name,
+            `Email: ${businessInfo.email}`,
+            `Phone: ${businessInfo.phoneDisplay}`,
+            `Website: ${businessInfo.websiteUrl}`,
           ],
         },
       ]}

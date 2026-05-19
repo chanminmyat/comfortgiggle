@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { businessInfo } from "@/lib/business-info";
 
 const companyLinks = [
   { href: "/about", label: "About Us" },
@@ -29,7 +30,7 @@ const policyLinks = [
     label: "Security & Information Security Policy",
   },
   { href: "/shipping-policy", label: "Shipping Policy" },
-  { href: "/terms-of-service", label: "Terms of Service" },
+  { href: "/terms-and-conditions", label: "Terms of Service" },
   { href: "/cancellation-policy", label: "Cancellation Policy" },
   { href: "/terms-and-conditions", label: "Terms & Conditions" },
 ];
@@ -42,7 +43,7 @@ export function Footer() {
       <div className='container mx-auto px-4 py-14'>
         <div className='grid gap-10 border-b border-gray-800 pb-10 lg:grid-cols-[1.1fr_0.9fr_1.4fr_1fr]'>
           <div className='max-w-sm'>
-            <h3 className='text-2xl font-bold text-white'>Comfort Giggle</h3>
+            <h3 className='text-2xl font-bold text-white'>{businessInfo.name}</h3>
             <p className='mt-5 text-sm leading-7 text-gray-400'>
               Small-batch candles crafted to bring warmth, calm, and cozy
               atmosphere to every room.
@@ -122,7 +123,7 @@ export function Footer() {
               </h4>
               <ul className='mt-5 space-y-3 text-sm'>
                 {policyLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={`${link.href}-${link.label}`}>
                     <Link
                       href={link.href}
                       className='text-gray-300 transition-colors hover:text-amber-400'
@@ -145,9 +146,9 @@ export function Footer() {
                   <MapPin className='h-4 w-4' />
                 </div>
                 <span className='leading-6 text-gray-300'>
-                  8 The Green Suite B
+                  {businessInfo.addressLine1}
                   <br />
-                  Dover, DE 19901
+                  {businessInfo.addressLine2}
                 </span>
               </li>
               <li className='flex items-center gap-3'>
@@ -155,10 +156,10 @@ export function Footer() {
                   <Phone className='h-4 w-4' />
                 </div>
                 <a
-                  href='tel:+12028007298'
+                  href={`tel:${businessInfo.phoneHref}`}
                   className='transition-colors hover:text-amber-400'
                 >
-                  1-202-800-7298
+                  {businessInfo.phoneDisplay}
                 </a>
               </li>
               <li className='flex items-center gap-3'>
@@ -166,10 +167,10 @@ export function Footer() {
                   <Mail className='h-4 w-4' />
                 </div>
                 <a
-                  href='mailto:hello@comfortgiggle.com'
+                  href={`mailto:${businessInfo.email}`}
                   className='break-all transition-colors hover:text-amber-400'
                 >
-                  hello@comfortgiggle.com
+                  {businessInfo.email}
                 </a>
               </li>
             </ul>
@@ -177,7 +178,7 @@ export function Footer() {
         </div>
 
         <div className='flex flex-col gap-3 pt-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between'>
-          <p>© {currentYear} Comfort Giggle. All rights reserved.</p>
+          <p>© {currentYear} {businessInfo.name}. All rights reserved.</p>
           <p className='text-gray-500'>Made for a calmer, warmer home.</p>
         </div>
       </div>

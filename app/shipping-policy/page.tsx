@@ -1,11 +1,12 @@
 import { PolicyPage } from "@/components/policy-page";
+import { businessInfo } from "@/lib/business-info";
 
 export default function ShippingPolicyPage() {
   return (
     <PolicyPage
       title='Shipping Policy'
       effectiveDate='May 15, 2026'
-      intro='Thank you for shopping with Classic Comfort Clothing. Below are our shipping terms and conditions.'
+      intro='Thank you for shopping with Comfort Giggle. Below are our shipping terms and conditions.'
       sections={[
         {
           title: '1. Order Processing',
@@ -56,10 +57,10 @@ export default function ShippingPolicyPage() {
         {
           title: '8. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            businessInfo.name,
+            `Email: ${businessInfo.email}`,
+            `Phone: ${businessInfo.phoneDisplay}`,
+            `Website: ${businessInfo.websiteUrl}`,
           ],
         },
       ]}

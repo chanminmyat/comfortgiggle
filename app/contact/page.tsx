@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { businessInfo } from "@/lib/business-info";
 
 export default function ContactPage() {
   return (
@@ -41,10 +42,10 @@ export default function ContactPage() {
                   <h3 className='text-xl font-semibold mb-2'>Phone</h3>
                   <p className='text-gray-600 mb-2'>Give us a call</p>
                   <a
-                    href='tel:+12028007298'
+                    href={`tel:${businessInfo.phoneHref}`}
                     className='text-amber-700 hover:underline'
                   >
-                    1-202-800-7298
+                    {businessInfo.phoneDisplay}
                   </a>
                 </CardContent>
               </Card>
@@ -57,10 +58,10 @@ export default function ContactPage() {
                   <h3 className='text-xl font-semibold mb-2'>Email</h3>
                   <p className='text-gray-600 mb-2'>Send us a message</p>
                   <a
-                    href='mailto:hello@comfortgiggle.com'
+                    href={`mailto:${businessInfo.email}`}
                     className='text-amber-700 hover:underline'
                   >
-                    hello@comfortgiggle.com
+                    {businessInfo.email}
                   </a>
                 </CardContent>
               </Card>
@@ -72,8 +73,8 @@ export default function ContactPage() {
                   </div>
                   <h3 className='text-xl font-semibold mb-2'>Location</h3>
                   <p className='text-gray-600'>
-                    8 The Green Suite B<br />
-                    Dover, DE 19901
+                    {businessInfo.addressLine1}<br />
+                    {businessInfo.addressLine2}
                   </p>
                 </CardContent>
               </Card>

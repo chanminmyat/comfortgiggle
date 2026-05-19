@@ -34,7 +34,7 @@ export default function DisputeResolutionChargebackPolicyPage() {
                   contact Customer Service within 48 hours of the appointment.
                 </p>
                 <ul className='space-y-2'>
-                  <li>Email: hello@comfortgiggle.com</li>
+                  <li>Email: hello@comfortgiggles.com</li>
                   <li>
                     Review: We will review chat logs, call duration, and
                     deliverables to mediate a resolution.

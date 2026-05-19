@@ -1,11 +1,12 @@
 import { PolicyPage } from "@/components/policy-page";
+import { businessInfo } from "@/lib/business-info";
 
 export default function TermsAndConditionsPage() {
   return (
     <PolicyPage
       title='Terms and Conditions'
       effectiveDate='May 15, 2026'
-      intro='Welcome to Classic Comfort Clothing. By accessing or using https://classiccomfortusa.com, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website.'
+      intro={`Welcome to ${businessInfo.name}. By accessing or using ${businessInfo.websiteUrl}, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website.`}
       sections={[
         {
           title: '1. Use of Website',
@@ -34,13 +35,13 @@ export default function TermsAndConditionsPage() {
         {
           title: '5. Intellectual Property',
           body: [
-            'All content on this website, including logos, text, graphics, images, and designs, is the property of Classic Comfort Clothing and may not be copied, reproduced, or distributed without written permission.',
+            `All content on this website, including logos, text, graphics, images, and designs, is the property of ${businessInfo.name} and may not be copied, reproduced, or distributed without written permission.`,
           ],
         },
         {
           title: '6. Limitation of Liability',
           body: [
-            'Classic Comfort Clothing shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our website or products.',
+            `${businessInfo.name} shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our website or products.`,
           ],
         },
         {
@@ -64,10 +65,10 @@ export default function TermsAndConditionsPage() {
         {
           title: '10. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            businessInfo.name,
+            `Email: ${businessInfo.email}`,
+            `Phone: ${businessInfo.phoneDisplay}`,
+            `Website: ${businessInfo.websiteUrl}`,
           ],
         },
       ]}

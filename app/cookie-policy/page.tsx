@@ -121,7 +121,7 @@ export default function CookiePolicyPage() {
                 </h2>
                 <p>
                   For questions about our Cookie Policy, email
-                  hello@comfortgiggle.com.
+                  hello@comfortgiggles.com.
                 </p>
               </section>
             </div>

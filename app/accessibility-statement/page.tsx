@@ -44,7 +44,7 @@ export default function AccessibilityStatementPage() {
                 </p>
                 <ul className='space-y-2'>
                   <li>Phone: 1-202-800-7298</li>
-                  <li>Email: hello@comfortgiggle.com</li>
+                  <li>Email: hello@comfortgiggles.com</li>
                   <li>
                     Response Time: We aim to respond to feedback within 2
                     business days.

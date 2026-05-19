@@ -59,7 +59,7 @@ export default function AntiDiscriminationPolicyPage() {
                 </h2>
                 <p>
                   If you experience discrimination, report it immediately to
-                  hello@comfortgiggle.com. All reports are investigated with
+                  hello@comfortgiggles.com. All reports are investigated with
                   high priority.
                 </p>
               </section>
@@ -78,7 +78,7 @@ export default function AntiDiscriminationPolicyPage() {
                     FL 33131
                   </p>
                   <p>Phone: 305-427-9067</p>
-                  <p>Email: hello@comfortgiggle.com</p>
+                  <p>Email: hello@comfortgiggles.com</p>
                 </div>
               </section>
 

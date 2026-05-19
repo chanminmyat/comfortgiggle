@@ -105,7 +105,7 @@ export default function ProductDetailPage() {
     '',
     'Thank you!',
   ].join('\n');
-  const customRequestMailto = `mailto:hello@comfortgiggle.com?subject=${encodeURIComponent(
+  const customRequestMailto = `mailto:hello@comfortgiggles.com?subject=${encodeURIComponent(
     customRequestSubject,
   )}&body=${encodeURIComponent(customRequestBody)}`;
 

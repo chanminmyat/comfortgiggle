@@ -1,11 +1,12 @@
 import { PolicyPage } from "@/components/policy-page";
+import { businessInfo } from "@/lib/business-info";
 
 export default function CancellationPolicyPage() {
   return (
     <PolicyPage
       title='Cancellation Policy'
       effectiveDate='May 15, 2026'
-      intro='At Classic Comfort Clothing, we understand that customers may need to cancel an order. Please review our cancellation policy below.'
+      intro='At Comfort Giggle, we understand that customers may need to cancel an order. Please review our cancellation policy below.'
       sections={[
         {
           title: '1. Order Cancellation',
@@ -46,10 +47,10 @@ export default function CancellationPolicyPage() {
         {
           title: '7. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            businessInfo.name,
+            `Email: ${businessInfo.email}`,
+            `Phone: ${businessInfo.phoneDisplay}`,
+            `Website: ${businessInfo.websiteUrl}`,
           ],
         },
       ]}
