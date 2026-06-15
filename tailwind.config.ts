@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'Cambria', 'serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -20,6 +24,15 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        cream: '#f6f2eb',
+        sand: '#ece4d6',
+        clay: '#e4d9c7',
+        olive: {
+          DEFAULT: '#71765c',
+          dark: '#5d614a',
+        },
+        ink: '#3b3933',
+        taupe: '#8c857a',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

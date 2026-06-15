@@ -6,13 +6,21 @@ import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { getCart, clearCart, getCartTotal, CartItem } from '@/lib/cart';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, Lock } from 'lucide-react';
+import { ArrowLeft, Lock, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
+
+const shippingFee = 30;
+const zelleRecipient = 'chris@comfortgiggles.com';
+
+function formatPrice(value: number | string) {
+  const amount = typeof value === 'number' ? value : parseFloat(value);
+  if (Number.isNaN(amount)) return String(value);
+  return `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+const fieldClass =
+  'w-full border border-ink/20 bg-cream px-3 py-2.5 text-sm text-ink placeholder:text-taupe focus:border-olive focus:outline-none';
+const labelClass = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-taupe';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -21,8 +29,6 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const shippingFee = 30;
-  const zelleRecipient = 'chris@comfortgiggles.com';
   const orderTotal = cartTotal + shippingFee;
 
   const [formData, setFormData] = useState({
@@ -47,16 +53,12 @@ export default function CheckoutPage() {
   }, [router]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       clearCart();
       setOrderComplete(true);
@@ -74,251 +76,201 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-cream font-sans text-ink">
       <Header />
 
-      <main className="flex-1 py-12 bg-gray-50">
+      <main className="flex-1 py-10 md:py-14">
         <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Button asChild variant="ghost">
-              <Link href="/cart">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Cart
-              </Link>
-            </Button>
-          </div>
+          <Link
+            href="/cart"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-taupe transition-colors hover:text-olive"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Cart
+          </Link>
 
-          <h1 className="text-4xl font-bold mb-8">Checkout</h1>
+          <h1 className="mb-8 font-serif text-4xl text-ink md:text-5xl">Checkout</h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
               {orderComplete ? (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Request Received</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-gray-600">
-                      Thanks for your order request. Please complete payment via Zelle using the
-                      details below.
-                    </p>
-                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
-                      <p className="text-sm text-amber-900">
-                        <span className="font-semibold">Payment Method:</span> Zelle
-                      </p>
-                      <p className="text-sm text-amber-900">
-                        <span className="font-semibold">Transfer To:</span> {zelleRecipient}
-                      </p>
-                      <p className="text-sm text-amber-900">
-                        <span className="font-semibold">Amount:</span> ${orderTotal.toFixed(2)}
-                      </p>
-                      <p className="text-sm text-amber-900 mt-2">
-                        Please include your full name in the transfer note so we can match your
-                        payment quickly.
-                      </p>
+                <div className="border border-clay bg-cream p-8">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 className="h-7 w-7 text-olive" />
+                    <h2 className="font-serif text-2xl text-ink">Request Received</h2>
+                  </div>
+                  <p className="mt-4 text-sm leading-7 text-ink/70">
+                    Thanks for your order request. Please complete payment via Zelle using the
+                    details below.
+                  </p>
+                  <dl className="mt-5 space-y-1.5 border border-clay bg-sand/50 p-5 text-sm text-ink/80">
+                    <div className="flex gap-2">
+                      <dt className="font-semibold text-ink">Payment Method:</dt>
+                      <dd>Zelle</dd>
                     </div>
-                    <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700 text-lg">
-                      <Link href="/">Back to Home</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+                    <div className="flex gap-2">
+                      <dt className="font-semibold text-ink">Transfer To:</dt>
+                      <dd>{zelleRecipient}</dd>
+                    </div>
+                    <div className="flex gap-2">
+                      <dt className="font-semibold text-ink">Amount:</dt>
+                      <dd>{formatPrice(orderTotal)}</dd>
+                    </div>
+                    <p className="pt-2 text-xs leading-6 text-taupe">
+                      Please include your full name in the transfer note so we can match your payment
+                      quickly.
+                    </p>
+                  </dl>
+                  <Link
+                    href="/"
+                    className="mt-6 inline-flex items-center justify-center bg-olive px-8 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-olive-dark"
+                  >
+                    Back to Home
+                  </Link>
+                </div>
               ) : (
-                <form onSubmit={handleSubmit}>
-                  <Card className="mb-6">
-                    <CardHeader>
-                      <CardTitle>Billing Information</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Billing */}
+                  <div className="border border-clay bg-cream p-6">
+                    <h2 className="font-serif text-2xl text-ink">Billing Information</h2>
+                    <div className="mt-5 space-y-4">
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div>
-                          <Label htmlFor="firstName">First Name *</Label>
-                          <Input
-                            id="firstName"
-                            name="firstName"
-                            required
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                          />
+                          <label htmlFor="firstName" className={labelClass}>First Name *</label>
+                          <input id="firstName" name="firstName" required value={formData.firstName} onChange={handleInputChange} className={fieldClass} />
                         </div>
                         <div>
-                          <Label htmlFor="lastName">Last Name *</Label>
-                          <Input
-                            id="lastName"
-                            name="lastName"
-                            required
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                          />
+                          <label htmlFor="lastName" className={labelClass}>Last Name *</label>
+                          <input id="lastName" name="lastName" required value={formData.lastName} onChange={handleInputChange} className={fieldClass} />
                         </div>
                       </div>
-
                       <div>
-                        <Label htmlFor="email">Email *</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={handleInputChange}
-                        />
+                        <label htmlFor="email" className={labelClass}>Email *</label>
+                        <input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} className={fieldClass} />
                       </div>
-
                       <div>
-                        <Label htmlFor="phone">Phone *</Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          required
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                        />
+                        <label htmlFor="phone" className={labelClass}>Phone *</label>
+                        <input id="phone" name="phone" type="tel" required value={formData.phone} onChange={handleInputChange} className={fieldClass} />
                       </div>
-
                       <div>
-                        <Label htmlFor="address">Address *</Label>
-                        <Input
-                          id="address"
-                          name="address"
-                          required
-                          value={formData.address}
-                          onChange={handleInputChange}
-                        />
+                        <label htmlFor="address" className={labelClass}>Address *</label>
+                        <input id="address" name="address" required value={formData.address} onChange={handleInputChange} className={fieldClass} />
                       </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         <div>
-                          <Label htmlFor="city">City *</Label>
-                          <Input
-                            id="city"
-                            name="city"
-                            required
-                            value={formData.city}
-                            onChange={handleInputChange}
-                          />
+                          <label htmlFor="city" className={labelClass}>City *</label>
+                          <input id="city" name="city" required value={formData.city} onChange={handleInputChange} className={fieldClass} />
                         </div>
                         <div>
-                          <Label htmlFor="state">State *</Label>
-                          <Input
-                            id="state"
-                            name="state"
-                            required
-                            value={formData.state}
-                            onChange={handleInputChange}
-                          />
+                          <label htmlFor="state" className={labelClass}>State *</label>
+                          <input id="state" name="state" required value={formData.state} onChange={handleInputChange} className={fieldClass} />
                         </div>
                         <div>
-                          <Label htmlFor="zipCode">ZIP Code *</Label>
-                          <Input
-                            id="zipCode"
-                            name="zipCode"
-                            required
-                            value={formData.zipCode}
-                            onChange={handleInputChange}
-                          />
+                          <label htmlFor="zipCode" className={labelClass}>ZIP Code *</label>
+                          <input id="zipCode" name="zipCode" required value={formData.zipCode} onChange={handleInputChange} className={fieldClass} />
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
 
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Lock className="mr-2 h-5 w-5" />
-                        Payment Information
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
-                        <p className="text-sm text-amber-900">
-                          <span className="font-semibold">Payment Method:</span> Zelle
-                        </p>
-                        <p className="text-sm text-amber-900 mt-2">
-                          Please transfer <span className="font-semibold">${orderTotal.toFixed(2)}</span>{' '}
-                          to <span className="font-semibold">{zelleRecipient}</span> after submitting
-                          this order request.
-                        </p>
-                        <p className="text-sm text-amber-900 mt-2">
-                          Add your full name in the transfer note.
-                        </p>
-                      </div>
+                  {/* Payment */}
+                  <div className="border border-clay bg-cream p-6">
+                    <h2 className="flex items-center gap-2 font-serif text-2xl text-ink">
+                      <Lock className="h-5 w-5 text-olive" />
+                      Payment Information
+                    </h2>
+                    <div className="mt-5 border border-clay bg-sand/50 p-5 text-sm leading-7 text-ink/80">
+                      <p>
+                        <span className="font-semibold text-ink">Payment Method:</span> Zelle
+                      </p>
+                      <p className="mt-1">
+                        Please transfer <span className="font-semibold text-ink">{formatPrice(orderTotal)}</span> to{' '}
+                        <span className="font-semibold text-ink">{zelleRecipient}</span> after submitting this order request.
+                      </p>
+                      <p className="mt-1 text-xs text-taupe">Add your full name in the transfer note.</p>
+                    </div>
 
-                      <label className="flex items-start gap-3 mb-4 text-sm text-gray-600">
-                        <input
-                          type="checkbox"
-                          checked={acceptedTerms}
-                          onChange={(e) => setAcceptedTerms(e.target.checked)}
-                          required
-                          className="mt-1 h-4 w-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
-                        />
-                        <span>
-                          I agree to the{' '}
-                          <Link
-                            href="/terms-and-conditions"
-                            className="font-medium text-amber-700 underline underline-offset-2 hover:text-amber-800"
-                          >
-                            Terms & Conditions
-                          </Link>
-                          .
-                        </span>
-                      </label>
+                    <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-ink/70">
+                      <input
+                        type="checkbox"
+                        checked={acceptedTerms}
+                        onChange={(e) => setAcceptedTerms(e.target.checked)}
+                        required
+                        className="mt-1 h-4 w-4 shrink-0 accent-olive"
+                      />
+                      <span>
+                        By completing this purchase, I confirm that I have read and agree to the{' '}
+                        <Link href="/terms-and-conditions" className="font-medium text-olive underline underline-offset-2 hover:text-olive-dark">
+                          Terms &amp; Conditions
+                        </Link>
+                        ,{' '}
+                        <Link href="/privacy-policy" className="font-medium text-olive underline underline-offset-2 hover:text-olive-dark">
+                          Privacy Policy
+                        </Link>
+                        ,{' '}
+                        <Link href="/refund-policy" className="font-medium text-olive underline underline-offset-2 hover:text-olive-dark">
+                          Refund Policy
+                        </Link>
+                        , and{' '}
+                        <Link href="/shipping-policy" className="font-medium text-olive underline underline-offset-2 hover:text-olive-dark">
+                          Shipping Policy
+                        </Link>
+                        . I authorize this payment and acknowledge that all order details and personal
+                        information provided are accurate.
+                      </span>
+                    </label>
 
-                      <Button
-                        type="submit"
-                        size="lg"
-                        className="w-full bg-amber-600 hover:bg-amber-700 text-lg"
-                        disabled={loading || !acceptedTerms}
-                      >
-                        {loading ? 'Submitting...' : 'Submit Order Request'}
-                      </Button>
-                    </CardContent>
-                  </Card>
+                    <button
+                      type="submit"
+                      disabled={loading || !acceptedTerms}
+                      className="mt-5 w-full bg-olive px-6 py-4 text-xs font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-olive-dark disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {loading ? 'Submitting…' : 'Submit Order Request'}
+                    </button>
+                  </div>
                 </form>
               )}
             </div>
 
+            {/* Summary */}
             <div>
-              <Card className="sticky top-24">
-                <CardHeader>
-                  <CardTitle>Order Summary</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4 mb-6">
-                    {cartItems.map(item => (
-                      <div key={item.product.id} className="flex justify-between text-sm">
-                        <div className="flex-1">
-                          <p className="font-medium">{item.product.name}</p>
-                          <p className="text-gray-600">Qty: {item.quantity}</p>
-                        </div>
-                        <p className="font-semibold">
-                          ${(parseFloat(item.product.price) * item.quantity).toFixed(2)}
-                        </p>
+              <div className="sticky top-32 border border-clay bg-sand/50 p-6">
+                <h2 className="font-serif text-2xl text-ink">Order Summary</h2>
+
+                <ul className="mt-5 space-y-3 text-sm">
+                  {cartItems.map((item) => (
+                    <li key={item.product.id} className="flex justify-between gap-3">
+                      <div className="flex-1">
+                        <p className="font-medium text-ink">{item.product.name}</p>
+                        <p className="text-xs text-taupe">Qty: {item.quantity}</p>
                       </div>
-                    ))}
+                      <p className="font-medium text-ink">
+                        {formatPrice(parseFloat(item.product.price) * item.quantity)}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="my-4 h-px bg-clay/70" />
+
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between text-ink/70">
+                    <span>Subtotal</span>
+                    <span className="font-medium text-ink">{formatPrice(cartTotal)}</span>
                   </div>
-
-                  <Separator className="my-4" />
-
-                  <div className="space-y-2 mb-4">
-                    <div className="flex justify-between text-gray-600">
-                      <span>Subtotal</span>
-                      <span className="font-semibold">${cartTotal.toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-600">
-                      <span>Shipping</span>
-                      <span className="font-semibold">${shippingFee.toFixed(2)}</span>
-                    </div>
+                  <div className="flex justify-between text-ink/70">
+                    <span>Shipping</span>
+                    <span className="font-medium text-ink">{formatPrice(shippingFee)}</span>
                   </div>
+                </div>
 
-                  <Separator className="my-4" />
+                <div className="my-4 h-px bg-clay/70" />
 
-                  <div className="flex justify-between text-xl font-bold">
-                    <span>Total</span>
-                    <span className="text-amber-700">${orderTotal.toFixed(2)}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                <div className="flex justify-between text-lg">
+                  <span className="font-serif text-ink">Total</span>
+                  <span className="font-serif text-ink">{formatPrice(orderTotal)}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

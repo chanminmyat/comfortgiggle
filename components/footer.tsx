@@ -1,184 +1,134 @@
-import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+'use client';
 
-const companyLinks = [
-  { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact" },
-  { href: "/privacy-policy", label: "Privacy Policy" },
-  { href: "/accessibility-statement", label: "Accessibility Statement" },
-  { href: "/cookie-policy", label: "Cookie Policy" },
+import Link from 'next/link';
+import { Instagram, Facebook, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
+
+const quickLinks = [
+  { href: '/products', label: 'Shop' },
+  { href: '/about', label: 'Our Story' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/contact', label: 'FAQ', key: 'faq' },
 ];
 
-const policyLinks = [
-  { href: "/anti-discrimination-policy", label: "Anti-Discrimination Policy" },
-  { href: "/anti-fraud-policy", label: "Anti-Fraud Policy" },
-  { href: "/clear-pricing-policy", label: "Clear Pricing Policy" },
-  { href: "/data-processing-agreement", label: "Data Processing Agreement" },
-  {
-    href: "/dispute-resolution-chargeback-policy",
-    label: "Dispute Resolution & Chargeback Policy",
-  },
-  {
-    href: "/freelancer-third-party-provider-policy",
-    label: "Freelancer & Third-Party Provider Policy",
-  },
-  { href: "/record-retention-policy", label: "Record Retention Policy" },
-  { href: "/refund-policy", label: "Refund Policy" },
-  {
-    href: "/security-information-security-policy",
-    label: "Security & Information Security Policy",
-  },
-  { href: "/shipping-policy", label: "Shipping Policy" },
-  { href: "/terms-of-service", label: "Terms of Service" },
-  { href: "/cancellation-policy", label: "Cancellation Policy" },
-  { href: "/terms-and-conditions", label: "Terms & Conditions" },
+const customerCare = [
+  { href: '/shipping-policy', label: 'Shipping & Delivery' },
+  { href: '/refund-return-policy', label: 'Returns & Exchanges' },
+  { href: '/terms-and-conditions', label: 'Terms & Conditions' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
 ];
+
+function PinterestIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2C6.5 2 3.5 5.72 3.5 9.43c0 1.72.92 3.86 2.39 4.54.22.1.34.06.39-.16l.32-1.32c.03-.12.02-.22-.08-.34-.5-.6-.9-1.7-.9-2.73 0-2.64 2-5.2 5.4-5.2 2.94 0 5 2 5 4.87 0 3.23-1.63 5.47-3.76 5.47-1.17 0-2.05-.97-1.77-2.17.34-1.42 1-2.96 1-3.99 0-.92-.49-1.69-1.51-1.69-1.2 0-2.16 1.24-2.16 2.9 0 1.06.36 1.77.36 1.77s-1.2 5.08-1.42 6c-.42 1.78-.06 3.96-.03 4.18.02.13.18.16.26.06.1-.14 1.45-1.8 1.9-3.46.13-.47.74-2.9.74-2.9.37.7 1.43 1.31 2.56 1.31 3.37 0 5.66-3.07 5.66-7.18C20.5 5.07 17.5 2 12.04 2Z" />
+    </svg>
+  );
+}
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    toast.success('Thanks for subscribing!');
+    setEmail('');
+  };
 
   return (
-    <footer className='bg-gray-900 text-gray-300'>
-      <div className='container mx-auto px-4 py-14'>
-        <div className='grid gap-10 border-b border-gray-800 pb-10 lg:grid-cols-[1.1fr_0.9fr_1.4fr_1fr]'>
-          <div className='max-w-sm'>
-            <h3 className='text-2xl font-bold text-white'>Comfort Giggle</h3>
-            <p className='mt-5 text-sm leading-7 text-gray-400'>
-              Small-batch candles crafted to bring warmth, calm, and cozy
-              atmosphere to every room.
+    <footer className="bg-clay/70 text-ink">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          {/* Brand */}
+          <div className="max-w-sm">
+            <div className="flex items-center gap-2">
+              <svg viewBox="0 0 24 24" className="h-5 w-5 text-olive" fill="none" stroke="currentColor" strokeWidth={1.3} aria-hidden="true">
+                <path d="M12 21V9" strokeLinecap="round" />
+                <path d="M12 11c0-3 2-5 5-5 0 3-2 5-5 5Z" strokeLinejoin="round" />
+                <path d="M12 14c0-3-2-5-5-5 0 3 2 5 5 5Z" strokeLinejoin="round" />
+              </svg>
+              <span className="font-serif text-base tracking-[0.22em]">COMFORT GIGGLES</span>
+            </div>
+            <p className="mt-5 text-sm leading-7 text-ink/70">
+              Handcrafted candles made with natural ingredients to bring warmth, calm and comfort
+              to your everyday moments.
             </p>
-          </div>
-
-          <div>
-            <h4 className='text-sm font-semibold uppercase tracking-[0.18em] text-white/90'>
-              Shop Candles
-            </h4>
-            <ul className='mt-5 space-y-3 text-sm'>
-              <li>
-                <Link
-                  href='/products'
-                  className='text-gray-300 transition-colors hover:text-amber-400'
-                >
-                  All Candles
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/products?category=scented-candles'
-                  className='text-gray-300 transition-colors hover:text-amber-400'
-                >
-                  Scented Candles
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/products?category=wax-melts'
-                  className='text-gray-300 transition-colors hover:text-amber-400'
-                >
-                  Wax Melts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/products?category=gift-sets'
-                  className='text-gray-300 transition-colors hover:text-amber-400'
-                >
-                  Gift Sets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/products?featured=true'
-                  className='text-gray-300 transition-colors hover:text-amber-400'
-                >
-                  Featured Candles
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className='grid gap-8 sm:grid-cols-2'>
-            <div>
-              <h4 className='text-sm font-semibold uppercase tracking-[0.18em] text-white/90'>
-                Company
-              </h4>
-              <ul className='mt-5 space-y-3 text-sm'>
-                {companyLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className='text-gray-300 transition-colors hover:text-amber-400'
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className='text-sm font-semibold uppercase tracking-[0.18em] text-white/90'>
-                Policies
-              </h4>
-              <ul className='mt-5 space-y-3 text-sm'>
-                {policyLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className='text-gray-300 transition-colors hover:text-amber-400'
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="mt-5 flex items-center gap-3">
+              <a href="#" aria-label="Instagram" className="rounded-full bg-cream p-2 text-ink/70 transition-colors hover:text-olive">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="#" aria-label="Facebook" className="rounded-full bg-cream p-2 text-ink/70 transition-colors hover:text-olive">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="#" aria-label="Pinterest" className="rounded-full bg-cream p-2 text-ink/70 transition-colors hover:text-olive">
+                <PinterestIcon className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h4 className='text-sm font-semibold uppercase tracking-[0.18em] text-white/90'>
-              Contact Us
-            </h4>
-            <ul className='mt-5 space-y-5 text-sm text-gray-300'>
-              <li className='flex items-start gap-3'>
-                <div className='mt-0.5 rounded-full bg-amber-500/10 p-2 text-amber-400'>
-                  <MapPin className='h-4 w-4' />
-                </div>
-                <span className='leading-6 text-gray-300'>
-                  8 The Green Suite B
-                  <br />
-                  Dover, DE 19901
-                </span>
-              </li>
-              <li className='flex items-center gap-3'>
-                <div className='rounded-full bg-amber-500/10 p-2 text-amber-400'>
-                  <Phone className='h-4 w-4' />
-                </div>
-                <a
-                  href='tel:+12028007298'
-                  className='transition-colors hover:text-amber-400'
-                >
-                  1-202-800-7298
-                </a>
-              </li>
-              <li className='flex items-center gap-3'>
-                <div className='rounded-full bg-amber-500/10 p-2 text-amber-400'>
-                  <Mail className='h-4 w-4' />
-                </div>
-                <a
-                  href='mailto:hello@comfortgiggle.com'
-                  className='break-all transition-colors hover:text-amber-400'
-                >
-                  hello@comfortgiggle.com
-                </a>
-              </li>
+            <h4 className="font-serif text-base text-ink">Quick Links</h4>
+            <ul className="mt-5 space-y-3 text-sm">
+              {quickLinks.map((link) => (
+                <li key={link.key ?? link.href}>
+                  <Link href={link.href} className="text-ink/70 transition-colors hover:text-olive">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </div>
+
+          {/* Customer Care */}
+          <div>
+            <h4 className="font-serif text-base text-ink">Customer Care</h4>
+            <ul className="mt-5 space-y-3 text-sm">
+              {customerCare.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-ink/70 transition-colors hover:text-olive">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="font-serif text-base text-ink">Stay in the loop</h4>
+            <p className="mt-5 text-sm leading-7 text-ink/70">
+              Subscribe to get updates on new arrivals, offers &amp; more.
+            </p>
+            <form onSubmit={handleSubscribe} className="mt-5 flex items-center border border-ink/20 bg-cream">
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full bg-transparent px-4 py-3 text-sm text-ink placeholder:text-taupe focus:outline-none"
+              />
+              <button
+                type="submit"
+                aria-label="Subscribe"
+                className="flex h-11 w-12 shrink-0 items-center justify-center text-ink transition-colors hover:text-olive"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </form>
           </div>
         </div>
 
-        <div className='flex flex-col gap-3 pt-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between'>
-          <p>© {currentYear} Comfort Giggle. All rights reserved.</p>
-          <p className='text-gray-500'>Made for a calmer, warmer home.</p>
+        <div className="mt-12 border-t border-ink/10 pt-6 text-center text-xs text-taupe">
+          <p>© {currentYear} Comfort Giggles Candles. All rights reserved.</p>
         </div>
       </div>
     </footer>
