@@ -127,4 +127,3 @@ export default function AboutPage() {
     </div>
   );
 }
-//production giggles theme
