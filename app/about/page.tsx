@@ -33,7 +33,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-cream font-sans text-ink">
+    <div className="flex min-h-screen flex-col bg-soot font-sans text-bone">
       <Header />
 
       <main className="flex-1">
@@ -45,13 +45,13 @@ export default function AboutPage() {
               alt="A hand lighting a Comfort Giggles candle"
               className="h-full w-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-soot via-soot/70 to-soot/20" />
           </div>
           <div className="container relative mx-auto px-4">
             <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-taupe">About Us</p>
-              <h1 className="mt-3 font-serif text-5xl text-ink md:text-6xl">Our Story</h1>
-              <p className="mt-4 max-w-md text-sm leading-7 text-ink/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">About Us</p>
+              <h1 className="mt-3 font-display text-6xl uppercase tracking-wide text-bone md:text-7xl">Our Story</h1>
+              <p className="mt-4 max-w-md text-sm leading-7 text-bone/70">
                 Handcrafting cozy candle experiences with care, clean ingredients, and quality.
               </p>
             </div>
@@ -61,7 +61,7 @@ export default function AboutPage() {
         {/* Story */}
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl space-y-4 text-sm leading-7 text-ink/70">
+            <div className="mx-auto max-w-3xl space-y-4 text-sm leading-7 text-bone/70">
               <p>
                 Comfort Giggles began with a simple idea: everyday spaces feel better with the right
                 scent. We started small, hand-pouring candles in carefully tested batches for friends
@@ -85,23 +85,23 @@ export default function AboutPage() {
         </section>
 
         {/* Values */}
-        <section className="bg-sand/60 py-16 md:py-20">
+        <section className="bg-charcoal-dark py-16 md:py-20">
           <div className="container mx-auto px-4">
             <header className="mb-12 text-center">
-              <h2 className="font-serif text-3xl text-ink md:text-4xl">Our Values</h2>
-              <p className="mx-auto mt-3 max-w-xl text-sm text-taupe">
+              <h2 className="font-display text-4xl uppercase tracking-wide text-bone md:text-5xl">Our Values</h2>
+              <p className="mx-auto mt-3 max-w-xl text-sm text-bone/60">
                 The principles that guide everything we do.
               </p>
             </header>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {values.map((value) => (
-                <div key={value.title} className="border border-clay bg-cream p-7 text-center">
-                  <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-olive/10 text-olive">
+                <div key={value.title} className="border border-bone/15 bg-soot p-7 text-center">
+                  <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-ember/15 text-ember">
                     <value.icon className="h-7 w-7" strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-serif text-xl text-ink">{value.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-ink/70">{value.description}</p>
+                  <h3 className="font-display text-xl uppercase tracking-wide text-bone">{value.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-bone/70">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -114,8 +114,8 @@ export default function AboutPage() {
             <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 text-center sm:grid-cols-3">
               {stats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="font-serif text-5xl text-olive">{stat.value}</div>
-                  <p className="mt-2 text-sm text-taupe">{stat.label}</p>
+                  <div className="font-display text-6xl text-ember">{stat.value}</div>
+                  <p className="mt-2 text-sm text-bone/60">{stat.label}</p>
                 </div>
               ))}
             </div>
