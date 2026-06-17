@@ -6,21 +6,12 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { fetchProducts, WooCommerceProduct } from '@/lib/woocommerce';
-import { SAMPLE_PRODUCTS } from '@/lib/sample-products';
+import { SAMPLE_PRODUCTS, MOODS } from '@/lib/sample-products';
 import { addToCart } from '@/lib/cart';
 import { Search, SlidersHorizontal, X, Wand2, Leaf } from 'lucide-react';
 import { toast } from 'sonner';
 
 type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'name-asc';
-
-const SCENT_FAMILIES: { label: string; slugs: string[] }[] = [
-  { label: 'Floral', slugs: ['floral'] },
-  { label: 'Woody', slugs: ['woody', 'warm'] },
-  { label: 'Fresh', slugs: ['fresh'] },
-  { label: 'Citrus', slugs: ['citrus'] },
-  { label: 'Sweet', slugs: ['vanilla', 'sweet'] },
-  { label: 'Lavender', slugs: ['lavender', 'relaxing'] },
-];
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: 'featured', label: 'Featured' },
@@ -46,8 +37,11 @@ function ShopContent() {
   const [allProducts, setAllProducts] = useState<WooCommerceProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const moodParam = searchParams.get('mood');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFamilies, setSelectedFamilies] = useState<string[]>([]);
+  const [selectedMoods, setSelectedMoods] = useState<string[]>(
+    moodParam && MOODS.some((m) => m.slug === moodParam) ? [moodParam] : [],
+  );
   const [featuredOnly, setFeaturedOnly] = useState(searchParams.get('featured') === 'true');
   const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const [sort, setSort] = useState<SortKey>('featured');
@@ -77,12 +71,10 @@ function ShopContent() {
     return prices.length ? Math.ceil(Math.max(...prices)) : 100;
   }, [allProducts]);
 
-  const familyCounts = useMemo(() => {
+  const moodCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    for (const family of SCENT_FAMILIES) {
-      counts[family.label] = allProducts.filter((p) =>
-        p.tags?.some((t) => family.slugs.includes(t.slug)),
-      ).length;
+    for (const mood of MOODS) {
+      counts[mood.slug] = allProducts.filter((p) => p.tags?.some((t) => t.slug === mood.slug)).length;
     }
     return counts;
   }, [allProducts]);
@@ -96,17 +88,14 @@ function ShopContent() {
         product.short_description?.toLowerCase().includes(q) ||
         product.tags?.some((t) => t.name.toLowerCase().includes(q));
 
-      const matchesFamily =
-        selectedFamilies.length === 0 ||
-        selectedFamilies.some((label) => {
-          const family = SCENT_FAMILIES.find((f) => f.label === label);
-          return family ? product.tags?.some((t) => family.slugs.includes(t.slug)) : false;
-        });
+      const matchesMood =
+        selectedMoods.length === 0 ||
+        selectedMoods.some((slug) => product.tags?.some((t) => t.slug === slug));
 
       const matchesFeatured = !featuredOnly || product.featured;
       const matchesPrice = maxPrice === null || parseFloat(product.price) <= maxPrice;
 
-      return matchesSearch && matchesFamily && matchesFeatured && matchesPrice;
+      return matchesSearch && matchesMood && matchesFeatured && matchesPrice;
     });
 
     list = [...list].sort((a, b) => {
@@ -129,23 +118,23 @@ function ShopContent() {
     });
 
     return list;
-  }, [allProducts, searchQuery, selectedFamilies, featuredOnly, maxPrice, sort]);
+  }, [allProducts, searchQuery, selectedMoods, featuredOnly, maxPrice, sort]);
 
-  const toggleFamily = (label: string) => {
-    setSelectedFamilies((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label],
+  const toggleMood = (slug: string) => {
+    setSelectedMoods((prev) =>
+      prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug],
     );
   };
 
   const clearFilters = () => {
     setSearchQuery('');
-    setSelectedFamilies([]);
+    setSelectedMoods([]);
     setFeaturedOnly(false);
     setMaxPrice(null);
   };
 
   const hasActiveFilters =
-    searchQuery !== '' || selectedFamilies.length > 0 || featuredOnly || maxPrice !== null;
+    searchQuery !== '' || selectedMoods.length > 0 || featuredOnly || maxPrice !== null;
 
   const handlePrimaryAction = (product: WooCommerceProduct, e: React.MouseEvent) => {
     e.preventDefault();
@@ -160,45 +149,45 @@ function ShopContent() {
   const FilterPanel = (
     <div className="space-y-8">
       <div>
-        <label htmlFor="shop-search" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-taupe">
+        <label htmlFor="shop-search" className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-ember">
           Search
         </label>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-taupe" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-bone/50" />
           <input
             id="shop-search"
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search candles..."
-            className="w-full border border-ink/20 bg-cream py-2.5 pl-9 pr-3 text-sm text-ink placeholder:text-taupe focus:border-olive focus:outline-none"
+            className="w-full border border-bone/20 bg-charcoal-dark py-2.5 pl-9 pr-3 text-sm text-bone placeholder:text-bone/40 focus:border-ember focus:outline-none"
           />
         </div>
       </div>
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-taupe">Scent</legend>
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-ember">Mood</legend>
         <div className="space-y-2.5">
-          {SCENT_FAMILIES.map((family) => (
+          {MOODS.map((mood) => (
             <label
-              key={family.label}
-              className="flex cursor-pointer items-center gap-3 text-sm text-ink/80 hover:text-ink"
+              key={mood.slug}
+              className="flex cursor-pointer items-center gap-3 text-sm text-bone/80 hover:text-bone"
             >
               <input
                 type="checkbox"
-                checked={selectedFamilies.includes(family.label)}
-                onChange={() => toggleFamily(family.label)}
-                className="h-4 w-4 accent-olive"
+                checked={selectedMoods.includes(mood.slug)}
+                onChange={() => toggleMood(mood.slug)}
+                className="h-4 w-4 accent-ember"
               />
-              <span className="flex-1">{family.label}</span>
-              <span className="text-xs text-taupe">{familyCounts[family.label] ?? 0}</span>
+              <span className="flex-1">{mood.label}</span>
+              <span className="text-xs text-bone/50">{moodCounts[mood.slug] ?? 0}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-taupe">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-ember">
           Max Price{maxPrice !== null ? `: $${maxPrice}` : ''}
         </legend>
         <input
@@ -208,21 +197,21 @@ function ShopContent() {
           step={1}
           value={maxPrice ?? priceCeiling}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
-          className="w-full accent-olive"
+          className="w-full accent-ember"
           aria-label="Maximum price"
         />
-        <div className="mt-1 flex justify-between text-xs text-taupe">
+        <div className="mt-1 flex justify-between text-xs text-bone/50">
           <span>$0</span>
           <span>${priceCeiling}</span>
         </div>
       </fieldset>
 
-      <label className="flex cursor-pointer items-center gap-3 text-sm text-ink/80 hover:text-ink">
+      <label className="flex cursor-pointer items-center gap-3 text-sm text-bone/80 hover:text-bone">
         <input
           type="checkbox"
           checked={featuredOnly}
           onChange={(e) => setFeaturedOnly(e.target.checked)}
-          className="h-4 w-4 accent-olive"
+          className="h-4 w-4 accent-ember"
         />
         Featured only
       </label>
@@ -231,7 +220,7 @@ function ShopContent() {
         <button
           type="button"
           onClick={clearFilters}
-          className="inline-flex items-center gap-1.5 text-sm text-olive hover:text-olive-dark"
+          className="inline-flex items-center gap-1.5 text-sm text-ember hover:text-bone"
         >
           <X className="h-4 w-4" />
           Clear all filters
@@ -241,18 +230,18 @@ function ShopContent() {
   );
 
   return (
-    <div className="flex min-h-screen flex-col bg-cream font-sans text-ink">
+    <div className="flex min-h-screen flex-col bg-soot font-sans text-bone">
       <Header />
 
       <main className="flex-1">
         {/* Page intro */}
-        <section className="border-b border-clay/60 bg-sand/60">
+        <section className="border-b border-bone/15 bg-charcoal-dark">
           <div className="container mx-auto px-4 py-14 text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-taupe">Shop</p>
-            <h1 className="mt-3 font-serif text-4xl text-ink md:text-5xl">Our Candle Collection</h1>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-ink/70">
-              Hand-poured with natural ingredients and clean fragrances. Find the scent that fits
-              your moment.
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">Shop</p>
+            <h1 className="mt-3 font-display text-5xl uppercase tracking-wide text-bone md:text-6xl">Our Candle Collection</h1>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-bone/70">
+              Hand-poured with attitude and clean fragrances. Find the candle that fits
+              your mood.
             </p>
           </div>
         </section>
@@ -267,28 +256,28 @@ function ShopContent() {
             {/* Results */}
             <div>
               {/* Toolbar */}
-              <div className="mb-8 flex items-center justify-between gap-4 border-b border-clay/60 pb-4">
-                <p className="text-sm text-taupe">
+              <div className="mb-8 flex items-center justify-between gap-4 border-b border-bone/15 pb-4">
+                <p className="text-sm text-bone/60">
                   {loading ? 'Loading…' : `${filtered.length} ${filtered.length === 1 ? 'product' : 'products'}`}
                 </p>
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setFiltersOpen(true)}
-                    className="inline-flex items-center gap-2 border border-ink/20 px-3 py-2 text-sm text-ink lg:hidden"
+                    className="inline-flex items-center gap-2 border border-bone/30 px-3 py-2 text-sm text-bone lg:hidden"
                   >
                     <SlidersHorizontal className="h-4 w-4" />
                     Filters
                   </button>
                   <div className="flex items-center gap-2">
-                    <label htmlFor="sort" className="text-sm text-taupe">
+                    <label htmlFor="sort" className="text-sm text-bone/60">
                       Sort
                     </label>
                     <select
                       id="sort"
                       value={sort}
                       onChange={(e) => setSort(e.target.value as SortKey)}
-                      className="border border-ink/20 bg-cream px-3 py-2 text-sm text-ink focus:border-olive focus:outline-none"
+                      className="border border-bone/30 bg-charcoal-dark px-3 py-2 text-sm text-bone focus:border-ember focus:outline-none"
                     >
                       {SORT_OPTIONS.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -304,22 +293,22 @@ function ShopContent() {
                 <div className="grid grid-cols-2 gap-5 lg:grid-cols-3 lg:gap-6">
                   {[...Array(6)].map((_, i) => (
                     <div key={i}>
-                      <div className="aspect-square animate-pulse bg-sand" />
-                      <div className="mt-4 h-4 w-2/3 animate-pulse bg-sand" />
-                      <div className="mt-2 h-4 w-1/3 animate-pulse bg-sand" />
+                      <div className="aspect-square animate-pulse bg-charcoal-dark" />
+                      <div className="mt-4 h-4 w-2/3 animate-pulse bg-charcoal-dark" />
+                      <div className="mt-2 h-4 w-1/3 animate-pulse bg-charcoal-dark" />
                     </div>
                   ))}
                 </div>
               ) : filtered.length === 0 ? (
                 <div className="flex flex-col items-center py-24 text-center">
-                  <Leaf className="h-10 w-10 text-olive/40" strokeWidth={1.25} />
-                  <p className="mt-4 font-serif text-2xl text-ink">No candles found</p>
-                  <p className="mt-2 text-sm text-taupe">Try adjusting your filters or search.</p>
+                  <Leaf className="h-10 w-10 text-ember/50" strokeWidth={1.25} />
+                  <p className="mt-4 font-display text-3xl uppercase tracking-wide text-bone">No candles found</p>
+                  <p className="mt-2 text-sm text-bone/60">Try adjusting your filters or search.</p>
                   {hasActiveFilters && (
                     <button
                       type="button"
                       onClick={clearFilters}
-                      className="mt-6 border border-ink/30 px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:border-olive hover:bg-olive hover:text-white"
+                      className="mt-6 border border-bone/30 px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-bone transition-colors hover:border-ember hover:bg-ember hover:text-charcoal"
                     >
                       Clear filters
                     </button>
@@ -331,7 +320,7 @@ function ShopContent() {
                     <article key={product.id} className="group flex flex-col">
                       <Link
                         href={`/products/${product.slug}`}
-                        className="relative block aspect-square overflow-hidden bg-sand"
+                        className="relative block aspect-square overflow-hidden bg-charcoal-dark"
                       >
                         {product.images?.[0] ? (
                           <img
@@ -340,28 +329,28 @@ function ShopContent() {
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         ) : (
-                          <div className="flex h-full w-full items-center justify-center text-taupe">No image</div>
+                          <div className="flex h-full w-full items-center justify-center text-bone/50">No image</div>
                         )}
                         {product.featured && (
-                          <span className="absolute left-3 top-3 bg-olive px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-white">
+                          <span className="absolute left-3 top-3 bg-ember px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-charcoal">
                             Featured
                           </span>
                         )}
                       </Link>
                       <div className="mt-4 flex flex-1 flex-col text-center">
-                        <h2 className="font-serif text-lg text-ink">
-                          <Link href={`/products/${product.slug}`} className="transition-colors hover:text-olive">
+                        <h2 className="font-display text-xl uppercase tracking-wide text-bone">
+                          <Link href={`/products/${product.slug}`} className="transition-colors hover:text-ember">
                             {product.name}
                           </Link>
                         </h2>
                         {product.short_description && (
-                          <p className="mt-1 line-clamp-1 text-xs text-taupe">{product.short_description}</p>
+                          <p className="mt-1 line-clamp-1 text-xs text-bone/55">{product.short_description}</p>
                         )}
-                        <p className="mt-1 text-sm text-ink/80">{formatPrice(product.price)}</p>
+                        <p className="mt-1 text-sm font-semibold text-ember">{formatPrice(product.price)}</p>
                         <button
                           type="button"
                           onClick={(e) => handlePrimaryAction(product, e)}
-                          className="mt-4 inline-flex w-full items-center justify-center gap-2 border border-ink/30 px-4 py-3 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:border-olive hover:bg-olive hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive"
+                          className="mt-4 inline-flex w-full items-center justify-center gap-2 border border-bone/30 px-4 py-3 text-xs font-medium uppercase tracking-[0.16em] text-bone transition-colors hover:border-ember hover:bg-ember hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember"
                         >
                           {isCustomProduct(product) ? (
                             <>
@@ -387,15 +376,15 @@ function ShopContent() {
       {/* Mobile filter drawer */}
       {filtersOpen && (
         <div className="fixed inset-0 z-[60] lg:hidden">
-          <div className="absolute inset-0 bg-ink/40" onClick={() => setFiltersOpen(false)} />
-          <div className="absolute inset-y-0 left-0 w-80 max-w-[85%] overflow-y-auto bg-cream p-6 shadow-xl">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setFiltersOpen(false)} />
+          <div className="absolute inset-y-0 left-0 w-80 max-w-[85%] overflow-y-auto bg-soot p-6 shadow-xl">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="font-serif text-xl text-ink">Filters</h2>
+              <h2 className="font-display text-2xl uppercase tracking-wide text-bone">Filters</h2>
               <button
                 type="button"
                 onClick={() => setFiltersOpen(false)}
                 aria-label="Close filters"
-                className="rounded-md p-1.5 text-ink hover:bg-sand"
+                className="rounded-md p-1.5 text-bone hover:bg-charcoal-dark"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -404,7 +393,7 @@ function ShopContent() {
             <button
               type="button"
               onClick={() => setFiltersOpen(false)}
-              className="mt-8 w-full bg-olive px-4 py-3 text-xs font-medium uppercase tracking-[0.16em] text-white hover:bg-olive-dark"
+              className="mt-8 w-full bg-ember px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-charcoal hover:bg-ember-dark hover:text-bone"
             >
               Show {filtered.length} results
             </button>
@@ -419,7 +408,7 @@ export default function ProductsPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen flex-col bg-cream">
+        <div className="flex min-h-screen flex-col bg-soot">
           <Header />
           <div className="flex-1" />
           <Footer />

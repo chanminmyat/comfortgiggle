@@ -12,6 +12,68 @@ const customCandlesCategory = {
   slug: 'custom-candles',
 };
 
+// Shop-by-mood categories — mirror the home page moods.
+export const MOODS: { slug: string; label: string }[] = [
+  { slug: 'calm', label: 'I Need Peace' },
+  { slug: 'chaotic', label: "I'm Feeling Chaotic" },
+  { slug: 'cozy', label: 'Cozy & Unbothered' },
+  { slug: 'rage', label: "I'm This Close" },
+  { slug: 'sassy', label: 'Sassy & Unapologetic' },
+  { slug: 'fine', label: "It's Fine. I'm Fine." },
+];
+
+const MOOD_LABEL = new Map(MOODS.map((m) => [m.slug, m.label]));
+
+// Assign every candle a mood so the shop filter has something to match on.
+const MOOD_BY_SLUG: Record<string, string> = {
+  // Attitude line
+  'cozy-chaos': 'cozy',
+  'main-character-meltdown': 'chaotic',
+  'tiny-rage-big-flame': 'rage',
+  'overthinking-hour': 'fine',
+  'do-not-disturb': 'calm',
+  'my-last-nerve': 'rage',
+  'apology-not-accepted': 'rage',
+  'social-battery-low': 'calm',
+  'respectfully-no': 'sassy',
+  'was-i-petty': 'sassy',
+  'cancelled-plans-club': 'cozy',
+  'delusional-productivity': 'fine',
+  'gossip-and-good-intentions': 'chaotic',
+  'pretending-to-be-nice': 'fine',
+  'unavailable-emotionally': 'calm',
+  'bless-your-heart-carefully': 'sassy',
+  'out-of-office-out-of-patience': 'calm',
+  'todays-theme-is-avoidance': 'cozy',
+  'kindly-reconsider-your-energy': 'sassy',
+  'running-on-coffee-and-audacity': 'chaotic',
+  'chronic-side-eye': 'sassy',
+  'low-tolerance-high-standards': 'rage',
+  'this-could-have-been-an-email': 'fine',
+  // Scented line
+  'vanilla-bliss': 'cozy',
+  'white-lily': 'calm',
+  sandalwood: 'cozy',
+  'lemon-fresh': 'chaotic',
+  'oatmeal-milk-and-honey': 'cozy',
+  'lavender-dream': 'calm',
+  'apple-cinnamon': 'cozy',
+  'eucalyptus-mint': 'calm',
+  'coffee-caramel': 'chaotic',
+  'ocean-breeze': 'calm',
+  'rose-petal': 'sassy',
+  'fireside-cedar': 'cozy',
+  'jasmine-tea': 'calm',
+  'fig-and-amber': 'cozy',
+  'coconut-vanilla': 'cozy',
+};
+
+function moodTag(slug: string) {
+  const mood = MOOD_BY_SLUG[slug];
+  if (!mood) return [];
+  return [{ id: 900 + MOODS.findIndex((m) => m.slug === mood), name: MOOD_LABEL.get(mood) ?? mood, slug: mood }];
+}
+
 type SeedProduct = {
   id: number;
   name: string;
@@ -29,11 +91,425 @@ type SeedProduct = {
 
 const seeds: SeedProduct[] = [
   {
+    id: 9111,
+    name: 'Cozy Chaos',
+    slug: 'cozy-chaos',
+    sku: 'CG-CZY-111',
+    price: '49.00',
+    description:
+      '<p>Warm blanket. Messy mind. Light it anyway.</p><p>Hand-poured soy candle · 9 oz / 255 g. For warm blankets and questionable choices.</p>',
+    short_description: 'Warm blanket. Messy mind. Light it anyway.',
+    featured: true,
+    total_sales: 1320,
+    image: '/giggles/cozy_chaos.png',
+    alt: 'Cozy Chaos candle with vintage black apothecary label',
+    tags: [
+      { id: 331, name: 'cozy', slug: 'cozy' },
+      { id: 332, name: 'sweet', slug: 'sweet' },
+    ],
+  },
+  {
+    id: 9112,
+    name: 'Main Character Meltdown',
+    slug: 'main-character-meltdown',
+    sku: 'CG-MCM-112',
+    price: '49.00',
+    description:
+      '<p>Plot twist: it\'s fine. I\'m fine.</p><p>Hand-poured soy candle · 9 oz / 255 g. Drama, scented.</p>',
+    short_description: 'Drama, scented.',
+    featured: true,
+    total_sales: 1180,
+    image: '/giggles/main_character.png',
+    alt: 'Main Character Meltdown candle with vintage black apothecary label',
+    tags: [
+      { id: 333, name: 'woody', slug: 'woody' },
+      { id: 334, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9113,
+    name: 'Tiny Rage Big Flame',
+    slug: 'tiny-rage-big-flame',
+    sku: 'CG-TRG-113',
+    price: '49.00',
+    description:
+      '<p>Smoldering patience and questionable decisions.</p><p>Hand-poured soy candle · 9 oz / 255 g. Small jar. Big attitude.</p>',
+    short_description: 'Small jar. Big attitude.',
+    featured: false,
+    total_sales: 890,
+    image: '/giggles/tiny_rage.png',
+    alt: 'Tiny Rage Big Flame candle with vintage black apothecary label',
+    tags: [
+      { id: 335, name: 'woody', slug: 'woody' },
+      { id: 336, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9114,
+    name: 'Overthinking Hour',
+    slug: 'overthinking-hour',
+    sku: 'CG-OVR-114',
+    price: '49.00',
+    description:
+      '<p>Catastrophizing with a hint of "what if".</p><p>Hand-poured soy candle · 9 oz / 255 g. Warm light. Deep breaths.</p>',
+    short_description: 'Warm light. Deep breaths.',
+    featured: false,
+    total_sales: 940,
+    image: '/giggles/overthinking_hour.png',
+    alt: 'Overthinking Hour candle with vintage black apothecary label',
+    tags: [
+      { id: 337, name: 'fresh', slug: 'fresh' },
+      { id: 338, name: 'herbal', slug: 'herbal' },
+    ],
+  },
+  {
+    id: 9115,
+    name: 'Do Not Disturb',
+    slug: 'do-not-disturb',
+    sku: 'CG-DND-115',
+    price: '49.00',
+    description:
+      '<p>I\'m busy ignoring everyone and everything.</p><p>Hand-poured soy candle · 9 oz / 255 g. Boundaries, non-negotiable.</p>',
+    short_description: 'Boundaries, non-negotiable.',
+    featured: false,
+    total_sales: 1010,
+    image: '/giggles/do_not_disturb.png',
+    alt: 'Do Not Disturb candle with vintage black apothecary label',
+    tags: [
+      { id: 339, name: 'fresh', slug: 'fresh' },
+      { id: 340, name: 'woody', slug: 'woody' },
+    ],
+  },
+  {
+    id: 9101,
+    name: 'My Last Nerve',
+    slug: 'my-last-nerve',
+    sku: 'CG-NRV-101',
+    price: '49.00',
+    description:
+      '<p>Congratulations. You found my last nerve and lit it on fire.</p><p>Hand-poured soy candle · 9 oz / 255 g. Burning calmly. Barely.</p>',
+    short_description: 'Burning calmly. Barely.',
+    featured: true,
+    total_sales: 1248,
+    image: '/products/my_last_nerve.png',
+    alt: 'My Last Nerve candle with vintage black apothecary label',
+    tags: [
+      { id: 301, name: 'woody', slug: 'woody' },
+      { id: 302, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9102,
+    name: 'Apology Not Accepted',
+    slug: 'apology-not-accepted',
+    sku: 'CG-APL-102',
+    price: '49.00',
+    description:
+      '<p>I heard what you said. I considered your explanation. The answer is still no.</p><p>Hand-poured soy candle · 9 oz / 255 g. Smells like consequences.</p>',
+    short_description: 'Smells like consequences.',
+    featured: true,
+    total_sales: 963,
+    image: '/products/apology_not_accepted.png',
+    alt: 'Apology Not Accepted candle with vintage black apothecary label',
+    tags: [
+      { id: 303, name: 'woody', slug: 'woody' },
+      { id: 304, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9103,
+    name: 'Social Battery Low',
+    slug: 'social-battery-low',
+    sku: 'CG-SOC-103',
+    price: '49.00',
+    description:
+      '<p>I had one conversation. Now I need three business days to recover properly.</p><p>Hand-poured soy candle · 9 oz / 255 g. Recharging. Please do not make plans.</p>',
+    short_description: 'Recharging. Please do not make plans.',
+    featured: true,
+    total_sales: 1105,
+    image: '/products/social_battery_low.png',
+    alt: 'Social Battery Low candle with vintage black apothecary label',
+    tags: [
+      { id: 305, name: 'fresh', slug: 'fresh' },
+      { id: 306, name: 'herbal', slug: 'herbal' },
+    ],
+  },
+  {
+    id: 9104,
+    name: 'Respectfully, No',
+    slug: 'respectfully-no',
+    sku: 'CG-RSP-104',
+    price: '49.00',
+    description:
+      '<p>A gentle reminder that no is a complete sentence — with excellent fragrance throw.</p><p>Hand-poured soy candle · 9 oz / 255 g. Soft tone. Solid boundary.</p>',
+    short_description: 'Soft tone. Solid boundary.',
+    featured: true,
+    total_sales: 1421,
+    image: '/products/respectfully_no.png',
+    alt: 'Respectfully, No candle with vintage black apothecary label',
+    tags: [
+      { id: 307, name: 'floral', slug: 'floral' },
+      { id: 308, name: 'fresh', slug: 'fresh' },
+    ],
+  },
+  {
+    id: 9105,
+    name: 'Was I Petty?',
+    slug: 'was-i-petty',
+    sku: 'CG-PTY-105',
+    price: '49.00',
+    description:
+      '<p>Absolutely. But I was also correct, moisturized, and calm-ish.</p><p>Hand-poured soy candle · 9 oz / 255 g. Petty with purpose.</p>',
+    short_description: 'Petty with purpose.',
+    featured: true,
+    total_sales: 732,
+    image: '/products/was_i_petty.png',
+    alt: 'Was I Petty candle with vintage black apothecary label',
+    tags: [
+      { id: 309, name: 'sweet', slug: 'sweet' },
+      { id: 310, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9106,
+    name: 'Cancelled Plans Club',
+    slug: 'cancelled-plans-club',
+    sku: 'CG-CNL-106',
+    price: '49.00',
+    description:
+      '<p>Said maybe. Meant absolutely not. Stayed home and flourished.</p><p>Hand-poured soy candle · 9 oz / 255 g. Soft clothes. Hard no.</p>',
+    short_description: 'Soft clothes. Hard no.',
+    featured: false,
+    total_sales: 689,
+    image: '/products/cancelled_plan_club.png',
+    alt: 'Cancelled Plans Club candle with vintage black apothecary label',
+    tags: [
+      { id: 311, name: 'cozy', slug: 'cozy' },
+      { id: 312, name: 'sweet', slug: 'sweet' },
+    ],
+  },
+  {
+    id: 9107,
+    name: 'Delusional Productivity',
+    slug: 'delusional-productivity',
+    sku: 'CG-DEL-107',
+    price: '49.00',
+    description:
+      '<p>Made a coffee. Answered one email. Called it a power day.</p><p>Hand-poured soy candle · 9 oz / 255 g. Thriving on technicalities.</p>',
+    short_description: 'Thriving on technicalities.',
+    featured: false,
+    total_sales: 540,
+    image: '/products/delutional_productivity.png',
+    alt: 'Delusional Productivity candle with vintage black apothecary label',
+    tags: [
+      { id: 313, name: 'woody', slug: 'woody' },
+      { id: 314, name: 'fresh', slug: 'fresh' },
+    ],
+  },
+  {
+    id: 9108,
+    name: 'Gossip & Good Intentions',
+    slug: 'gossip-and-good-intentions',
+    sku: 'CG-GOS-108',
+    price: '49.00',
+    description:
+      '<p>I do not want drama. I just want the full story and proper background context.</p><p>Hand-poured soy candle · 9 oz / 255 g. Listening respectfully, judging quietly.</p>',
+    short_description: 'Listening respectfully, judging quietly.',
+    featured: false,
+    total_sales: 612,
+    image: '/products/gossip_and_good_intentions.png',
+    alt: 'Gossip & Good Intentions candle with vintage black apothecary label',
+    tags: [
+      { id: 315, name: 'floral', slug: 'floral' },
+      { id: 316, name: 'sweet', slug: 'sweet' },
+    ],
+  },
+  {
+    id: 9109,
+    name: 'Pretending To Be Nice',
+    slug: 'pretending-to-be-nice',
+    sku: 'CG-PRT-109',
+    price: '49.00',
+    description:
+      '<p>Polite voice. Firm boundaries. Mentally leaving this conversation.</p><p>Hand-poured soy candle · 9 oz / 255 g. Smells like patience in a tight ponytail.</p>',
+    short_description: 'Patience in a tight ponytail.',
+    featured: false,
+    total_sales: 458,
+    image: '/products/pretending_to_be_nice.png',
+    alt: 'Pretending To Be Nice candle with vintage black apothecary label',
+    tags: [
+      { id: 317, name: 'fresh', slug: 'fresh' },
+      { id: 318, name: 'citrus', slug: 'citrus' },
+    ],
+  },
+  {
+    id: 9110,
+    name: 'Unavailable Emotionally',
+    slug: 'unavailable-emotionally',
+    sku: 'CG-UNA-110',
+    price: '49.00',
+    description:
+      '<p>Warm glow. Feelings buffering. Replies spiritually on airplane mode.</p><p>Hand-poured soy candle · 9 oz / 255 g. Handle with grace and low expectations.</p>',
+    short_description: 'Handle with grace and low expectations.',
+    featured: false,
+    total_sales: 521,
+    image: '/products/unavailable_emotionally.png',
+    alt: 'Unavailable Emotionally candle with vintage black apothecary label',
+    tags: [
+      { id: 319, name: 'woody', slug: 'woody' },
+      { id: 320, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9116,
+    name: 'Bless Your Heart Carefully',
+    slug: 'bless-your-heart-carefully',
+    sku: 'CG-BYH-116',
+    price: '49.00',
+    description:
+      '<p>That sounded supportive until I heard the tone.</p><p>Hand-poured soy candle · 9 oz / 255 g. Sweet words. Sharp edges.</p>',
+    short_description: 'Sweet words. Sharp edges.',
+    featured: true,
+    total_sales: 770,
+    image: '/products/bless_your_heart.png',
+    alt: 'Bless Your Heart Carefully candle with vintage black apothecary label',
+    tags: [
+      { id: 341, name: 'sweet', slug: 'sweet' },
+      { id: 342, name: 'floral', slug: 'floral' },
+    ],
+  },
+  {
+    id: 9117,
+    name: 'Out Of Office, Out Of Patience',
+    slug: 'out-of-office-out-of-patience',
+    sku: 'CG-OOO-117',
+    price: '49.00',
+    description:
+      '<p>Available never. Responding slowly. Protecting my peace professionally.</p><p>Hand-poured soy candle · 9 oz / 255 g. Vacation mode, emotionally.</p>',
+    short_description: 'Vacation mode, emotionally.',
+    featured: false,
+    total_sales: 654,
+    image: '/products/out_of_office.png',
+    alt: 'Out Of Office Out Of Patience candle with vintage black apothecary label',
+    tags: [
+      { id: 343, name: 'fresh', slug: 'fresh' },
+      { id: 344, name: 'aquatic', slug: 'aquatic' },
+    ],
+  },
+  {
+    id: 9118,
+    name: "Today's Theme Is Avoidance",
+    slug: 'todays-theme-is-avoidance',
+    sku: 'CG-AVD-118',
+    price: '49.00',
+    description:
+      '<p>Unread texts. Closed blinds. One blanket. Excellent progress.</p><p>Hand-poured soy candle · 9 oz / 255 g. Productive in spirit only.</p>',
+    short_description: 'Productive in spirit only.',
+    featured: false,
+    total_sales: 712,
+    image: '/products/today_theme.png',
+    alt: "Today's Theme Is Avoidance candle with vintage black apothecary label",
+    tags: [
+      { id: 345, name: 'cozy', slug: 'cozy' },
+      { id: 346, name: 'sweet', slug: 'sweet' },
+    ],
+  },
+  {
+    id: 9119,
+    name: 'Kindly Reconsider Your Energy',
+    slug: 'kindly-reconsider-your-energy',
+    sku: 'CG-KRE-119',
+    price: '49.00',
+    description:
+      '<p>Respectfully, your vibe arrived loud and underqualified.</p><p>Hand-poured soy candle · 9 oz / 255 g. Aromatic corrective action.</p>',
+    short_description: 'Aromatic corrective action.',
+    featured: false,
+    total_sales: 583,
+    image: '/products/kindly_reconsider.png',
+    alt: 'Kindly Reconsider Your Energy candle with vintage black apothecary label',
+    tags: [
+      { id: 347, name: 'woody', slug: 'woody' },
+      { id: 348, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9120,
+    name: 'Running On Coffee And Audacity',
+    slug: 'running-on-coffee-and-audacity',
+    sku: 'CG-RCA-120',
+    price: '49.00',
+    description:
+      '<p>No plan. No patience. Still somehow fully booked.</p><p>Hand-poured soy candle · 9 oz / 255 g. Bold energy. Questionable method.</p>',
+    short_description: 'Bold energy. Questionable method.',
+    featured: true,
+    total_sales: 845,
+    image: '/products/runing_on_coffee.png',
+    alt: 'Running On Coffee And Audacity candle with vintage black apothecary label',
+    tags: [
+      { id: 349, name: 'sweet', slug: 'sweet' },
+      { id: 350, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9121,
+    name: 'Chronic Side Eye',
+    slug: 'chronic-side-eye',
+    sku: 'CG-CSE-121',
+    price: '49.00',
+    description:
+      '<p>I said nothing. My face, however, filed a full report.</p><p>Hand-poured soy candle · 9 oz / 255 g. Subtle? Not remotely.</p>',
+    short_description: 'Subtle? Not remotely.',
+    featured: false,
+    total_sales: 690,
+    image: '/products/chronic_side_eye.png',
+    alt: 'Chronic Side Eye candle with vintage black apothecary label',
+    tags: [
+      { id: 351, name: 'fresh', slug: 'fresh' },
+      { id: 352, name: 'citrus', slug: 'citrus' },
+    ],
+  },
+  {
+    id: 9122,
+    name: 'Low Tolerance, High Standards',
+    slug: 'low-tolerance-high-standards',
+    sku: 'CG-LTH-122',
+    price: '49.00',
+    description:
+      '<p>Soft glow. Strong opinions. Not everything deserves access.</p><p>Hand-poured soy candle · 9 oz / 255 g. For boundaries with ambiance.</p>',
+    short_description: 'For boundaries with ambiance.',
+    featured: false,
+    total_sales: 628,
+    image: '/products/low_tolerance.png',
+    alt: 'Low Tolerance High Standards candle with vintage black apothecary label',
+    tags: [
+      { id: 353, name: 'woody', slug: 'woody' },
+      { id: 354, name: 'warm', slug: 'warm' },
+    ],
+  },
+  {
+    id: 9123,
+    name: 'This Could Have Been An Email',
+    slug: 'this-could-have-been-an-email',
+    sku: 'CG-EML-123',
+    price: '49.00',
+    description:
+      '<p>You scheduled a meeting. I brought a candle. We both know who came prepared.</p><p>Hand-poured soy candle · 9 oz / 255 g. Smells like muted notifications.</p>',
+    short_description: 'Smells like muted notifications.',
+    featured: false,
+    total_sales: 599,
+    image: '/products/this_could_been_an_email.png',
+    alt: 'This Could Have Been An Email candle with vintage black apothecary label',
+    tags: [
+      { id: 355, name: 'fresh', slug: 'fresh' },
+      { id: 356, name: 'herbal', slug: 'herbal' },
+    ],
+  },
+  {
     id: 9001,
     name: 'Vanilla Bliss',
     slug: 'vanilla-bliss',
     sku: 'CG-VAN-001',
-    price: '18.00',
+    price: '49.00',
     description:
       '<p>A warm, comforting vanilla candle hand-poured in an amber glass jar.</p><p>Burn time: 45+ hours.</p>',
     short_description: 'Warm, sweet vanilla for cosy evenings.',
@@ -51,7 +527,7 @@ const seeds: SeedProduct[] = [
     name: 'White Lily',
     slug: 'white-lily',
     sku: 'CG-LIL-002',
-    price: '18.00',
+    price: '49.00',
     description:
       '<p>A soft, fresh floral candle in a brushed gold travel tin.</p><p>Burn time: 30+ hours.</p>',
     short_description: 'Soft, fresh white floral notes.',
@@ -69,7 +545,7 @@ const seeds: SeedProduct[] = [
     name: 'Sandalwood',
     slug: 'sandalwood',
     sku: 'CG-SAN-003',
-    price: '24.00',
+    price: '49.00',
     description:
       '<p>A rich, grounding sandalwood candle in an amber glass jar.</p><p>Burn time: 45+ hours.</p>',
     short_description: 'Warm, rich & grounding sandalwood.',
@@ -87,7 +563,7 @@ const seeds: SeedProduct[] = [
     name: 'Lemon Fresh',
     slug: 'lemon-fresh',
     sku: 'CG-LEM-004',
-    price: '18.00',
+    price: '49.00',
     description:
       '<p>A bright, uplifting lemon candle in a clear glass tumbler.</p><p>Burn time: 40+ hours.</p>',
     short_description: 'Clean, light & uplifting citrus.',
@@ -105,7 +581,7 @@ const seeds: SeedProduct[] = [
     name: 'Oatmeal Milk & Honey',
     slug: 'oatmeal-milk-and-honey',
     sku: 'CG-OAT-005',
-    price: '20.00',
+    price: '49.00',
     description:
       '<p>A creamy, cosy oatmeal, milk & honey candle in a clear glass tumbler.</p><p>Burn time: 40+ hours.</p>',
     short_description: 'Creamy, cosy comfort scent.',
@@ -123,7 +599,7 @@ const seeds: SeedProduct[] = [
     name: 'Lavender Dream',
     slug: 'lavender-dream',
     sku: 'CG-LAV-006',
-    price: '20.00',
+    price: '49.00',
     description:
       '<p>A calming lavender candle in a frosted glass jar, perfect for evening wind-down.</p><p>Burn time: 40+ hours.</p>',
     short_description: 'Calming lavender for restful evenings.',
@@ -141,7 +617,7 @@ const seeds: SeedProduct[] = [
     name: 'Apple Cinnamon',
     slug: 'apple-cinnamon',
     sku: 'CG-APP-007',
-    price: '20.00',
+    price: '49.00',
     description:
       '<p>A cozy autumn blend of crisp apple and warm cinnamon in an amber glass jar.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
     short_description: 'Crisp apple & warm cinnamon.',
@@ -159,7 +635,7 @@ const seeds: SeedProduct[] = [
     name: 'Eucalyptus Mint',
     slug: 'eucalyptus-mint',
     sku: 'CG-EUC-008',
-    price: '20.00',
+    price: '49.00',
     description:
       '<p>A refreshing spa blend of eucalyptus and cool mint in a clear glass tumbler.</p><p>Hand-poured soy candle · 8 oz / 226 g.</p>',
     short_description: 'Refreshing eucalyptus & cool mint.',
@@ -177,7 +653,7 @@ const seeds: SeedProduct[] = [
     name: 'Coffee Caramel',
     slug: 'coffee-caramel',
     sku: 'CG-COF-009',
-    price: '22.00',
+    price: '49.00',
     description:
       '<p>A rich, comforting blend of fresh coffee and sweet caramel in an amber glass jar.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
     short_description: 'Rich coffee & sweet caramel.',
@@ -195,7 +671,7 @@ const seeds: SeedProduct[] = [
     name: 'Ocean Breeze',
     slug: 'ocean-breeze',
     sku: 'CG-OCN-010',
-    price: '20.00',
+    price: '49.00',
     description:
       '<p>A clean, airy coastal scent of sea salt and fresh ocean air in a clear glass tumbler.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
     short_description: 'Clean, airy coastal sea breeze.',
@@ -213,7 +689,7 @@ const seeds: SeedProduct[] = [
     name: 'Rose Petal',
     slug: 'rose-petal',
     sku: 'CG-ROS-011',
-    price: '22.00',
+    price: '49.00',
     description:
       '<p>A romantic, delicate rose blend in an elegant glass jar.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
     short_description: 'Romantic, delicate rose.',
@@ -231,7 +707,7 @@ const seeds: SeedProduct[] = [
     name: 'Fireside Cedar',
     slug: 'fireside-cedar',
     sku: 'CG-CED-012',
-    price: '24.00',
+    price: '49.00',
     description:
       '<p>A warm, grounding blend of cedarwood and smoky firewood in an amber glass jar.</p><p>Natural soy wax candle · 10 oz / 283 g.</p>',
     short_description: 'Warm cedarwood & cozy firewood.',
@@ -249,7 +725,7 @@ const seeds: SeedProduct[] = [
     name: 'Jasmine Tea',
     slug: 'jasmine-tea',
     sku: 'CG-JAS-013',
-    price: '22.00',
+    price: '49.00',
     description:
       '<p>A soft, elegant blend of jasmine blossom and green tea in a clear glass tumbler.</p><p>Natural soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Soft jasmine blossom & green tea.',
@@ -267,7 +743,7 @@ const seeds: SeedProduct[] = [
     name: 'Fig & Amber',
     slug: 'fig-and-amber',
     sku: 'CG-FIG-014',
-    price: '24.00',
+    price: '49.00',
     description:
       '<p>A rich, sophisticated blend of ripe fig and warm amber.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
     short_description: 'Ripe fig & warm amber.',
@@ -285,7 +761,7 @@ const seeds: SeedProduct[] = [
     name: 'Coconut Vanilla',
     slug: 'coconut-vanilla',
     sku: 'CG-COC-015',
-    price: '20.00',
+    price: '49.00',
     description:
       '<p>A creamy, tropical blend of coconut and smooth vanilla.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
     short_description: 'Creamy coconut & smooth vanilla.',
@@ -329,7 +805,7 @@ export const SAMPLE_PRODUCTS: WooCommerceProduct[] = [
       },
     ],
     categories: [scentedCandlesCategory],
-    tags: seed.tags,
+    tags: [...seed.tags, ...moodTag(seed.slug)],
     stock_status: 'instock',
     stock_quantity: 50,
     manage_stock: true,
@@ -346,8 +822,8 @@ export const SAMPLE_PRODUCTS: WooCommerceProduct[] = [
       '<p>Create your own custom candle by choosing your scent profile, jar color, size, and label text.</p><p>According to your selected options, we will send you the price and production time.</p>',
     short_description: 'Choose your options and we will send the price.',
     sku: 'CG-CUSTOM-001',
-    price: '28.00',
-    regular_price: '28.00',
+    price: '59.00',
+    regular_price: '59.00',
     sale_price: '',
     on_sale: false,
     purchasable: true,

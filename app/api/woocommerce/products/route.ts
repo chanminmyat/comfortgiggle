@@ -19,15 +19,19 @@ const withQueryAuth = (inputUrl: string) => {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const fetchWithRetry = async (url: string, init: RequestInit, retries = 2) => {
+// Per-attempt timeout so a slow/hanging store can't stall the page.
+const REQUEST_TIMEOUT_MS = 3500;
+
+const fetchWithRetry = async (url: string, init: RequestInit, retries = 1) => {
   for (let attempt = 0; attempt <= retries; attempt += 1) {
     try {
-      const response = await fetch(url, init);
+      const response = await fetch(url, { ...init, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
       if (response.ok) {
         return response;
       }
 
-      if (attempt < retries && [429, 500, 502, 503, 504].includes(response.status)) {
+      // Retry only transient infrastructure errors, not a persistent 500.
+      if (attempt < retries && [429, 502, 503, 504].includes(response.status)) {
         await delay(300 * (attempt + 1));
         continue;
       }
@@ -62,7 +66,15 @@ const matchesCategory = (product: (typeof SAMPLE_PRODUCTS)[number], categoryValu
   );
 };
 
-const getSampleProductsResponse = (searchParams: URLSearchParams) => {
+// Small, deliberate delay so the loading state shows — makes the local
+// catalog feel like a real network fetch instead of an instant render.
+const SAMPLE_LOADING_MIN_MS = 350;
+const SAMPLE_LOADING_MAX_MS = 650;
+
+const getSampleProductsResponse = async (searchParams: URLSearchParams) => {
+  const wait = SAMPLE_LOADING_MIN_MS + Math.random() * (SAMPLE_LOADING_MAX_MS - SAMPLE_LOADING_MIN_MS);
+  await delay(wait);
+
   const id = searchParams.get('id');
   const slug = searchParams.get('slug');
 
@@ -167,11 +179,8 @@ export async function GET(request: NextRequest) {
       );
 
       if (!fallbackResponse.ok) {
-        const error = await fallbackResponse.json().catch(() => ({}));
-        return NextResponse.json(
-          { message: error?.message || 'Failed to fetch products.' },
-          { status: fallbackResponse.status },
-        );
+        // Store reachable but rejecting — serve the local catalog instead of erroring.
+        return getSampleProductsResponse(searchParams);
       }
 
       const data = await fallbackResponse.json();
@@ -191,11 +200,8 @@ export async function GET(request: NextRequest) {
     }
 
     if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      return NextResponse.json(
-        { message: error?.message || 'Failed to fetch products.' },
-        { status: response.status },
-      );
+      // Store is up but returning an error (e.g. 500) — fall back to the local catalog.
+      return getSampleProductsResponse(searchParams);
     }
 
     const data = await response.json();
@@ -214,6 +220,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ products: data, total, totalPages });
   } catch (error) {
     console.error('WooCommerce products error:', error);
-    return NextResponse.json({ message: 'Unexpected error fetching products.' }, { status: 500 });
+    // Network failure / timeout — serve the local catalog so pages still render fast.
+    return getSampleProductsResponse(searchParams);
   }
 }
