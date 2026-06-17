@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingBag, Menu, X, Search, User } from 'lucide-react';
+import { ShoppingBag, Menu, X, Search, User, Sparkles, Truck, Leaf } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { getCartItemCount } from '@/lib/cart';
 
@@ -14,14 +14,12 @@ const navLinks = [
 
 function BrandMark({ className = '' }: { className?: string }) {
   return (
-    <Link href="/" className={`flex flex-col items-center leading-none ${className}`}>
-      <svg viewBox="0 0 24 24" className="mb-1 h-6 w-6 text-olive" fill="none" stroke="currentColor" strokeWidth={1.3} aria-hidden="true">
-        <path d="M12 21V9" strokeLinecap="round" />
-        <path d="M12 11c0-3 2-5 5-5 0 3-2 5-5 5Z" strokeLinejoin="round" />
-        <path d="M12 14c0-3-2-5-5-5 0 3 2 5 5 5Z" strokeLinejoin="round" />
-      </svg>
-      <span className="font-serif text-lg tracking-[0.25em] text-ink">COMFORT GIGGLES</span>
-      <span className="mt-0.5 text-[10px] tracking-[0.45em] text-taupe">CANDLES</span>
+    <Link href="/" className={`relative z-10 flex items-center ${className}`} aria-label="Comfort Giggles — home">
+      <img
+        src="/giggles/logo.jpeg"
+        alt="Comfort Giggles — Slightly Rude, Highly Fragrant"
+        className="h-24 w-24 translate-y-3 rounded-full object-cover mix-blend-multiply md:h-32 md:w-32 md:translate-y-6"
+      />
     </Link>
   );
 }
@@ -40,13 +38,26 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Announcement bar */}
-      <div className="bg-sand text-center text-xs tracking-[0.12em] text-ink/70">
-        <p className="px-4 py-2.5">✿ Free shipping on orders above $50 ✿</p>
+      <div className="bg-charcoal text-xs font-semibold uppercase tracking-[0.16em] text-bone">
+        <div className="container mx-auto grid gap-2 px-4 py-2.5 text-center md:grid-cols-3 md:items-center">
+          <p className="flex items-center justify-center gap-2 md:justify-start">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            Slightly Rude. Highly Fragrant.
+          </p>
+          <p className="flex items-center justify-center gap-2">
+            <Truck className="h-3.5 w-3.5" aria-hidden="true" />
+            Free shipping on orders above $50
+          </p>
+          <p className="flex items-center justify-center gap-2 md:justify-end">
+            <Leaf className="h-3.5 w-3.5" aria-hidden="true" />
+            100% soy wax
+          </p>
+        </div>
       </div>
 
-      <div className="border-b border-clay/60 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/80">
+      <div className="border-b-2 border-charcoal bg-paper">
         <div className="container mx-auto px-4">
-          <div className="grid h-24 grid-cols-[1fr_auto_1fr] items-center gap-4">
+          <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center gap-4">
             {/* Left: desktop nav / mobile menu button */}
             <div className="flex items-center">
               <nav className="hidden items-center gap-7 md:flex">
@@ -54,7 +65,7 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-ink/80 transition-colors hover:text-olive"
+                    className="text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:text-olive"
                   >
                     {link.label}
                   </Link>
@@ -111,7 +122,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-md px-4 py-3 text-ink/80 transition-colors hover:bg-sand hover:text-olive"
+                    className="rounded-md px-4 py-3 font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-sand hover:text-olive"
                   >
                     {link.label}
                   </Link>

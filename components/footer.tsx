@@ -31,20 +31,19 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-clay/70 text-ink">
+    <footer className="bg-soot text-bone">
       <div className="container mx-auto px-4 py-14">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}
           <div className="max-w-sm">
-            <div className="flex items-center gap-2">
-              <svg viewBox="0 0 24 24" className="h-5 w-5 text-olive" fill="none" stroke="currentColor" strokeWidth={1.3} aria-hidden="true">
-                <path d="M12 21V9" strokeLinecap="round" />
-                <path d="M12 11c0-3 2-5 5-5 0 3-2 5-5 5Z" strokeLinejoin="round" />
-                <path d="M12 14c0-3-2-5-5-5 0 3 2 5 5 5Z" strokeLinejoin="round" />
-              </svg>
-              <span className="font-serif text-base tracking-[0.22em]">COMFORT GIGGLES</span>
-            </div>
-            <p className="mt-5 text-sm leading-7 text-ink/70">
+            <Link href="/" className="inline-flex items-center" aria-label="Comfort Giggles — home">
+              <img
+                src="/giggles/logo.jpeg"
+                alt="Comfort Giggles — Slightly Rude, Highly Fragrant"
+                className="h-24 w-24 rounded-full object-cover"
+              />
+            </Link>
+            <p className="mt-5 text-sm leading-7 text-bone/70">
               Handcrafted candles made with natural ingredients to bring warmth, calm and comfort
               to your everyday moments.
             </p>
@@ -52,11 +51,11 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-base text-ink">Quick Links</h4>
+            <h4 className="font-display text-lg uppercase tracking-wide text-bone">Quick Links</h4>
             <ul className="mt-5 space-y-3 text-sm">
               {quickLinks.map((link) => (
                 <li key={link.key ?? link.href}>
-                  <Link href={link.href} className="text-ink/70 transition-colors hover:text-olive">
+                  <Link href={link.href} className="text-bone/70 transition-colors hover:text-ember">
                     {link.label}
                   </Link>
                 </li>
@@ -66,11 +65,11 @@ export function Footer() {
 
           {/* Customer Care */}
           <div>
-            <h4 className="font-serif text-base text-ink">Customer Care</h4>
+            <h4 className="font-display text-lg uppercase tracking-wide text-bone">Customer Care</h4>
             <ul className="mt-5 space-y-3 text-sm">
               {customerCare.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-ink/70 transition-colors hover:text-olive">
+                  <Link href={link.href} className="text-bone/70 transition-colors hover:text-ember">
                     {link.label}
                   </Link>
                 </li>
@@ -80,11 +79,11 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-serif text-base text-ink">Stay in the loop</h4>
-            <p className="mt-5 text-sm leading-7 text-ink/70">
+            <h4 className="font-display text-lg uppercase tracking-wide text-bone">Stay in the loop</h4>
+            <p className="mt-5 text-sm leading-7 text-bone/70">
               Subscribe to get updates on new arrivals, offers &amp; more.
             </p>
-            <form onSubmit={handleSubscribe} className="mt-5 flex items-center border border-ink/20 bg-cream">
+            <form onSubmit={handleSubscribe} className="mt-5 flex items-center border border-bone/30 bg-charcoal-dark">
               <label htmlFor="newsletter-email" className="sr-only">
                 Email address
               </label>
@@ -95,12 +94,12 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full bg-transparent px-4 py-3 text-sm text-ink placeholder:text-taupe focus:outline-none"
+                className="w-full bg-transparent px-4 py-3 text-sm text-bone placeholder:text-bone/40 focus:outline-none"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="flex h-11 w-12 shrink-0 items-center justify-center text-ink transition-colors hover:text-olive"
+                className="flex h-11 w-12 shrink-0 items-center justify-center text-bone transition-colors hover:text-ember"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -108,7 +107,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-ink/10 pt-6 text-center text-xs text-taupe">
+        <div className="mt-12 border-t border-bone/15 pt-6 text-center text-xs text-bone/50">
           <p>© {currentYear} Comfort Giggles Candles. All rights reserved.</p>
         </div>
       </div>

@@ -12,6 +12,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['var(--font-serif)', 'Georgia', 'Cambria', 'serif'],
+        display: ['var(--font-display)', 'Oswald', 'Impact', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -24,15 +25,27 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        cream: '#f6f2eb',
-        sand: '#ece4d6',
-        clay: '#e4d9c7',
+        // Cozy Mischief Vintage palette
+        cream: '#E8D6BA', // Aged Cream — card / secondary surfaces
+        sand: '#E8D6BA',
+        clay: '#C6A879', // Warm Tan — borders / footer
         olive: {
-          DEFAULT: '#71765c',
-          dark: '#5d614a',
+          DEFAULT: '#B88A4A', // Vintage Gold (accent)
+          dark: '#6b4a26', // bronzed gold for accent text/icons
         },
-        ink: '#3b3933',
-        taupe: '#8c857a',
+        ink: '#151412', // Ink Black — text on light
+        taupe: '#6f5d46', // muted warm brown
+        charcoal: {
+          DEFAULT: '#151412', // Ink Black — dark sections / buttons
+          dark: '#24211D', // Soft Black
+        },
+        bone: '#F4EBDD', // Paper Cream — main background / text on dark
+        ember: {
+          DEFAULT: '#B88A4A', // Vintage Gold (accent)
+          dark: '#6b4a26', // bronzed gold for accent text/icons
+        },
+        glow: '#F2B15E', // Candle Glow
+        brown: '#4A2F1D', // Dark Brown
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
