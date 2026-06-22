@@ -1,6 +1,24 @@
+'use client';
+
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { CheckCircle2 } from 'lucide-react';
 
+function formatAmount(value: string | null) {
+  const amount = Number(value || 0);
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(amount);
+}
+
 export default function ThankYouPage() {
+  const searchParams = useSearchParams();
+  const order = searchParams.get('order');
+  const method = searchParams.get('method');
+  const amount = formatAmount(searchParams.get('amount'));
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-soot px-4 py-20 font-sans text-bone">
       <div className="w-full max-w-xl border border-bone/15 bg-charcoal-dark p-10 text-center md:p-12">
@@ -14,9 +32,46 @@ export default function ThankYouPage() {
         </p>
         <h1 className="font-display text-4xl text-bone md:text-5xl">Thank You</h1>
         <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-bone/70">
-          Your confirmation has been received. Our team will review the details and continue with
-          the next step.
+          Your checkout was completed through ComfortPay. We have received your order and will continue with the next step.
         </p>
+
+        {(order || method || amount) ? (
+          <div className="mx-auto mt-6 max-w-md border border-bone/15 bg-soot/60 p-5 text-left text-sm text-bone/80">
+            {order ? (
+              <div className="flex justify-between gap-4 py-1.5">
+                <span className="text-bone/60">Order</span>
+                <span className="font-medium text-bone">{order}</span>
+              </div>
+            ) : null}
+            {method ? (
+              <div className="flex justify-between gap-4 py-1.5">
+                <span className="text-bone/60">Method</span>
+                <span className="font-medium capitalize text-bone">{method}</span>
+              </div>
+            ) : null}
+            {amount ? (
+              <div className="flex justify-between gap-4 py-1.5">
+                <span className="text-bone/60">Amount</span>
+                <span className="font-medium text-bone">{amount}</span>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center bg-ember px-8 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-charcoal transition-colors hover:bg-ember-dark hover:text-bone"
+          >
+            Continue Shopping
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center border border-bone/20 px-8 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-bone transition-colors hover:border-ember hover:text-ember"
+          >
+            Back to Home
+          </Link>
+        </div>
       </div>
     </main>
   );

@@ -1,17 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { getCart, clearCart, getCartTotal, CartItem } from '@/lib/cart';
-import { ArrowLeft, Lock, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Lock, CheckCircle2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+
+declare global {
+  interface Window {
+    ComfortPay?: {
+      mount: (target: string | HTMLElement, options: any) => Promise<{ destroy?: () => void; refresh?: (nextAmount?: number) => Promise<any> }>;
+      unmount: (target: string | HTMLElement) => void;
+    };
+  }
+}
 
 const SHIPPING_FEE = 30;
 const FREE_SHIPPING_THRESHOLD = 50;
-const zelleRecipient = 'chris@comfortgiggles.com';
+const COMFORTPAY_BASE_URL = process.env.NEXT_PUBLIC_COMFORTPAY_BASE_URL || '';
+const COMFORTPAY_API_TOKEN = process.env.NEXT_PUBLIC_COMFORTPAY_API_TOKEN || '';
+const WIDGET_ROOT_ID = 'comfortpay-widget-root';
+const SDK_SCRIPT_ID = 'comfortpay-sdk-script';
 
 function formatPrice(value: number | string) {
   const amount = typeof value === 'number' ? value : parseFloat(value);
@@ -23,13 +35,60 @@ const fieldClass =
   'w-full border border-bone/20 bg-charcoal-dark px-3 py-2.5 text-sm text-bone placeholder:text-bone/60 focus:border-ember focus:outline-none';
 const labelClass = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-bone/60';
 
+function makeMerchantOrderId() {
+  const now = new Date();
+  const stamp = [
+    now.getUTCFullYear(),
+    String(now.getUTCMonth() + 1).padStart(2, '0'),
+    String(now.getUTCDate()).padStart(2, '0'),
+    String(now.getUTCHours()).padStart(2, '0'),
+    String(now.getUTCMinutes()).padStart(2, '0'),
+    String(now.getUTCSeconds()).padStart(2, '0'),
+  ].join('');
+
+  const random = Math.random().toString(36).slice(2, 8).toUpperCase();
+  return `CG-${stamp}-${random}`;
+}
+
+async function ensureComfortPaySdk(baseUrl: string) {
+  if (typeof window === 'undefined') return;
+  if (window.ComfortPay) return;
+
+  const existingScript = document.getElementById(SDK_SCRIPT_ID) as HTMLScriptElement | null;
+  if (existingScript) {
+    await new Promise<void>((resolve, reject) => {
+      if (window.ComfortPay) {
+        resolve();
+        return;
+      }
+      existingScript.addEventListener('load', () => resolve(), { once: true });
+      existingScript.addEventListener('error', () => reject(new Error('Failed to load ComfortPay SDK.')), { once: true });
+    });
+    return;
+  }
+
+  await new Promise<void>((resolve, reject) => {
+    const script = document.createElement('script');
+    script.id = SDK_SCRIPT_ID;
+    script.src = `${baseUrl.replace(/\/$/, '')}/api/sdk`;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('Failed to load ComfortPay SDK.'));
+    document.body.appendChild(script);
+  });
+}
+
 export default function CheckoutPage() {
   const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [orderComplete, setOrderComplete] = useState(false);
+  const [sdkReady, setSdkReady] = useState(false);
+  const [widgetError, setWidgetError] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [merchantOrderId, setMerchantOrderId] = useState('');
+  const widgetHandleRef = useRef<{ destroy?: () => void; refresh?: (nextAmount?: number) => Promise<any> } | null>(null);
+
   const qualifiesForFreeShipping = cartTotal >= FREE_SHIPPING_THRESHOLD;
   const shippingCost = qualifiesForFreeShipping ? 0 : SHIPPING_FEE;
   const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - cartTotal);
@@ -47,35 +106,193 @@ export default function CheckoutPage() {
     country: 'US',
   });
 
+  const hasSdkConfig = !!COMFORTPAY_BASE_URL && !!COMFORTPAY_API_TOKEN;
+
+  const lineItems = useMemo(
+    () =>
+      cartItems.map((item) => ({
+        name: item.product.name,
+        quantity: item.quantity,
+        price: Number.parseFloat(item.product.price || '0') || 0,
+      })),
+    [cartItems],
+  );
+
+  const validateCheckoutForm = useCallback(() => {
+    const requiredFields: Array<keyof typeof formData> = [
+      'firstName',
+      'lastName',
+      'email',
+      'phone',
+      'address',
+      'city',
+      'state',
+      'zipCode',
+      'country',
+    ];
+
+    for (const field of requiredFields) {
+      if (!String(formData[field] || '').trim()) {
+        throw new Error('Please complete all required billing fields before continuing.');
+      }
+    }
+
+    if (!acceptedTerms) {
+      throw new Error('Please accept the terms before continuing to payment.');
+    }
+
+    if (!cartItems.length) {
+      throw new Error('Your cart is empty.');
+    }
+  }, [acceptedTerms, cartItems.length, formData]);
+
+  const buildCheckoutData = useCallback(
+    (selectedMethod?: string) => {
+      validateCheckoutForm();
+
+      const visualOrderId = merchantOrderId || makeMerchantOrderId();
+      if (!merchantOrderId) {
+        setMerchantOrderId(visualOrderId);
+      }
+
+      const redirectUrl = `${window.location.origin}/thank-you?order=${encodeURIComponent(visualOrderId)}&method=${encodeURIComponent(selectedMethod || 'unknown')}&amount=${encodeURIComponent(orderTotal.toFixed(2))}`;
+
+      return {
+        merchantOrderId: visualOrderId,
+        visualOrderId,
+        subtotal: cartTotal,
+        totalAmount: orderTotal,
+        shippingAmount: shippingCost,
+        currency: 'USD',
+        redirectUrl,
+        billingDetails: {
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          address1: formData.address.trim(),
+          address2: '',
+          city: formData.city.trim(),
+          state: formData.state.trim(),
+          postcode: formData.zipCode.trim(),
+          country: formData.country.trim() || 'US',
+        },
+        items: lineItems,
+      };
+    },
+    [cartTotal, formData, lineItems, merchantOrderId, orderTotal, shippingCost, validateCheckoutForm],
+  );
+
   useEffect(() => {
     const items = getCart();
     if (items.length === 0) {
       router.push('/cart');
+      return;
     }
     setCartItems(items);
     setCartTotal(getCartTotal());
+    setMerchantOrderId(makeMerchantOrderId());
   }, [router]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadSdk = async () => {
+      if (!hasSdkConfig) {
+        setWidgetError('ComfortPay is not configured yet. Add NEXT_PUBLIC_COMFORTPAY_BASE_URL and NEXT_PUBLIC_COMFORTPAY_API_TOKEN.');
+        return;
+      }
+
+      try {
+        await ensureComfortPaySdk(COMFORTPAY_BASE_URL);
+        if (!cancelled) {
+          setSdkReady(true);
+          setWidgetError('');
+        }
+      } catch (error: any) {
+        if (!cancelled) {
+          setWidgetError(error?.message || 'Unable to load ComfortPay checkout.');
+        }
+      }
+    };
+
+    loadSdk();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [hasSdkConfig]);
+
+  useEffect(() => {
+    if (!sdkReady || !window.ComfortPay || !cartItems.length) {
+      return;
+    }
+
+    let active = true;
+
+    const mountWidget = async () => {
+      try {
+        if (widgetHandleRef.current?.destroy) {
+          widgetHandleRef.current.destroy();
+        } else if (window.ComfortPay) {
+          window.ComfortPay.unmount(`#${WIDGET_ROOT_ID}`);
+        }
+
+        const comfortPay = window.ComfortPay;
+        if (!comfortPay) {
+          throw new Error('ComfortPay SDK did not initialize correctly.');
+        }
+
+        const handle = await comfortPay.mount(`#${WIDGET_ROOT_ID}`, {
+          apiToken: COMFORTPAY_API_TOKEN,
+          baseUrl: COMFORTPAY_BASE_URL,
+          merchantSite: window.location.origin,
+          amount: orderTotal,
+          getCheckoutData: (selectedMethod: string) => buildCheckoutData(selectedMethod),
+          onSuccess: () => {
+            clearCart();
+          },
+          onError: (error: any) => {
+            const message = error?.message || 'Unable to start ComfortPay checkout.';
+            setWidgetError(message);
+            toast.error(message);
+          },
+          onClose: () => {
+            setLoading(false);
+          },
+        });
+
+        if (!active) {
+          handle?.destroy?.();
+          return;
+        }
+
+        widgetHandleRef.current = handle || null;
+        setWidgetError('');
+      } catch (error: any) {
+        const message = error?.message || 'Unable to load ComfortPay payment methods.';
+        setWidgetError(message);
+      }
+    };
+
+    mountWidget();
+
+    return () => {
+      active = false;
+      if (widgetHandleRef.current?.destroy) {
+        widgetHandleRef.current.destroy();
+      } else if (window.ComfortPay) {
+        window.ComfortPay.unmount(`#${WIDGET_ROOT_ID}`);
+      }
+      widgetHandleRef.current = null;
+    };
+  }, [sdkReady, cartItems.length, orderTotal, buildCheckoutData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      clearCart();
-      setOrderComplete(true);
-      toast.success('Request submitted! We will reach out to confirm next steps.');
-    } catch (error: any) {
-      console.error('Error placing order:', error);
-      toast.error(error.message || 'Failed to submit request. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (cartItems.length === 0 && !orderComplete) {
+  if (cartItems.length === 0) {
     return null;
   }
 
@@ -97,146 +314,110 @@ export default function CheckoutPage() {
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              {orderComplete ? (
-                <div className="border border-bone/15 bg-charcoal-dark p-8">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="h-7 w-7 text-ember" />
-                    <h2 className="font-display text-2xl text-bone">Request Received</h2>
+              <div className="space-y-6">
+                <div className="border border-bone/15 bg-charcoal-dark p-6">
+                  <h2 className="font-display text-2xl text-bone">Billing Information</h2>
+                  <div className="mt-5 space-y-4">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <div>
+                        <label htmlFor="firstName" className={labelClass}>First Name *</label>
+                        <input id="firstName" name="firstName" required value={formData.firstName} onChange={handleInputChange} className={fieldClass} />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className={labelClass}>Last Name *</label>
+                        <input id="lastName" name="lastName" required value={formData.lastName} onChange={handleInputChange} className={fieldClass} />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="email" className={labelClass}>Email *</label>
+                      <input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} className={fieldClass} />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className={labelClass}>Phone *</label>
+                      <input id="phone" name="phone" type="tel" required value={formData.phone} onChange={handleInputChange} className={fieldClass} />
+                    </div>
+                    <div>
+                      <label htmlFor="address" className={labelClass}>Address *</label>
+                      <input id="address" name="address" required value={formData.address} onChange={handleInputChange} className={fieldClass} />
+                    </div>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                      <div>
+                        <label htmlFor="city" className={labelClass}>City *</label>
+                        <input id="city" name="city" required value={formData.city} onChange={handleInputChange} className={fieldClass} />
+                      </div>
+                      <div>
+                        <label htmlFor="state" className={labelClass}>State *</label>
+                        <input id="state" name="state" required value={formData.state} onChange={handleInputChange} className={fieldClass} />
+                      </div>
+                      <div>
+                        <label htmlFor="zipCode" className={labelClass}>ZIP Code *</label>
+                        <input id="zipCode" name="zipCode" required value={formData.zipCode} onChange={handleInputChange} className={fieldClass} />
+                      </div>
+                    </div>
                   </div>
-                  <p className="mt-4 text-sm leading-7 text-bone/70">
-                    Thanks for your order request. Please complete payment via Zelle using the
-                    details below.
-                  </p>
-                  <dl className="mt-5 space-y-1.5 border border-bone/15 bg-charcoal-dark p-5 text-sm text-bone/80">
-                    <div className="flex gap-2">
-                      <dt className="font-semibold text-bone">Payment Method:</dt>
-                      <dd>Zelle</dd>
-                    </div>
-                    <div className="flex gap-2">
-                      <dt className="font-semibold text-bone">Transfer To:</dt>
-                      <dd>{zelleRecipient}</dd>
-                    </div>
-                    <div className="flex gap-2">
-                      <dt className="font-semibold text-bone">Amount:</dt>
-                      <dd>{formatPrice(orderTotal)}</dd>
-                    </div>
-                    <p className="pt-2 text-xs leading-6 text-bone/60">
-                      Please include your full name in the transfer note so we can match your payment
-                      quickly.
-                    </p>
-                  </dl>
-                  <Link
-                    href="/"
-                    className="mt-6 inline-flex items-center justify-center bg-ember px-8 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-charcoal transition-colors hover:bg-ember-dark hover:text-bone"
-                  >
-                    Back to Home
-                  </Link>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Billing */}
-                  <div className="border border-bone/15 bg-charcoal-dark p-6">
-                    <h2 className="font-display text-2xl text-bone">Billing Information</h2>
-                    <div className="mt-5 space-y-4">
-                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                        <div>
-                          <label htmlFor="firstName" className={labelClass}>First Name *</label>
-                          <input id="firstName" name="firstName" required value={formData.firstName} onChange={handleInputChange} className={fieldClass} />
-                        </div>
-                        <div>
-                          <label htmlFor="lastName" className={labelClass}>Last Name *</label>
-                          <input id="lastName" name="lastName" required value={formData.lastName} onChange={handleInputChange} className={fieldClass} />
-                        </div>
-                      </div>
-                      <div>
-                        <label htmlFor="email" className={labelClass}>Email *</label>
-                        <input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} className={fieldClass} />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className={labelClass}>Phone *</label>
-                        <input id="phone" name="phone" type="tel" required value={formData.phone} onChange={handleInputChange} className={fieldClass} />
-                      </div>
-                      <div>
-                        <label htmlFor="address" className={labelClass}>Address *</label>
-                        <input id="address" name="address" required value={formData.address} onChange={handleInputChange} className={fieldClass} />
-                      </div>
-                      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                        <div>
-                          <label htmlFor="city" className={labelClass}>City *</label>
-                          <input id="city" name="city" required value={formData.city} onChange={handleInputChange} className={fieldClass} />
-                        </div>
-                        <div>
-                          <label htmlFor="state" className={labelClass}>State *</label>
-                          <input id="state" name="state" required value={formData.state} onChange={handleInputChange} className={fieldClass} />
-                        </div>
-                        <div>
-                          <label htmlFor="zipCode" className={labelClass}>ZIP Code *</label>
-                          <input id="zipCode" name="zipCode" required value={formData.zipCode} onChange={handleInputChange} className={fieldClass} />
-                        </div>
-                      </div>
+
+                <div className="border border-bone/15 bg-charcoal-dark p-6">
+                  <h2 className="flex items-center gap-2 font-display text-2xl text-bone">
+                    <Lock className="h-5 w-5 text-ember" />
+                    Payment Information
+                  </h2>
+                  <p className="mt-4 text-sm leading-7 text-bone/70">
+                    Choose your payment method below. Hosted methods will redirect to the processor. Manual methods will open payment instructions in ComfortPay checkout.
+                  </p>
+
+                  <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-bone/70">
+                    <input
+                      type="checkbox"
+                      checked={acceptedTerms}
+                      onChange={(e) => setAcceptedTerms(e.target.checked)}
+                      className="mt-1 h-4 w-4 shrink-0 accent-ember"
+                    />
+                    <span>
+                      By continuing, I agree to the{' '}
+                      <Link href="/terms-and-conditions" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
+                        Terms &amp; Conditions
+                      </Link>
+                      ,{' '}
+                      <Link href="/privacy-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
+                        Privacy Policy
+                      </Link>
+                      ,{' '}
+                      <Link href="/refund-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
+                        Refund Policy
+                      </Link>
+                      , and{' '}
+                      <Link href="/shipping-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
+                        Shipping Policy
+                      </Link>
+                      . I confirm my order and billing details are accurate.
+                    </span>
+                  </label>
+
+                  {!acceptedTerms && (
+                    <div className="mt-4 border border-bone/15 bg-soot px-4 py-3 text-xs leading-6 text-bone/60">
+                      Accept the terms to continue with checkout.
                     </div>
+                  )}
+
+                  <div className="mt-5 rounded-2xl border border-bone/15 bg-soot/60 p-4">
+                    {!sdkReady && !widgetError ? (
+                      <div className="flex items-center gap-3 text-sm text-bone/70">
+                        <Loader2 className="h-4 w-4 animate-spin text-ember" />
+                        Loading secure payment methods...
+                      </div>
+                    ) : null}
+                    <div id={WIDGET_ROOT_ID} />
+                    {widgetError ? (
+                      <div className="mt-4 border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                        {widgetError}
+                      </div>
+                    ) : null}
                   </div>
-
-                  {/* Payment */}
-                  <div className="border border-bone/15 bg-charcoal-dark p-6">
-                    <h2 className="flex items-center gap-2 font-display text-2xl text-bone">
-                      <Lock className="h-5 w-5 text-ember" />
-                      Payment Information
-                    </h2>
-                    <div className="mt-5 border border-bone/15 bg-charcoal-dark p-5 text-sm leading-7 text-bone/80">
-                      <p>
-                        <span className="font-semibold text-bone">Payment Method:</span> Zelle
-                      </p>
-                      <p className="mt-1">
-                        Please transfer <span className="font-semibold text-bone">{formatPrice(orderTotal)}</span> to{' '}
-                        <span className="font-semibold text-bone">{zelleRecipient}</span> after submitting this order request.
-                      </p>
-                      <p className="mt-1 text-xs text-bone/60">Add your full name in the transfer note.</p>
-                    </div>
-
-                    <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-bone/70">
-                      <input
-                        type="checkbox"
-                        checked={acceptedTerms}
-                        onChange={(e) => setAcceptedTerms(e.target.checked)}
-                        required
-                        className="mt-1 h-4 w-4 shrink-0 accent-ember"
-                      />
-                      <span>
-                        By completing this purchase, I confirm that I have read and agree to the{' '}
-                        <Link href="/terms-and-conditions" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
-                          Terms &amp; Conditions
-                        </Link>
-                        ,{' '}
-                        <Link href="/privacy-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
-                          Privacy Policy
-                        </Link>
-                        ,{' '}
-                        <Link href="/refund-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
-                          Refund Policy
-                        </Link>
-                        , and{' '}
-                        <Link href="/shipping-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
-                          Shipping Policy
-                        </Link>
-                        . I authorize this payment and acknowledge that all order details and personal
-                        information provided are accurate.
-                      </span>
-                    </label>
-
-                    <button
-                      type="submit"
-                      disabled={loading || !acceptedTerms}
-                      className="mt-5 w-full bg-ember px-6 py-4 text-xs font-medium uppercase tracking-[0.18em] text-charcoal transition-colors hover:bg-ember-dark hover:text-bone disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      {loading ? 'Submitting…' : 'Submit Order Request'}
-                    </button>
-                  </div>
-                </form>
-              )}
+                </div>
+              </div>
             </div>
 
-            {/* Summary */}
             <div>
               <div className="sticky top-32 border border-bone/15 bg-charcoal-dark p-6">
                 <h2 className="font-display text-2xl text-bone">Order Summary</h2>
