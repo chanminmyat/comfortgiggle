@@ -21,7 +21,6 @@ declare global {
 const SHIPPING_FEE = 30;
 const FREE_SHIPPING_THRESHOLD = 50;
 const COMFORTPAY_BASE_URL = process.env.NEXT_PUBLIC_COMFORTPAY_BASE_URL || '';
-const COMFORTPAY_API_TOKEN = process.env.NEXT_PUBLIC_COMFORTPAY_API_TOKEN || '';
 const WIDGET_ROOT_ID = 'comfortpay-widget-root';
 const SDK_SCRIPT_ID = 'comfortpay-sdk-script';
 
@@ -106,7 +105,7 @@ export default function CheckoutPage() {
     country: 'US',
   });
 
-  const hasSdkConfig = !!COMFORTPAY_BASE_URL && !!COMFORTPAY_API_TOKEN;
+  const hasSdkConfig = !!COMFORTPAY_BASE_URL;
 
   const lineItems = useMemo(
     () =>
@@ -199,7 +198,7 @@ export default function CheckoutPage() {
 
     const loadSdk = async () => {
       if (!hasSdkConfig) {
-        setWidgetError('ComfortPay is not configured yet. Add NEXT_PUBLIC_COMFORTPAY_BASE_URL and NEXT_PUBLIC_COMFORTPAY_API_TOKEN.');
+        setWidgetError('ComfortPay is not configured yet. Add COMFORTPAY_BASE_URL and COMFORTPAY_API_TOKEN on the server, plus NEXT_PUBLIC_COMFORTPAY_BASE_URL for the SDK.');
         return;
       }
 
@@ -244,9 +243,9 @@ export default function CheckoutPage() {
         }
 
         const handle = await comfortPay.mount(`#${WIDGET_ROOT_ID}`, {
-          apiToken: COMFORTPAY_API_TOKEN,
+          configUrl: '/api/comfortpay/config',
+          sessionUrl: '/api/comfortpay/session',
           baseUrl: COMFORTPAY_BASE_URL,
-          merchantSite: window.location.origin,
           amount: orderTotal,
           getCheckoutData: (selectedMethod: string) => buildCheckoutData(selectedMethod),
           onSuccess: () => {
