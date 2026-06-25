@@ -5,7 +5,7 @@ export default function CancellationPolicyPage() {
     <PolicyPage
       title='Cancellation Policy'
       effectiveDate='May 15, 2026'
-      intro='At Classic Comfort Clothing, we understand that customers may need to cancel an order. Please review our cancellation policy below.'
+      intro='At Comfort Giggles, we understand that customers may need to cancel an order. Please review our cancellation policy below.'
       sections={[
         {
           title: '1. Order Cancellation',
@@ -46,10 +46,11 @@ export default function CancellationPolicyPage() {
         {
           title: '7. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            'Comfort Giggles',
+            'Email: hello@comfortgiggle.com',
+            'Phone: 1-202-800-7298',
+            'Address: 8 The Green Suite B, Dover, DE 19901',
+            'Contact Form: /contact',
           ],
         },
       ]}

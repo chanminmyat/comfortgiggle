@@ -5,7 +5,7 @@ export default function ShippingPolicyPage() {
     <PolicyPage
       title='Shipping Policy'
       effectiveDate='May 15, 2026'
-      intro='Thank you for shopping with Classic Comfort Clothing. Below are our shipping terms and conditions.'
+      intro='Thank you for shopping with Comfort Giggles. Below are our shipping terms and conditions.'
       sections={[
         {
           title: '1. Order Processing',
@@ -56,10 +56,11 @@ export default function ShippingPolicyPage() {
         {
           title: '8. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            'Comfort Giggles',
+            'Email: hello@comfortgiggle.com',
+            'Phone: 1-202-800-7298',
+            'Address: 8 The Green Suite B, Dover, DE 19901',
+            'Contact Form: /contact',
           ],
         },
       ]}

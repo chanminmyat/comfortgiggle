@@ -5,7 +5,7 @@ export default function TermsAndConditionsPage() {
     <PolicyPage
       title='Terms and Conditions'
       effectiveDate='May 15, 2026'
-      intro='Welcome to Classic Comfort Clothing. By accessing or using https://classiccomfortusa.com, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website.'
+      intro='Welcome to Comfort Giggles. By accessing or using our website, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website.'
       sections={[
         {
           title: '1. Use of Website',
@@ -34,13 +34,13 @@ export default function TermsAndConditionsPage() {
         {
           title: '5. Intellectual Property',
           body: [
-            'All content on this website, including logos, text, graphics, images, and designs, is the property of Classic Comfort Clothing and may not be copied, reproduced, or distributed without written permission.',
+            'All content on this website, including logos, text, graphics, images, and designs, is the property of Comfort Giggles and may not be copied, reproduced, or distributed without written permission.',
           ],
         },
         {
           title: '6. Limitation of Liability',
           body: [
-            'Classic Comfort Clothing shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our website or products.',
+            'Comfort Giggles shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our website or products.',
           ],
         },
         {
@@ -64,10 +64,11 @@ export default function TermsAndConditionsPage() {
         {
           title: '10. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            'Comfort Giggles',
+            'Email: hello@comfortgiggle.com',
+            'Phone: 1-202-800-7298',
+            'Address: 8 The Green Suite B, Dover, DE 19901',
+            'Contact Form: /contact',
           ],
         },
       ]}

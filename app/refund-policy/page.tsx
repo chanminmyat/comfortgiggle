@@ -5,7 +5,7 @@ export default function RefundPolicyPage() {
     <PolicyPage
       title='Refund Policy'
       effectiveDate='May 15, 2026'
-      intro='At Classic Comfort Clothing, customer satisfaction is important to us. Please review our refund and return policy below.'
+      intro='At Comfort Giggles, customer satisfaction is important to us. Please review our refund and return policy below.'
       sections={[
         {
           title: '1. Returns',
@@ -54,10 +54,11 @@ export default function RefundPolicyPage() {
         {
           title: '7. Contact Information',
           bullets: [
-            'Classic Comfort Clothing',
-            'Email: classiccomfortclothing@outlook.com',
-            'Phone: 817-381-6702',
-            'Website: https://classiccomfortusa.com',
+            'Comfort Giggles',
+            'Email: hello@comfortgiggle.com',
+            'Phone: 1-202-800-7298',
+            'Address: 8 The Green Suite B, Dover, DE 19901',
+            'Contact Form: /contact',
           ],
         },
       ]}
