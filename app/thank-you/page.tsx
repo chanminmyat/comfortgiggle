@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle2 } from 'lucide-react';
 
@@ -57,21 +56,6 @@ export default function ThankYouPage() {
             ) : null}
           </div>
         ) : null}
-
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link
-            href="/products"
-            className="inline-flex items-center justify-center bg-ember px-8 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-charcoal transition-colors hover:bg-ember-dark hover:text-bone"
-          >
-            Continue Shopping
-          </Link>
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center border border-bone/20 px-8 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-bone transition-colors hover:border-ember hover:text-ember"
-          >
-            Back to Home
-          </Link>
-        </div>
       </div>
     </main>
   );
