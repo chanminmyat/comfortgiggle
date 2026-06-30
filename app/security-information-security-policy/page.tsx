@@ -1,61 +1,49 @@
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+import { PolicyPage } from "@/components/policy-page";
 
 export default function SecurityInformationSecurityPolicyPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-
-      <main className="flex-1 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6">Security &amp; Information Security Policy</h1>
-
-            <div className="space-y-8 text-gray-700">
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
-                <p>
-                  Comfort Giggle is committed to maintaining the confidentiality, integrity, and
-                  availability of client and freelancer data.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Technical Safeguards</h2>
-                <ul className="space-y-2">
-                  <li>
-                    SSL Encryption: All data transmitted between your browser and our servers is
-                    encrypted using Secure Socket Layer (SSL) technology.
-                  </li>
-                  <li>
-                    Access Control: Access to sensitive user data is restricted to authorized
-                    personnel with a legitimate business need.
-                  </li>
-                </ul>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Payment Security</h2>
-                <p>
-                  We do not store full credit card numbers on our servers. All financial
-                  transactions are processed through PCI-DSS Level 1 compliant payment processors.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Incident Response</h2>
-                <p>
-                  In the event of a data breach, Comfort Giggle will notify affected users and
-                  relevant regulatory bodies within the timeframes mandated by Delaware law and
-                  applicable federal regulations.
-                </p>
-              </section>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+    <PolicyPage
+      title="Security and Information Security Policy"
+      effectiveDate="May 15, 2026"
+      intro="Comfort Giggles takes reasonable steps to protect customer information, payment-related records, and order data."
+      sections={[
+        {
+          title: "1. Website Security",
+          bullets: [
+            "We use encrypted connections where supported by our hosting and payment systems.",
+            "Access to customer information is limited to personnel and service providers with a business need.",
+            "We review orders and payment activity for fraud-prevention and support purposes.",
+          ],
+        },
+        {
+          title: "2. Payment Security",
+          body: [
+            "Online payments are handled through payment service providers. Comfort Giggles does not store full credit or debit card numbers on our servers.",
+          ],
+        },
+        {
+          title: "3. Supplier and Fulfillment Access",
+          body: [
+            "When supplier or fulfillment partners need order information to produce or ship products, we share only the information needed to complete that task.",
+          ],
+        },
+        {
+          title: "4. Incident Response",
+          body: [
+            "If we identify a security incident involving customer information, we will investigate, take appropriate mitigation steps, and notify affected parties when required by applicable law.",
+          ],
+        },
+        {
+          title: "5. Contact Information",
+          bullets: [
+            "Comfort Giggles",
+            "Email: hello@comfortgiggle.com",
+            "Phone: 1-202-800-7298",
+            "Address: 8 The Green Suite B, Dover, DE 19901",
+            "Contact Form: /contact",
+          ],
+        },
+      ]}
+    />
   );
 }

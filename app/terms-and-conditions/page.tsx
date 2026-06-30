@@ -5,7 +5,7 @@ export default function TermsAndConditionsPage() {
     <PolicyPage
       title='Terms and Conditions'
       effectiveDate='May 15, 2026'
-      intro='Welcome to Comfort Giggles. By accessing or using our website, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website.'
+      intro='Welcome to Comfort Giggles. By accessing our website or placing an order, you agree to these Terms and Conditions.'
       sections={[
         {
           title: '1. Use of Website',
@@ -16,7 +16,8 @@ export default function TermsAndConditionsPage() {
         {
           title: '2. Products and Services',
           body: [
-            'We strive to ensure that all product descriptions, images, and pricing are accurate. However, we reserve the right to correct any errors, inaccuracies, or omissions at any time without prior notice.',
+            'Comfort Giggles sells candle products and related goods through our website. Products may be manufactured, packaged, stored, or shipped by trusted third-party suppliers and fulfillment partners. Comfort Giggles remains the customer-facing retailer for website orders.',
+            'We strive to ensure that product descriptions, images, scent notes, sizing, packaging, availability, and pricing are accurate. However, small variations may occur, and we reserve the right to correct errors or omissions.',
           ],
         },
         {
@@ -28,7 +29,7 @@ export default function TermsAndConditionsPage() {
         {
           title: '4. Payments',
           body: [
-            'Payments must be made through the payment methods provided on our website. Orders will not be processed until payment has been successfully received.',
+            'Payments must be made through the payment methods provided at checkout. Orders will not be processed until payment has been successfully received or authorized. We do not store full credit or debit card numbers on our servers.',
           ],
         },
         {
@@ -50,19 +51,25 @@ export default function TermsAndConditionsPage() {
           ],
         },
         {
-          title: '8. Privacy',
+          title: '8. Shipping, Returns, and Cancellations',
+          body: [
+            'Shipping, returns, refunds, and cancellations are governed by our Shipping Policy, Refund Policy, and Cancellation Policy.',
+          ],
+        },
+        {
+          title: '9. Privacy',
           body: [
             'Your use of this website is also governed by our Privacy Policy.',
           ],
         },
         {
-          title: '9. Changes to Terms',
+          title: '10. Changes to Terms',
           body: [
             'We reserve the right to update or modify these Terms and Conditions at any time. Continued use of the website after changes are posted constitutes acceptance of the updated terms.',
           ],
         },
         {
-          title: '10. Contact Information',
+          title: '11. Contact Information',
           bullets: [
             'Comfort Giggles',
             'Email: hello@comfortgiggle.com',

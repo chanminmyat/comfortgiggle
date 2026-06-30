@@ -511,7 +511,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-VAN-001',
     price: '49.00',
     description:
-      '<p>A warm, comforting vanilla candle hand-poured in an amber glass jar.</p><p>Burn time: 45+ hours.</p>',
+      '<p>A warm, comforting vanilla candle in an amber glass jar.</p><p>Burn time: 45+ hours.</p>',
     short_description: 'Warm, sweet vanilla for cosy evenings.',
     featured: true,
     total_sales: 320,
@@ -812,7 +812,7 @@ export const SAMPLE_PRODUCTS: WooCommerceProduct[] = [
   })),
   {
     id: 9900,
-    name: 'Comfort Giggle Custom Candle',
+    name: 'Comfort Giggles Custom Candle',
     slug: 'comfort-giggle-custom-candle',
     permalink: '/products/comfort-giggle-custom-candle',
     type: 'simple',
@@ -834,7 +834,7 @@ export const SAMPLE_PRODUCTS: WooCommerceProduct[] = [
       {
         id: 9107,
         src: '/products/vanila_bliss.png',
-        name: 'Comfort Giggle Custom Candle',
+        name: 'Comfort Giggles Custom Candle',
         alt: 'Custom candle with personalized label',
       },
     ],

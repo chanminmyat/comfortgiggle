@@ -10,7 +10,7 @@ export default function CancellationPolicyPage() {
         {
           title: '1. Order Cancellation',
           body: [
-            'Customers may request to cancel an order within 24 hours of placing the order, provided the order has not yet been processed or shipped.',
+            'Customers may request to cancel an order within 24 hours of placing the order, provided the order has not yet been processed, sent to a supplier or fulfillment partner, customized, or shipped.',
           ],
         },
         {
@@ -28,7 +28,7 @@ export default function CancellationPolicyPage() {
         {
           title: '4. Custom or Personalized Orders',
           body: [
-            'Custom-made, personalized, or special-order items cannot be canceled once production has started.',
+            'Custom-made, personalized, supplier-submitted, or special-order items cannot be canceled once production or fulfillment has started.',
           ],
         },
         {
@@ -40,7 +40,7 @@ export default function CancellationPolicyPage() {
         {
           title: '6. Fraud Prevention',
           body: [
-            'We reserve the right to refuse or cancel any order suspected of fraud, unauthorized activity, or violation of our Terms and Conditions.',
+            'We reserve the right to refuse or cancel any order suspected of fraud, unauthorized activity, or misuse of our website.',
           ],
         },
         {

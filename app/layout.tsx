@@ -8,8 +8,8 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Comfort Giggle - Handcrafted Candles for Cozy Spaces',
-  description: 'Shop scented candles, wax melts, and gift sets from Comfort Giggle. Hand-poured collections made to bring warmth and calm to your home.',
+  title: 'Comfort Giggles - Curated Candles for Cozy Spaces',
+  description: 'Shop scented candles, wax melts, and gift sets from Comfort Giggles. Curated collections made with trusted supplier partners to bring warmth and calm to your home.',
   openGraph: {
     images: [
       {

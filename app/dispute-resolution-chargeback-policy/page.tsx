@@ -1,89 +1,49 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { PolicyPage } from "@/components/policy-page";
 
 export default function DisputeResolutionChargebackPolicyPage() {
   return (
-    <div className='min-h-screen flex flex-col'>
-      <Header />
-
-      <main className='flex-1 py-16'>
-        <div className='container mx-auto px-4'>
-          <div className='max-w-3xl mx-auto'>
-            <h1 className='text-4xl font-bold mb-6'>
-              Dispute Resolution &amp; Chargeback Policy
-            </h1>
-
-            <div className='space-y-8 text-gray-700'>
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Overview
-                </h2>
-                <p>
-                  We strive for satisfaction in every consultation. This policy
-                  outlines how we handle service disagreements and payment
-                  disputes.
-                </p>
-              </section>
-
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Dispute Process
-                </h2>
-                <p>
-                  If a client is dissatisfied with a virtual consult, they must
-                  contact Customer Service within 48 hours of the appointment.
-                </p>
-                <ul className='space-y-2'>
-                  <li>Email: hello@comfortgiggle.com</li>
-                  <li>
-                    Review: We will review chat logs, call duration, and
-                    deliverables to mediate a resolution.
-                  </li>
-                  <li>
-                    Resolution: Remedies may include a partial refund, full
-                    refund, or a credit for a future consult, at the sole
-                    discretion of Comfort Giggle.
-                  </li>
-                </ul>
-              </section>
-
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Chargeback Policy
-                </h2>
-                <p>
-                  Filing a chargeback with your bank without first contacting
-                  Comfort Giggle Support is a violation of our Terms.
-                </p>
-                <ul className='space-y-2'>
-                  <li>
-                    Friendly Fraud: If a chargeback is filed for a valid service
-                    rendered, we reserve the right to dispute the chargeback
-                    using evidence of service delivery (logs, timestamps).
-                  </li>
-                  <li>
-                    Account Ban: Users who file fraudulent chargebacks will be
-                    permanently banned from the platform.
-                  </li>
-                </ul>
-              </section>
-
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Binding Arbitration
-                </h2>
-                <p>
-                  Any unresolved disputes shall be settled by binding
-                  arbitration in the State of Delaware, in accordance with the
-                  rules of the American Arbitration Association.
-                </p>
-              </section>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+    <PolicyPage
+      title="Dispute Resolution and Chargeback Policy"
+      effectiveDate="May 15, 2026"
+      intro="This policy explains how Comfort Giggles handles order questions, payment disputes, and chargeback-related requests."
+      sections={[
+        {
+          title: "1. Contact Us First",
+          body: [
+            "If there is a problem with an order, please contact Comfort Giggles as soon as possible. We can often resolve shipping issues, damaged items, incorrect products, duplicate charges, or refund questions faster through direct support.",
+          ],
+        },
+        {
+          title: "2. Order Review",
+          body: [
+            "When reviewing a dispute, we may use order confirmations, payment records, shipping and tracking details, customer communications, product photos, and return records.",
+          ],
+        },
+        {
+          title: "3. Available Resolutions",
+          bullets: [
+            "Replacement, refund, partial refund, cancellation, store credit, or return authorization when appropriate.",
+            "Carrier follow-up for delayed or lost shipments.",
+            "Correction of billing, shipping, or product errors caused by Comfort Giggles or a fulfillment partner.",
+          ],
+        },
+        {
+          title: "4. Chargebacks",
+          body: [
+            "Customers may contact their bank or card issuer according to the rules of their payment provider. If a chargeback is opened, Comfort Giggles may respond with relevant order, shipping, delivery, communication, and refund records.",
+          ],
+        },
+        {
+          title: "5. Contact Information",
+          bullets: [
+            "Comfort Giggles",
+            "Email: hello@comfortgiggle.com",
+            "Phone: 1-202-800-7298",
+            "Address: 8 The Green Suite B, Dover, DE 19901",
+            "Contact Form: /contact",
+          ],
+        },
+      ]}
+    />
   );
 }

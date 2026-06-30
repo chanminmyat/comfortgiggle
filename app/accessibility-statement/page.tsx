@@ -1,62 +1,35 @@
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { PolicyPage } from "@/components/policy-page";
 
 export default function AccessibilityStatementPage() {
   return (
-    <div className='min-h-screen flex flex-col'>
-      <Header />
-
-      <main className='flex-1 py-16'>
-        <div className='container mx-auto px-4'>
-          <div className='max-w-3xl mx-auto'>
-            <h1 className='text-4xl font-bold mb-6'>Accessibility Statement</h1>
-
-            <div className='space-y-8 text-gray-700'>
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Commitment
-                </h2>
-                <p>
-                  Comfort Giggle is dedicated to ensuring digital accessibility
-                  for people with disabilities. We are continually improving the
-                  user experience for everyone and applying the relevant
-                  accessibility standards.
-                </p>
-              </section>
-
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Standards
-                </h2>
-                <p>
-                  We aim to adhere to the Web Content Accessibility Guidelines
-                  (WCAG) 2.1 at the AA level.
-                </p>
-              </section>
-
-              <section className='space-y-3'>
-                <h2 className='text-2xl font-semibold text-gray-900'>
-                  Feedback
-                </h2>
-                <p>
-                  If you encounter accessibility barriers on our website, please
-                  contact us:
-                </p>
-                <ul className='space-y-2'>
-                  <li>Phone: 1-202-800-7298</li>
-                  <li>Email: hello@comfortgiggle.com</li>
-                  <li>
-                    Response Time: We aim to respond to feedback within 2
-                    business days.
-                  </li>
-                </ul>
-              </section>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+    <PolicyPage
+      title="Accessibility Statement"
+      effectiveDate="May 15, 2026"
+      intro="Comfort Giggles aims to make our website accessible and usable for all customers."
+      sections={[
+        {
+          title: "1. Commitment",
+          body: [
+            "We work to improve website accessibility and support a shopping experience that can be used by customers with different needs and assistive technologies.",
+          ],
+        },
+        {
+          title: "2. Feedback",
+          body: [
+            "If you experience difficulty using the website, checking out, reading policy information, or contacting us, please let us know so we can review the issue.",
+          ],
+        },
+        {
+          title: "3. Contact Information",
+          bullets: [
+            "Comfort Giggles",
+            "Email: hello@comfortgiggle.com",
+            "Phone: 1-202-800-7298",
+            "Address: 8 The Green Suite B, Dover, DE 19901",
+            "Contact Form: /contact",
+          ],
+        },
+      ]}
+    />
   );
 }

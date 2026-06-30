@@ -1,61 +1,43 @@
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+import { PolicyPage } from "@/components/policy-page";
 
 export default function AntiFraudPolicyPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-
-      <main className="flex-1 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6">Anti-Fraud Policy</h1>
-
-            <div className="space-y-8 text-gray-700">
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
-                <p>
-                  To protect our community, we employ strict measures to detect and prevent
-                  fraudulent activity.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Verification</h2>
-                <ul className="space-y-2">
-                  <li>
-                    Identity Checks: We reserve the right to request ID verification (KYC) from
-                    Clients or Freelancers for high-value transactions or suspicious account activity.
-                  </li>
-                  <li>
-                    IP Monitoring: We monitor IP addresses to detect unauthorized access or location
-                    spoofing.
-                  </li>
-                </ul>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Transaction Monitoring</h2>
-                <p>
-                  Our systems automatically flag suspicious transaction patterns. If a transaction
-                  is flagged, we may place a temporary hold on the funds and request confirmation
-                  from the cardholder via phone or email.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Reporting Fraud</h2>
-                <p>
-                  If you suspect your account has been compromised, contact us immediately at
-                  1-202-800-7298.
-                </p>
-              </section>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+    <PolicyPage
+      title="Anti-Fraud Policy"
+      effectiveDate="May 15, 2026"
+      intro="Comfort Giggles uses fraud-prevention measures to protect customers, payment accounts, and the integrity of our store."
+      sections={[
+        {
+          title: "1. Order Screening",
+          body: [
+            "Orders may be reviewed for unusual payment activity, mismatched billing or shipping details, unusually high quantities, repeated failed payments, or other signs of unauthorized activity.",
+          ],
+        },
+        {
+          title: "2. Verification",
+          body: [
+            "We may contact a customer by email or phone to verify order details before shipping. If we cannot verify an order, we may delay, cancel, or refund it.",
+          ],
+        },
+        {
+          title: "3. Suspicious Activity",
+          bullets: [
+            "Use of stolen payment information is prohibited.",
+            "False chargeback claims, reshipping abuse, or return fraud may result in cancellation or refusal of future orders.",
+            "We may share relevant records with payment processors, card networks, shipping carriers, or law enforcement when appropriate.",
+          ],
+        },
+        {
+          title: "4. Contact Information",
+          bullets: [
+            "Comfort Giggles",
+            "Email: hello@comfortgiggle.com",
+            "Phone: 1-202-800-7298",
+            "Address: 8 The Green Suite B, Dover, DE 19901",
+            "Contact Form: /contact",
+          ],
+        },
+      ]}
+    />
   );
 }

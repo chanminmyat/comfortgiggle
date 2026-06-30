@@ -158,7 +158,7 @@ export async function GET(request: NextRequest) {
         headers: {
           Authorization: getAuthHeader(),
           'Content-Type': 'application/json',
-          'User-Agent': 'classiccomfort-vercel',
+          'User-Agent': 'comfortgiggles-vercel',
         },
         next: { revalidate: 60 },
       },
@@ -171,7 +171,7 @@ export async function GET(request: NextRequest) {
         {
           headers: {
             'Content-Type': 'application/json',
-            'User-Agent': 'classiccomfort-vercel',
+            'User-Agent': 'comfortgiggles-vercel',
           },
           next: { revalidate: 60 },
         },

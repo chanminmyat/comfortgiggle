@@ -1,60 +1,46 @@
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+import { PolicyPage } from "@/components/policy-page";
 
 export default function DataProcessingAgreementPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-
-      <main className="flex-1 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6">Data Processing Agreement (DPA) Statement</h1>
-
-            <div className="space-y-8 text-gray-700">
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
-                <p>
-                  This section outlines how we (the Data Controller) and our third-party vendors
-                  (Data Processors) handle your personal information in compliance with global
-                  privacy standards.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Scope of Processing</h2>
-                <p>We process data necessary to facilitate virtual consultations, including:</p>
-                <ul className="space-y-2">
-                  <li>Contact details (Name, Email, Phone).</li>
-                  <li>Transaction data (processed securely via PCI-DSS compliant gateways).</li>
-                  <li>Session logs (time and duration of consults).</li>
-                </ul>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Sub-Processors</h2>
-                <p>We utilize trusted third-party sub-processors to deliver services, including:</p>
-                <ul className="space-y-2">
-                  <li>Payment Gateways (e.g., Stripe, PayPal).</li>
-                  <li>Video Conferencing Tools (e.g., Zoom, Google Meet).</li>
-                  <li>Cloud Hosting Providers.</li>
-                </ul>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="text-2xl font-semibold text-gray-900">Data Transfer</h2>
-                <p>
-                  As a Delaware-formed entity, data is processed in the United States. By using our
-                  services, international clients consent to the transfer of data to the US. We
-                  utilize standard contractual clauses where necessary to ensure data protection.
-                </p>
-              </section>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+    <PolicyPage
+      title="Data Processing Statement"
+      effectiveDate="May 15, 2026"
+      intro="This statement summarizes how Comfort Giggles processes customer and order data for store operations."
+      sections={[
+        {
+          title: "1. Data We Process",
+          bullets: [
+            "Customer contact details such as name, email, phone number, billing address, and shipping address.",
+            "Order details such as product selections, quantities, order value, payment status, and shipping status.",
+            "Support communications and return, refund, cancellation, or dispute records.",
+            "Website and device data used for security, analytics, and cart functionality.",
+          ],
+        },
+        {
+          title: "2. Processing Purposes",
+          bullets: [
+            "Order processing, payment confirmation, fraud prevention, shipping, returns, refunds, and customer support.",
+            "Sharing necessary order information with payment, hosting, email, supplier, manufacturing, and fulfillment partners.",
+            "Maintaining records for tax, accounting, regulatory, and card-network compliance.",
+          ],
+        },
+        {
+          title: "3. Customer Requests",
+          body: [
+            "Customers may contact us to request access, correction, or deletion of personal information, subject to records we must retain for legal, accounting, fraud-prevention, or transaction-support purposes.",
+          ],
+        },
+        {
+          title: "4. Contact Information",
+          bullets: [
+            "Comfort Giggles",
+            "Email: hello@comfortgiggle.com",
+            "Phone: 1-202-800-7298",
+            "Address: 8 The Green Suite B, Dover, DE 19901",
+            "Contact Form: /contact",
+          ],
+        },
+      ]}
+    />
   );
 }

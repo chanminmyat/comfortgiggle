@@ -44,8 +44,8 @@ export function Footer() {
               />
             </Link>
             <p className="mt-5 text-sm leading-7 text-bone/70">
-              Handcrafted candles made with natural ingredients to bring warmth, calm and comfort
-              to your everyday moments.
+              Curated candles sourced through trusted manufacturing and fulfillment partners to bring
+              warmth, calm and comfort to your everyday moments.
             </p>
           </div>
 

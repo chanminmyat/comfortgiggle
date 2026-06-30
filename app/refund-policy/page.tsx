@@ -5,7 +5,7 @@ export default function RefundPolicyPage() {
     <PolicyPage
       title='Refund Policy'
       effectiveDate='May 15, 2026'
-      intro='At Comfort Giggles, customer satisfaction is important to us. Please review our refund and return policy below.'
+      intro='At Comfort Giggles, customer satisfaction is important to us. This policy explains return eligibility, refund timing, and how to contact us about an order.'
       sections={[
         {
           title: '1. Returns',
@@ -13,15 +13,15 @@ export default function RefundPolicyPage() {
             'Customers may request a return within 14 days of receiving their order. To be eligible for a return:',
           ],
           bullets: [
-            'Items must be unused, unworn, and in original condition.',
-            'Items must include original tags and packaging.',
+            'Items must be unused, unburned, undamaged, and in original condition.',
+            'Items must include original packaging and any included inserts or accessories.',
             'Proof of purchase is required.',
           ],
         },
         {
           title: '2. Non-Returnable Items',
           bullets: [
-            'Customized or personalized products',
+            'Custom, personalized, or made-to-order products once production has started',
             'Final sale or clearance items',
             'Gift cards',
           ],
@@ -29,7 +29,7 @@ export default function RefundPolicyPage() {
         {
           title: '3. Refunds',
           body: [
-            'Once we receive and inspect your returned item, we will notify you regarding the approval or rejection of your refund.',
+            'Once we receive and inspect your returned item, or approve a damaged-item claim, we will notify you regarding the approval or rejection of your refund.',
             'Approved refunds will be processed to the original payment method within 5-10 business days.',
           ],
         },
@@ -48,7 +48,7 @@ export default function RefundPolicyPage() {
         {
           title: '6. Damaged or Incorrect Items',
           body: [
-            'If you receive a damaged or incorrect item, please contact us within 7 days of delivery with photos and order details.',
+            'If you receive a damaged, defective, or incorrect item, please contact us within 7 days of delivery with photos of the product, packaging, and order details.',
           ],
         },
         {

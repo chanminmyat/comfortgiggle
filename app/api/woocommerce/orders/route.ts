@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
       headers: {
         Authorization: getAuthHeader(),
         'Content-Type': 'application/json',
-        'User-Agent': 'classiccomfort-vercel',
+        'User-Agent': 'comfortgiggles-vercel',
       },
       body: JSON.stringify(payload),
     });
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'User-Agent': 'classiccomfort-vercel',
+          'User-Agent': 'comfortgiggles-vercel',
         },
         body: JSON.stringify(payload),
       });

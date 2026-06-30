@@ -382,8 +382,8 @@ export default function CheckoutPage() {
                         Privacy Policy
                       </Link>
                       ,{' '}
-                      <Link href="/refund-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
-                        Refund Policy
+                      <Link href="/refund-return-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
+                        Refund &amp; Return Policy
                       </Link>
                       , and{' '}
                       <Link href="/shipping-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">
