@@ -15,6 +15,9 @@ const quickLinks = [
 const customerCare = [
   { href: '/shipping-policy', label: 'Shipping & Delivery' },
   { href: '/refund-return-policy', label: 'Returns & Exchanges' },
+  { href: '/cancellation-policy', label: 'Cancellation Policy' },
+  { href: '/clear-pricing-policy', label: 'Clear Pricing' },
+  { href: '/freelancer-third-party-provider-policy', label: 'Supplier & Fulfillment' },
   { href: '/terms-and-conditions', label: 'Terms & Conditions' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
 ];
