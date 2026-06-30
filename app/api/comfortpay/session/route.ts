@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     const apiToken = process.env.COMFORTPAY_API_TOKEN;
 
     if (!baseUrl || !apiToken) {
-      return NextResponse.json({ error: "ComfortPay merchant configuration is missing." }, { status: 503 });
+      return NextResponse.json({ error: "Payment configuration is missing." }, { status: 503 });
     }
 
     const body = await request.json();
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: (error as Error).message || "Failed to create ComfortPay session." },
+      { error: (error as Error).message || "Failed to create payment session." },
       { status: 500 },
     );
   }

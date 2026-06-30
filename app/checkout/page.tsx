@@ -61,7 +61,7 @@ async function ensureComfortPaySdk(baseUrl: string) {
         return;
       }
       existingScript.addEventListener('load', () => resolve(), { once: true });
-      existingScript.addEventListener('error', () => reject(new Error('Failed to load ComfortPay SDK.')), { once: true });
+      existingScript.addEventListener('error', () => reject(new Error('Failed to load the payment service.')), { once: true });
     });
     return;
   }
@@ -72,7 +72,7 @@ async function ensureComfortPaySdk(baseUrl: string) {
     script.src = `${baseUrl.replace(/\/$/, '')}/api/sdk`;
     script.async = true;
     script.onload = () => resolve();
-    script.onerror = () => reject(new Error('Failed to load ComfortPay SDK.'));
+    script.onerror = () => reject(new Error('Failed to load the payment service.'));
     document.body.appendChild(script);
   });
 }
@@ -198,7 +198,7 @@ export default function CheckoutPage() {
 
     const loadSdk = async () => {
       if (!hasSdkConfig) {
-        setWidgetError('ComfortPay is not configured yet. Add COMFORTPAY_BASE_URL and COMFORTPAY_API_TOKEN on the server, plus NEXT_PUBLIC_COMFORTPAY_BASE_URL for the SDK.');
+        setWidgetError('Online payment is not configured yet. Add the required payment environment variables on the server and storefront.');
         return;
       }
 
@@ -210,7 +210,7 @@ export default function CheckoutPage() {
         }
       } catch (error: any) {
         if (!cancelled) {
-          setWidgetError(error?.message || 'Unable to load ComfortPay checkout.');
+          setWidgetError(error?.message || 'Unable to load checkout.');
         }
       }
     };
@@ -239,7 +239,7 @@ export default function CheckoutPage() {
 
         const comfortPay = window.ComfortPay;
         if (!comfortPay) {
-          throw new Error('ComfortPay SDK did not initialize correctly.');
+          throw new Error('The payment service did not initialize correctly.');
         }
 
         const handle = await comfortPay.mount(`#${WIDGET_ROOT_ID}`, {
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
             clearCart();
           },
           onError: (error: any) => {
-            const message = error?.message || 'Unable to start ComfortPay checkout.';
+            const message = error?.message || 'Unable to start checkout.';
             setWidgetError(message);
             toast.error(message);
           },
@@ -269,7 +269,7 @@ export default function CheckoutPage() {
         widgetHandleRef.current = handle || null;
         setWidgetError('');
       } catch (error: any) {
-        const message = error?.message || 'Unable to load ComfortPay payment methods.';
+        const message = error?.message || 'Unable to load payment methods.';
         setWidgetError(message);
       }
     };
@@ -362,7 +362,7 @@ export default function CheckoutPage() {
                     Payment Information
                   </h2>
                   <p className="mt-4 text-sm leading-7 text-bone/70">
-                    Choose your payment method below. Hosted methods will redirect to the processor. Manual methods will open payment instructions in ComfortPay checkout.
+                    Choose your payment method below. Hosted methods will redirect to the processor. Manual methods will open payment instructions during checkout.
                   </p>
 
                   <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-bone/70">

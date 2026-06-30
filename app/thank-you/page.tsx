@@ -31,7 +31,7 @@ export default function ThankYouPage() {
         </p>
         <h1 className="font-display text-4xl text-bone md:text-5xl">Thank You</h1>
         <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-bone/70">
-          Your checkout was completed through ComfortPay. We have received your order and will continue with the next step.
+          Your checkout was completed . We have received your order and will continue with the next step.
         </p>
 
         {(order || method || amount) ? (

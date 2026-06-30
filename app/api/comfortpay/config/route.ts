@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const apiToken = process.env.COMFORTPAY_API_TOKEN;
 
     if (!baseUrl || !apiToken) {
-      return NextResponse.json({ error: "ComfortPay merchant configuration is missing." }, { status: 503 });
+      return NextResponse.json({ error: "Payment configuration is missing." }, { status: 503 });
     }
 
     const amount = request.nextUrl.searchParams.get("amount");
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: (error as Error).message || "Failed to load ComfortPay config." },
+      { error: (error as Error).message || "Failed to load payment configuration." },
       { status: 500 },
     );
   }
