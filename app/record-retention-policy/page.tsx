@@ -35,7 +35,7 @@ export default function RecordRetentionPolicyPage() {
           title: "5. Contact Information",
           bullets: [
             "Comfort Giggles",
-            "Email: hello@comfortgiggle.com",
+            "Email: hello@comfortgiggles.com",
             "Phone: 1-202-800-7298",
             "Address: 8 The Green Suite B, Dover, DE 19901",
             "Contact Form: /contact",

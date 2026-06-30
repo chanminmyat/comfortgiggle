@@ -18,8 +18,8 @@ const contactCards = [
     icon: Mail,
     title: "Email",
     note: "Send us a message",
-    href: "mailto:hello@comfortgiggle.com",
-    value: "hello@comfortgiggle.com",
+    href: "mailto:hello@comfortgiggles.com",
+    value: "hello@comfortgiggles.com",
   },
 ];
 
