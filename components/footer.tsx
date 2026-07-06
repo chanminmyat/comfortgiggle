@@ -9,7 +9,7 @@ const quickLinks = [
   { href: '/products', label: 'Shop' },
   { href: '/about', label: 'Our Story' },
   { href: '/contact', label: 'Contact' },
-  { href: '/contact', label: 'FAQ', key: 'faq' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 const customerCare = [
@@ -17,7 +17,7 @@ const customerCare = [
   { href: '/refund-return-policy', label: 'Returns & Exchanges' },
   { href: '/cancellation-policy', label: 'Cancellation Policy' },
   { href: '/clear-pricing-policy', label: 'Clear Pricing' },
-  { href: '/freelancer-third-party-provider-policy', label: 'Supplier & Fulfillment' },
+  { href: '/supplier-fulfillment-policy', label: 'Supplier & Fulfillment' },
   { href: '/terms-and-conditions', label: 'Terms & Conditions' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
 ];
@@ -57,7 +57,7 @@ export function Footer() {
             <h4 className="font-display text-lg uppercase tracking-wide text-bone">Quick Links</h4>
             <ul className="mt-5 space-y-3 text-sm">
               {quickLinks.map((link) => (
-                <li key={link.key ?? link.href}>
+                <li key={link.href}>
                   <Link href={link.href} className="text-bone/70 transition-colors hover:text-ember">
                     {link.label}
                   </Link>

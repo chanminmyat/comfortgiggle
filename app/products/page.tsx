@@ -30,6 +30,53 @@ const isCustomProduct = (product: WooCommerceProduct) =>
   product.slug === 'comfort-giggle-custom-candle' ||
   product.tags?.some((tag) => tag.slug === 'custom');
 
+function SeoProductCatalog() {
+  const products = SAMPLE_PRODUCTS.slice(0, 18);
+
+  return (
+    <main className="flex-1 bg-soot font-sans text-bone">
+      <section className="border-b border-bone/15 bg-charcoal-dark">
+        <div className="container mx-auto px-4 py-14 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">Shop</p>
+          <h1 className="mt-3 font-display text-5xl uppercase tracking-wide text-bone md:text-6xl">Our Candle Collection</h1>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-bone/70">
+            Hand-poured soy candles, custom candles, and clean fragrances from Comfort Giggles.
+          </p>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-12" aria-label="Comfort Giggles products">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-3 lg:gap-6">
+          {products.map((product) => (
+            <article key={product.id} className="group flex flex-col">
+              <Link href={`/products/${product.slug}`} className="relative block aspect-square overflow-hidden bg-charcoal-dark">
+                {product.images?.[0] ? (
+                  <img
+                    src={product.images[0].src}
+                    alt={product.images[0].alt || product.name}
+                    className="h-full w-full object-cover"
+                  />
+                ) : null}
+              </Link>
+              <div className="mt-4 text-center">
+                <h2 className="font-display text-xl uppercase tracking-wide text-bone">
+                  <Link href={`/products/${product.slug}`} className="transition-colors hover:text-ember">
+                    {product.name}
+                  </Link>
+                </h2>
+                {product.short_description ? (
+                  <p className="mt-1 text-xs text-bone/55">{product.short_description}</p>
+                ) : null}
+                <p className="mt-1 text-sm font-semibold text-ember">{formatPrice(product.price)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function ShopContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -410,7 +457,7 @@ export default function ProductsPage() {
       fallback={
         <div className="flex min-h-screen flex-col bg-soot">
           <Header />
-          <div className="flex-1" />
+          <SeoProductCatalog />
           <Footer />
         </div>
       }

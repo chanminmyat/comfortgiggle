@@ -1,0 +1,24 @@
+{
+  "name": "Comfort Giggles",
+  "short_name": "Comfort Giggles",
+  "description": "Curated candles for cozy spaces.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4EBDD",
+  "theme_color": "#2A211D",
+  "icons": [
+    {
+      "src": "/giggles/logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/giggles/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
