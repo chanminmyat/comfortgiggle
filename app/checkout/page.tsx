@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Header } from '@/components/header';
@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 
 declare global {
   interface Window {
-    ComfortPay?: {
+    Dashboard?: {
       mount: (target: string | HTMLElement, options: any) => Promise<{ destroy?: () => void; refresh?: (nextAmount?: number) => Promise<any> }>;
       unmount: (target: string | HTMLElement) => void;
     };
@@ -20,9 +20,9 @@ declare global {
 
 const SHIPPING_FEE = 30;
 const FREE_SHIPPING_THRESHOLD = 50;
-const COMFORTPAY_BASE_URL = process.env.NEXT_PUBLIC_COMFORTPAY_BASE_URL || '';
-const WIDGET_ROOT_ID = 'comfortpay-widget-root';
-const SDK_SCRIPT_ID = 'comfortpay-sdk-script';
+const PORTAL_BASE_URL = process.env.NEXT_PUBLIC_PORTAL_BASE_URL || '';
+const WIDGET_ROOT_ID = 'dashboard-widget-root';
+const SDK_SCRIPT_ID = 'dashboard-sdk-script';
 
 function formatPrice(value: number | string) {
   const amount = typeof value === 'number' ? value : parseFloat(value);
@@ -35,28 +35,17 @@ const fieldClass =
 const labelClass = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-bone/60';
 
 function makeMerchantOrderId() {
-  const now = new Date();
-  const stamp = [
-    now.getUTCFullYear(),
-    String(now.getUTCMonth() + 1).padStart(2, '0'),
-    String(now.getUTCDate()).padStart(2, '0'),
-    String(now.getUTCHours()).padStart(2, '0'),
-    String(now.getUTCMinutes()).padStart(2, '0'),
-    String(now.getUTCSeconds()).padStart(2, '0'),
-  ].join('');
-
-  const random = Math.random().toString(36).slice(2, 8).toUpperCase();
-  return `CG-${stamp}-${random}`;
+  return String(Math.floor(1000 + Math.random() * 9000));
 }
 
-async function ensureComfortPaySdk(baseUrl: string) {
+async function ensurePortalSdk(baseUrl: string) {
   if (typeof window === 'undefined') return;
-  if (window.ComfortPay) return;
+  if (window.Dashboard) return;
 
   const existingScript = document.getElementById(SDK_SCRIPT_ID) as HTMLScriptElement | null;
   if (existingScript) {
     await new Promise<void>((resolve, reject) => {
-      if (window.ComfortPay) {
+      if (window.Dashboard) {
         resolve();
         return;
       }
@@ -105,19 +94,25 @@ export default function CheckoutPage() {
     country: 'US',
   });
 
-  const hasSdkConfig = !!COMFORTPAY_BASE_URL;
+  const hasSdkConfig = !!PORTAL_BASE_URL;
+  const formDataRef = useRef(formData);
+  const acceptedTermsRef = useRef(acceptedTerms);
+  const cartItemsLengthRef = useRef(cartItems.length);
+  const cartItemsRef = useRef<CartItem[]>(cartItems);
+  const merchantOrderIdRef = useRef(merchantOrderId);
+  const totalsRef = useRef({ cartTotal, orderTotal, shippingCost });
 
-  const lineItems = useMemo(
-    () =>
-      cartItems.map((item) => ({
-        name: item.product.name,
-        quantity: item.quantity,
-        price: Number.parseFloat(item.product.price || '0') || 0,
-      })),
-    [cartItems],
-  );
+  useEffect(() => {
+    formDataRef.current = formData;
+    acceptedTermsRef.current = acceptedTerms;
+    cartItemsLengthRef.current = cartItems.length;
+    cartItemsRef.current = cartItems;
+    merchantOrderIdRef.current = merchantOrderId;
+    totalsRef.current = { cartTotal, orderTotal, shippingCost };
+  }, [acceptedTerms, cartItems, cartItems.length, cartTotal, formData, merchantOrderId, orderTotal, shippingCost]);
 
   const validateCheckoutForm = useCallback(() => {
+    const latestFormData = formDataRef.current;
     const requiredFields: Array<keyof typeof formData> = [
       'firstName',
       'lastName',
@@ -131,55 +126,63 @@ export default function CheckoutPage() {
     ];
 
     for (const field of requiredFields) {
-      if (!String(formData[field] || '').trim()) {
+      if (!String(latestFormData[field] || '').trim()) {
         throw new Error('Please complete all required billing fields before continuing.');
       }
     }
 
-    if (!acceptedTerms) {
+    if (!acceptedTermsRef.current) {
       throw new Error('Please accept the terms before continuing to payment.');
     }
 
-    if (!cartItems.length) {
+    if (!cartItemsLengthRef.current) {
       throw new Error('Your cart is empty.');
     }
-  }, [acceptedTerms, cartItems.length, formData]);
+  }, []);
 
   const buildCheckoutData = useCallback(
     (selectedMethod?: string) => {
       validateCheckoutForm();
 
-      const visualOrderId = merchantOrderId || makeMerchantOrderId();
-      if (!merchantOrderId) {
-        setMerchantOrderId(visualOrderId);
+      const latestFormData = formDataRef.current;
+      const totals = totalsRef.current;
+      const orderId = merchantOrderIdRef.current || makeMerchantOrderId();
+      if (!merchantOrderIdRef.current) {
+        merchantOrderIdRef.current = orderId;
+        setMerchantOrderId(orderId);
       }
 
-      const redirectUrl = `${window.location.origin}/thank-you?order=${encodeURIComponent(visualOrderId)}&method=${encodeURIComponent(selectedMethod || 'unknown')}&amount=${encodeURIComponent(orderTotal.toFixed(2))}`;
+      const redirectUrl = `${window.location.origin}/thank-you?order=${encodeURIComponent(orderId)}&method=${encodeURIComponent(selectedMethod || 'unknown')}&amount=${encodeURIComponent(totals.orderTotal.toFixed(2))}`;
 
       return {
-        merchantOrderId: visualOrderId,
-        visualOrderId,
-        subtotal: cartTotal,
-        totalAmount: orderTotal,
-        shippingAmount: shippingCost,
+        orderId,
+        merchantOrderId: orderId,
+        visualOrderId: orderId,
+        subtotal: totals.cartTotal,
+        totalAmount: totals.orderTotal,
+        shippingAmount: totals.shippingCost,
         currency: 'USD',
         redirectUrl,
         billingDetails: {
-          firstName: formData.firstName.trim(),
-          lastName: formData.lastName.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          address1: formData.address.trim(),
+          firstName: latestFormData.firstName.trim(),
+          lastName: latestFormData.lastName.trim(),
+          email: latestFormData.email.trim(),
+          phone: latestFormData.phone.trim(),
+          address1: latestFormData.address.trim(),
           address2: '',
-          city: formData.city.trim(),
-          state: formData.state.trim(),
-          postcode: formData.zipCode.trim(),
-          country: formData.country.trim() || 'US',
+          city: latestFormData.city.trim(),
+          state: latestFormData.state.trim(),
+          postcode: latestFormData.zipCode.trim(),
+          country: latestFormData.country.trim() || 'US',
         },
-        items: lineItems,
+        items: cartItemsRef.current.map((item) => ({
+          name: item.product.name,
+          quantity: item.quantity,
+          price: Number(item.product.price || 0),
+        })),
       };
     },
-    [cartTotal, formData, lineItems, merchantOrderId, orderTotal, shippingCost, validateCheckoutForm],
+    [validateCheckoutForm],
   );
 
   useEffect(() => {
@@ -190,7 +193,9 @@ export default function CheckoutPage() {
     }
     setCartItems(items);
     setCartTotal(getCartTotal());
-    setMerchantOrderId(makeMerchantOrderId());
+    const nextOrderId = makeMerchantOrderId();
+    merchantOrderIdRef.current = nextOrderId;
+    setMerchantOrderId(nextOrderId);
   }, [router]);
 
   useEffect(() => {
@@ -203,7 +208,7 @@ export default function CheckoutPage() {
       }
 
       try {
-        await ensureComfortPaySdk(COMFORTPAY_BASE_URL);
+        await ensurePortalSdk(PORTAL_BASE_URL);
         if (!cancelled) {
           setSdkReady(true);
           setWidgetError('');
@@ -223,7 +228,7 @@ export default function CheckoutPage() {
   }, [hasSdkConfig]);
 
   useEffect(() => {
-    if (!sdkReady || !window.ComfortPay || !cartItems.length) {
+    if (!sdkReady || !window.Dashboard || !cartItems.length) {
       return;
     }
 
@@ -233,19 +238,19 @@ export default function CheckoutPage() {
       try {
         if (widgetHandleRef.current?.destroy) {
           widgetHandleRef.current.destroy();
-        } else if (window.ComfortPay) {
-          window.ComfortPay.unmount(`#${WIDGET_ROOT_ID}`);
+        } else if (window.Dashboard) {
+          window.Dashboard.unmount(`#${WIDGET_ROOT_ID}`);
         }
 
-        const comfortPay = window.ComfortPay;
-        if (!comfortPay) {
+        const dashboard = window.Dashboard;
+        if (!dashboard) {
           throw new Error('The payment service did not initialize correctly.');
         }
 
-        const handle = await comfortPay.mount(`#${WIDGET_ROOT_ID}`, {
-          configUrl: '/api/comfortpay/config',
-          sessionUrl: '/api/comfortpay/session',
-          baseUrl: COMFORTPAY_BASE_URL,
+        const handle = await dashboard.mount(`#${WIDGET_ROOT_ID}`, {
+          configUrl: '/api/payment/config',
+          sessionUrl: '/api/payment/session',
+          baseUrl: PORTAL_BASE_URL,
           amount: orderTotal,
           getCheckoutData: (selectedMethod: string) => buildCheckoutData(selectedMethod),
           onSuccess: () => {
@@ -280,15 +285,15 @@ export default function CheckoutPage() {
       active = false;
       if (widgetHandleRef.current?.destroy) {
         widgetHandleRef.current.destroy();
-      } else if (window.ComfortPay) {
-        window.ComfortPay.unmount(`#${WIDGET_ROOT_ID}`);
+      } else if (window.Dashboard) {
+        window.Dashboard.unmount(`#${WIDGET_ROOT_ID}`);
       }
       widgetHandleRef.current = null;
     };
   }, [sdkReady, cartItems.length, orderTotal, buildCheckoutData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((current) => ({ ...current, [e.target.name]: e.target.value }));
   };
 
   if (cartItems.length === 0) {
