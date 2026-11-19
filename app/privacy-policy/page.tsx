@@ -1,73 +1,52 @@
 import { PolicyPage } from "@/components/policy-page";
+import { COMPANY } from "@/lib/company-info";
 
 export default function PrivacyPolicyPage() {
   return (
     <PolicyPage
-      title="Privacy Policy"
-      effectiveDate="May 15, 2026"
-      intro="Comfort Giggles respects your privacy. This policy explains what information we collect, how we use it, and how we share it when you shop with us."
+      title={"Privacy Policy"}
+      effectiveDate={COMPANY.policyEffectiveDate}
+      intro={"Data Controller: Comfort Giggles LLC. Includes mandatory carrier-compliant Mobile/SMS No-Sharing Clause for 1-888-554-4521, CCPA/CPRA U.S. state privacy rights, and PCI-DSS payment security disclosures."}
       sections={[
         {
-          title: "1. Information We Collect",
+          title: "1. Overview & Scope",
           body: [
-            "We collect information you provide when placing an order, contacting support, joining our newsletter, or using our website.",
+            "Comfort Giggles LLC (\"Comfort Giggles,\" \"we,\" \"us,\" or \"our\") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit www.comfortgiggles.com, purchase candles or home fragrance goods, or receive transactional SMS payment links.",
           ],
+        },
+        {
+          title: "2. Information We Collect",
           bullets: [
-            "Contact information: name, email address, phone number, and shipping address.",
-            "Order information: products purchased, order value, shipping method, and order status.",
-            "Payment information: payment confirmation details from our payment processor. We do not store full credit or debit card numbers.",
-            "Website information: browser type, device information, pages viewed, cart activity, and cookies or similar technologies.",
+            "Identity & Contact Data: Full name, billing address, shipping address, email address, and mobile phone number.",
+            "Transaction & Payment Data: Order details, gift messages, invoice records, and payment confirmation tokens for transactions made via Visa, Mastercard, American Express, Discover, ACH / Bank Transfer, Zelle, and Wise. Full credit card numbers are processed directly by PCI-DSS Level 1 compliant payment gateways and are never stored on our servers.",
+            "Technical & Usage Data: IP address, browser type, device identifiers, referring URLs, and cookie preferences.",
           ],
         },
         {
-          title: "2. How We Use Information",
+          title: "3. How We Use Your Information",
           bullets: [
-            "To process orders, payments, shipping, returns, refunds, and customer support requests.",
-            "To share the minimum required order and shipping details with manufacturing, supplier, and fulfillment partners.",
-            "To prevent fraud, protect the website, and comply with tax, accounting, legal, and card-network obligations.",
-            "To send order updates, service messages, and optional marketing communications where permitted.",
+            "Order Fulfillment & Billing: To process payments under descriptor \"COMFORT GIGGLES\", hand-pour/pack orders, ship candles, and provide tracking updates.",
+            "Transactional SMS Communications: To send secure checkout/invoice payment links, payment confirmations, and shipping alerts from 1-888-554-4521 when you have explicitly opted in.",
+            "Compliance & Fraud Prevention: To verify customer identity, prevent unauthorized card transactions, resolve chargebacks, and fulfill tax and AML recordkeeping duties.",
           ],
         },
         {
-          title: "3. Third-Party Partners",
+          title: "4. SMS & Mobile Text Messaging Privacy (No Third-Party Sharing)",
           body: [
-            "Comfort Giggles works with trusted service providers, including payment processors, website hosting providers, analytics providers, email tools, candle manufacturers, suppliers, and shipping or fulfillment partners.",
-            "These partners receive only the information needed to perform their services for Comfort Giggles and are not permitted to use customer information for unrelated purposes.",
+            "No Third-Party Sharing or Marketing: No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties, except with essential telecommunications providers and subcontractors (such as our SMS gateway provider, Telnyx) strictly required to deliver our text messages to you.",
+            "You may revoke SMS consent at any time by replying STOP to 1-888-554-4521 or emailing support@comfortgiggles.com.",
           ],
         },
         {
-          title: "4. Cookies",
+          title: "5. Disclosure of Information to Service Providers",
           body: [
-            "We use cookies and similar technologies to support cart functionality, understand site performance, remember preferences, and improve the shopping experience. You can manage cookies through your browser settings.",
+            "We share personal information only with vetted operational partners strictly necessary to run our store, including payment processors, banking partners, candle production/fulfillment partners, shipping carriers (USPS, UPS, FedEx), and telecommunications providers. We do not sell your personal information.",
           ],
         },
         {
-          title: "5. Data Security",
+          title: "6. Your U.S. State Privacy Rights (CCPA/CPRA & State Laws)",
           body: [
-            "We use reasonable administrative, technical, and organizational safeguards to protect customer information. Payment details are handled through our payment processor, and Comfort Giggles does not store full card numbers.",
-          ],
-        },
-        {
-          title: "6. Data Retention",
-          body: [
-            "We retain order, transaction, and support records for as long as needed for customer service, accounting, tax, fraud-prevention, and legal compliance.",
-          ],
-        },
-        {
-          title: "7. Your Choices",
-          bullets: [
-            "You may contact us to request access, correction, or deletion of personal information, subject to records we must keep for legal or business purposes.",
-            "You may unsubscribe from marketing emails using the link in those emails or by contacting us.",
-          ],
-        },
-        {
-          title: "8. Contact Information",
-          bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
+            "Depending on your state of residence (including California, Virginia, Colorado, Connecticut, and Texas), you have the right to request access to, correction of, or deletion of your personal data (subject to legal, tax, and AML recordkeeping obligations). Submit privacy requests to support@comfortgiggles.com or call 1-888-554-4521.",
           ],
         },
       ]}

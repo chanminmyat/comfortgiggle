@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { COMPANY } from "@/lib/company-info";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 const fieldClass =
@@ -11,15 +12,15 @@ const contactCards = [
     icon: Phone,
     title: "Phone",
     note: "Give us a call",
-    href: "tel:+12028007298",
-    value: "1-202-800-7298",
+    href: COMPANY.phoneHref,
+    value: COMPANY.phoneDisplay,
   },
   {
     icon: Mail,
     title: "Email",
     note: "Send us a message",
-    href: "mailto:hello@comfortgiggles.com",
-    value: "hello@comfortgiggles.com",
+    href: `mailto:${COMPANY.supportEmail}`,
+    value: COMPANY.supportEmail,
   },
 ];
 
@@ -64,7 +65,7 @@ export default function ContactPage() {
                 </div>
                 <h2 className="font-display text-xl uppercase tracking-wide text-bone">Location</h2>
                 <p className="mt-1 text-sm leading-6 text-bone/70">
-                  8 The Green Suite B
+                  8 The Green, Suite B
                   <br />
                   Dover, DE 19901
                 </p>
@@ -130,17 +131,13 @@ export default function ContactPage() {
                     <div className="flex-1">
                       <h3 className="font-display text-lg uppercase tracking-wide text-bone">Store Hours</h3>
                       <dl className="mt-4 space-y-2 text-sm text-bone/70">
-                        <div className="flex justify-between">
-                          <dt>Monday – Friday</dt>
-                          <dd className="font-medium text-bone">9:00 AM – 5:00 PM EST</dd>
+                        <div className="flex justify-between gap-4">
+                          <dt>Monday – Saturday</dt>
+                          <dd className="font-medium text-bone">9:00 AM – 6:00 PM ET (Phone &amp; Email)</dd>
                         </div>
-                        <div className="flex justify-between">
-                          <dt>Saturday</dt>
-                          <dd className="font-medium text-bone">10:00 AM – 3:00 PM EST</dd>
-                        </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between gap-4">
                           <dt>Sunday</dt>
-                          <dd className="font-medium text-bone">Closed</dd>
+                          <dd className="font-medium text-bone">Email Support Only</dd>
                         </div>
                       </dl>
                     </div>

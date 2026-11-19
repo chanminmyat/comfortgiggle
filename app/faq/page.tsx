@@ -25,12 +25,12 @@ const faqs = [
   {
     question: "Can I return a candle?",
     answer:
-      "Returns may be requested within 14 days of delivery for unused, unburned, undamaged items in original packaging. Custom or personalized products are not returnable once production has started.",
+      "Returns may be requested within 30 days of delivery for unused, unburned, undamaged items in original packaging. Custom or personalized products are not returnable once production has started.",
   },
   {
     question: "Who should I contact for support?",
     answer:
-      "Contact Comfort Giggles at hello@comfortgiggles.com or 1-202-800-7298 for order, shipping, return, or product questions.",
+      "Contact Comfort Giggles at support@comfortgiggles.com or 1-888-554-4521 for order, shipping, return, or product questions.",
   },
 ];
 

@@ -1,46 +1,39 @@
 import { PolicyPage } from "@/components/policy-page";
+import { COMPANY } from "@/lib/company-info";
 
-export default function DisputeResolutionChargebackPolicyPage() {
+export default function DisputeResolutionPolicyPage() {
   return (
     <PolicyPage
-      title="Dispute Resolution and Chargeback Policy"
-      effectiveDate="May 15, 2026"
-      intro="This policy explains how Comfort Giggles handles order questions, payment disputes, and chargeback-related requests."
+      title={"Dispute Resolution & Chargeback Policy"}
+      effectiveDate={COMPANY.policyEffectiveDate}
+      intro={"Card-network-compliant pre-dispute resolution path, chargeback evidence standards, and Delaware venue terms for COMFORT GIGGLES."}
       sections={[
         {
-          title: "1. Contact Us First",
+          title: "1. Direct Customer Resolution First",
           body: [
-            "If there is a problem with an order, please contact Comfort Giggles as soon as possible. We can often resolve shipping issues, damaged items, incorrect products, duplicate charges, or refund questions faster through direct support.",
+            "We are committed to resolving any billing question, damaged candle claim, or shipping delay quickly. Before initiating a payment dispute or chargeback with your bank or card issuer, please contact our support team at support@comfortgiggles.com or call 1-888-554-4521 (Monday – Saturday, 9:00 AM – 6:00 PM Eastern Time (ET) (Phone & Email); Sunday: Email Support Only). Most billing or order inquiries are resolved within 1–2 business days.",
           ],
         },
         {
-          title: "2. Order Review",
+          title: "2. Recognizing Your Billing Descriptor",
           body: [
-            "When reviewing a dispute, we may use order confirmations, payment records, shipping and tracking details, customer communications, product photos, and return records.",
+            "Charges from www.comfortgiggles.com appear on your credit card or bank statement as \"COMFORT GIGGLES\". If you see an unfamiliar charge under this descriptor, please contact us with the transaction date and amount so we can verify the order or SMS payment link immediately.",
           ],
         },
         {
-          title: "3. Available Resolutions",
+          title: "3. Chargeback & Payment Dispute Process",
+          body: [
+            "If a formal chargeback or ACH return is filed without prior contact, or in contradiction to our published Returns & Exchanges or Cancellation Policies:",
+          ],
           bullets: [
-            "Replacement, refund, partial refund, cancellation, store credit, or return authorization when appropriate.",
-            "Carrier follow-up for delayed or lost shipments.",
-            "Correction of billing, shipping, or product errors caused by Comfort Giggles or a fulfillment partner.",
+            "Representment Evidence: We submit complete transaction documentation to the acquiring bank and card network, including IP address verification, AVS/CVV match logs, SMS/email payment link authorization records, carrier tracking and delivery confirmation, and published policy acceptance timestamps.",
+            "Friendly Fraud Prevention: Confirmed fraudulent chargebacks (where goods were delivered as agreed and verified) may result in permanent account restriction and collection recovery where permitted by law.",
           ],
         },
         {
-          title: "4. Chargebacks",
+          title: "4. Governing Law & Venue",
           body: [
-            "Customers may contact their bank or card issuer according to the rules of their payment provider. If a chargeback is opened, Comfort Giggles may respond with relevant order, shipping, delivery, communication, and refund records.",
-          ],
-        },
-        {
-          title: "5. Contact Information",
-          bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
+            "Any dispute, claim, or controversy arising out of or relating to these policies or your purchases that cannot be resolved informally shall be governed by the laws of the State of Delaware. To the extent permitted by law, disputes shall be resolved individually and not as part of any class or representative action.",
           ],
         },
       ]}

@@ -1,46 +1,31 @@
 import { PolicyPage } from "@/components/policy-page";
+import { COMPANY } from "@/lib/company-info";
 
-export default function SecurityInformationSecurityPolicyPage() {
+export default function SecurityPolicyPage() {
   return (
     <PolicyPage
-      title="Security and Information Security Policy"
-      effectiveDate="May 15, 2026"
-      intro="Comfort Giggles takes reasonable steps to protect customer information, payment-related records, and order data."
+      title={"Security & Information Security Policy"}
+      effectiveDate={COMPANY.policyEffectiveDate}
+      intro={"Details PCI-DSS Level 1 payment processing, TLS 1.3 encryption, tokenization, and access controls protecting shoppers on www.comfortgiggles.com."}
       sections={[
         {
-          title: "1. Website Security",
+          title: "1. Commitment to Data & Payment Security",
+          body: [
+            "Comfort Giggles LLC maintains administrative, technical, and physical safeguards designed to protect customer data and payment transactions on www.comfortgiggles.com against unauthorized access, alteration, or disclosure.",
+          ],
+        },
+        {
+          title: "2. PCI-DSS Compliance & Payment Tokenization",
           bullets: [
-            "We use encrypted connections where supported by our hosting and payment systems.",
-            "Access to customer information is limited to personnel and service providers with a business need.",
-            "We review orders and payment activity for fraud-prevention and support purposes.",
+            "Zero Cardholder Data Storage: www.comfortgiggles.com does not store raw credit card numbers, CVV security codes, or bank account credentials on our web servers.",
+            "PCI-DSS Level 1 Gateways: All credit card transactions (Visa, Mastercard, American Express, Discover) and ACH transfers are processed through PCI-DSS Level 1 certified payment processors utilizing end-to-end encryption and tokenization.",
+            "Secure Branded Payment Links: All payment links sent via email or SMS from 1-888-554-4521 resolve exclusively to verified HTTPS URLs on www.comfortgiggles.com or our certified payment gateway.",
           ],
         },
         {
-          title: "2. Payment Security",
+          title: "3. Encryption, Access Controls & Incident Response",
           body: [
-            "Online payments are handled through payment service providers. Comfort Giggles does not store full credit or debit card numbers on our servers.",
-          ],
-        },
-        {
-          title: "3. Supplier and Fulfillment Access",
-          body: [
-            "When supplier or fulfillment partners need order information to produce or ship products, we share only the information needed to complete that task.",
-          ],
-        },
-        {
-          title: "4. Incident Response",
-          body: [
-            "If we identify a security incident involving customer information, we will investigate, take appropriate mitigation steps, and notify affected parties when required by applicable law.",
-          ],
-        },
-        {
-          title: "5. Contact Information",
-          bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
+            "All storefront traffic is encrypted in transit using TLS 1.2/1.3 (HTTPS), and administrative accounts require multi-factor authentication (MFA). In the event of a confirmed security incident affecting personal data, we follow our Incident Response Plan and notify affected individuals and regulators as required by law. Report security concerns immediately to support@comfortgiggles.com.",
           ],
         },
       ]}

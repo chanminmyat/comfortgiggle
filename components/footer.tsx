@@ -20,6 +20,12 @@ const customerCare = [
   { href: '/supplier-fulfillment-policy', label: 'Supplier & Fulfillment' },
   { href: '/terms-and-conditions', label: 'Terms & Conditions' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/cookie-policy', label: 'Cookie Policy' },
+  { href: '/security-information-security-policy', label: 'Security Policy' },
+  { href: '/dispute-resolution-chargeback-policy', label: 'Disputes & Chargebacks' },
+  { href: '/anti-fraud-policy', label: 'Anti-Fraud' },
+  { href: '/anti-money-laundering-aml-policy', label: 'Anti-Money Laundering' },
+  { href: '/record-retention-policy', label: 'Record Retention' },
 ];
 
 export function Footer() {

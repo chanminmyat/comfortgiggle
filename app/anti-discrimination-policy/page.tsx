@@ -25,16 +25,6 @@ export default function AntiDiscriminationPolicyPage() {
             "If you believe you experienced discrimination while interacting with Comfort Giggles, contact us with the order number, date, and details so we can review the issue.",
           ],
         },
-        {
-          title: "4. Contact Information",
-          bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
-          ],
-        },
       ]}
     />
   );

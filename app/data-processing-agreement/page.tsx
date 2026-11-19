@@ -30,16 +30,6 @@ export default function DataProcessingAgreementPage() {
             "Customers may contact us to request access, correction, or deletion of personal information, subject to records we must retain for legal, accounting, fraud-prevention, or transaction-support purposes.",
           ],
         },
-        {
-          title: "4. Contact Information",
-          bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
-          ],
-        },
       ]}
     />
   );

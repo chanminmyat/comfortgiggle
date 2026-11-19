@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { COMPANY } from "@/lib/company-info";
 
 type PolicySection = {
   title?: string;
@@ -12,6 +13,23 @@ type PolicyPageProps = {
   effectiveDate: string;
   intro: string;
   sections: PolicySection[];
+  /** Append the standard legal-entity / contact block (default true). */
+  showContact?: boolean;
+};
+
+const contactSection: PolicySection = {
+  title: "Contact Information",
+  body: [
+    `For questions, billing inquiries, or compliance requests regarding this policy, please contact ${COMPANY.brand}:`,
+  ],
+  bullets: [
+    `Legal Entity: ${COMPANY.legalName} (Delaware File No. ${COMPANY.delawareFileNo})`,
+    `Registered & Principal Address: ${COMPANY.address}`,
+    `Customer Support Email: ${COMPANY.supportEmail}`,
+    `Toll-Free Support & SMS Number: ${COMPANY.phoneDisplay}`,
+    `Support Hours: ${COMPANY.supportHours}`,
+    `Credit Card Billing Descriptor: ${COMPANY.billingDescriptor}`,
+  ],
 };
 
 export function PolicyPage({
@@ -19,7 +37,9 @@ export function PolicyPage({
   effectiveDate,
   intro,
   sections,
+  showContact = true,
 }: PolicyPageProps) {
+  const allSections = showContact ? [...sections, contactSection] : sections;
   return (
     <div className='flex min-h-screen flex-col bg-soot font-sans text-bone'>
       <Header />
@@ -42,7 +62,7 @@ export function PolicyPage({
 
         <div className='container mx-auto px-4 py-12'>
           <div className='mx-auto max-w-4xl space-y-6'>
-            {sections.map((section, index) => (
+            {allSections.map((section, index) => (
               <section
                 key={`${section.title || "section"}-${index}`}
                 className='border border-bone/15 bg-charcoal-dark p-6 md:p-8'

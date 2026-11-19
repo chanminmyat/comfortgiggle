@@ -1,44 +1,30 @@
 import { PolicyPage } from "@/components/policy-page";
+import { COMPANY } from "@/lib/company-info";
 
 export default function ClearPricingPolicyPage() {
   return (
     <PolicyPage
-      title="Clear Pricing Policy"
-      effectiveDate="May 15, 2026"
-      intro="Comfort Giggles is committed to showing customers the price of products, shipping, and the final order total before checkout is completed."
+      title={"Clear Pricing Policy"}
+      effectiveDate={COMPANY.policyEffectiveDate}
+      intro={"Transparent USD pricing, $50 free shipping / $30 shipping disclosure, zero hidden subscriptions, and exact billing under 'COMFORT GIGGLES'."}
       sections={[
         {
-          title: "1. Product Pricing",
+          title: "1. Transparent USD Product Pricing",
           body: [
-            "Product prices are displayed in USD on product pages, cart, and checkout. Prices may vary by size, scent, jar style, customization, promotion, or availability.",
+            "All product prices on www.comfortgiggles.com are displayed clearly in United States Dollars (USD) across product pages, the shopping cart, and checkout. Prices may vary by candle size, wax weight, vessel style, or custom labeling options.",
           ],
         },
         {
-          title: "2. Shipping Charges",
-          body: [
-            "Shipping is shown in the cart and checkout before payment. Orders of $50 or more qualify for free standard shipping. Orders below that threshold currently show a $30 shipping charge.",
-          ],
-        },
-        {
-          title: "3. Taxes and Fees",
-          body: [
-            "Any applicable taxes, processing charges, or payment-related fees will be shown before the customer completes checkout when they apply.",
-          ],
-        },
-        {
-          title: "4. No Hidden Charges",
-          body: [
-            "Comfort Giggles does not intentionally add undisclosed charges after checkout. If an error occurs, we will contact the customer before making any material change to an order total.",
-          ],
-        },
-        {
-          title: "5. Contact Information",
+          title: "2. Shipping Charges & Taxes Disclosed Upfront",
           bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
+            "Shipping Thresholds: Orders of $50.00 or more qualify for free standard U.S. shipping. Orders below $50.00 incur a $30.00 shipping charge, displayed transparently in your cart and checkout before payment.",
+            "Applicable Taxes: Estimated state and local sales taxes are calculated and itemized prior to payment authorization.",
+          ],
+        },
+        {
+          title: "3. No Hidden Fees or Unauthorized Subscriptions",
+          body: [
+            "All purchases and SMS payment link invoices on www.comfortgiggles.com are one-time transactions unless you explicitly enroll in a clearly labeled candle subscription club. We never add undisclosed charges after checkout—the exact total you authorize matches the charge billed under \"COMFORT GIGGLES\".",
           ],
         },
       ]}

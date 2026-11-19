@@ -1,41 +1,31 @@
 import { PolicyPage } from "@/components/policy-page";
+import { COMPANY } from "@/lib/company-info";
 
 export default function CookiePolicyPage() {
   return (
     <PolicyPage
-      title="Cookie Policy"
-      effectiveDate="May 15, 2026"
-      intro="Comfort Giggles uses cookies and similar technologies to operate our store, remember cart activity, and improve the shopping experience."
+      title={"Cookie Policy"}
+      effectiveDate={COMPANY.policyEffectiveDate}
+      intro={"Explains strictly necessary cart/checkout cookies, analytics, and browser controls on www.comfortgiggles.com."}
       sections={[
         {
-          title: "1. Types of Cookies",
-          bullets: [
-            "Necessary cookies: support cart, checkout, security, and core website functions.",
-            "Preference cookies: remember settings or choices where applicable.",
-            "Analytics cookies: help us understand website usage and performance.",
-            "Marketing cookies: may help measure or improve promotional campaigns where enabled.",
-          ],
-        },
-        {
-          title: "2. Managing Cookies",
+          title: "1. What Are Cookies?",
           body: [
-            "Most browsers allow you to block or delete cookies. Some website features, including cart or checkout features, may not work properly if necessary cookies are disabled.",
+            "Cookies and similar browser storage technologies are small text files placed on your device when you browse www.comfortgiggles.com. They keep items in your shopping cart, secure your checkout and payment link sessions, and help us improve storefront performance.",
           ],
         },
         {
-          title: "3. Third-Party Tools",
-          body: [
-            "Some cookies or similar technologies may be set by service providers that support hosting, analytics, payments, security, or marketing.",
-          ],
-        },
-        {
-          title: "4. Contact Information",
+          title: "2. Categories of Cookies We Use",
           bullets: [
-            "Comfort Giggles",
-            "Email: hello@comfortgiggles.com",
-            "Phone: 1-202-800-7298",
-            "Address: 8 The Green Suite B, Dover, DE 19901",
-            "Contact Form: /contact",
+            "Strictly Necessary & Checkout Cookies: Required for shopping cart persistence, checkout authentication, encrypted payment sessions, and fraud screening.",
+            "Functional & Preference Cookies: Remember your scent filters, recently viewed candles, and dismissed popups.",
+            "Performance & Analytics Cookies: Measure site speed, page views, and checkout completion rates in aggregated form.",
+          ],
+        },
+        {
+          title: "3. Managing Your Cookie Settings",
+          body: [
+            "You can block or clear cookies anytime through your browser settings. Please note that disabling strictly necessary cookies may prevent the shopping cart or secure payment links on www.comfortgiggles.com from functioning properly.",
           ],
         },
       ]}

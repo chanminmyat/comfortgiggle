@@ -19,6 +19,20 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  // Published URLs listed in the Nov 18, 2026 policy documents -> existing routes
+  async redirects() {
+    return [
+      { source: '/terms-conditions', destination: '/terms-and-conditions', permanent: false },
+      { source: '/shipping-delivery', destination: '/shipping-policy', permanent: false },
+      { source: '/returns-exchanges', destination: '/refund-return-policy', permanent: false },
+      { source: '/supplier-fulfillment', destination: '/supplier-fulfillment-policy', permanent: false },
+      { source: '/policies/security-information-security-policy', destination: '/security-information-security-policy', permanent: false },
+      { source: '/policies/record-retention-policy', destination: '/record-retention-policy', permanent: false },
+      { source: '/policies/dispute-resolution-chargeback-policy', destination: '/dispute-resolution-chargeback-policy', permanent: false },
+      { source: '/policies/anti-fraud-policy', destination: '/anti-fraud-policy', permanent: false },
+      { source: '/policies/anti-money-laundering-aml-policy', destination: '/anti-money-laundering-aml-policy', permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

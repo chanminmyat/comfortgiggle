@@ -1,66 +1,37 @@
 import { PolicyPage } from "@/components/policy-page";
+import { COMPANY } from "@/lib/company-info";
 
 export default function ShippingPolicyPage() {
   return (
     <PolicyPage
-      title='Shipping Policy'
-      effectiveDate='May 15, 2026'
-      intro='Thank you for shopping with Comfort Giggles. This policy explains order processing, shipping fees, and delivery expectations.'
+      title={"Shipping & Delivery Policy"}
+      effectiveDate={COMPANY.policyEffectiveDate}
+      intro={"Covers order processing, free standard shipping on orders $50+, $30 shipping threshold below $50, warm-weather candle protection, and tracking via 1-888-554-4521."}
       sections={[
         {
-          title: '1. Order Processing',
+          title: "1. Order Processing Times",
           body: [
-            'Orders are typically processed within 3-5 business days after payment confirmation. Because some products may be produced or fulfilled by third-party candle manufacturers or fulfillment partners, custom or made-to-order items may require additional processing time.',
+            "Orders placed on www.comfortgiggles.com are processed within 1–3 business days (Monday through Saturday, excluding U.S. federal holidays) following payment confirmation. Custom or personalized candle orders may require an additional 1–2 business days for pouring and curing. Orders paid via ACH/Bank Transfer or Zelle are processed once funds clear.",
           ],
         },
         {
-          title: '2. Shipping Methods',
-          body: [
-            'We use reliable shipping carriers and fulfillment partners to deliver orders within the United States. Estimated delivery times are displayed when available and may vary by destination, carrier, and fulfillment partner.',
-          ],
-        },
-        {
-          title: '3. Shipping Times',
-          body: [
-            'Please note that delivery times are estimates and may vary due to weather, holidays, or carrier delays.',
-          ],
+          title: "2. Shipping Rates & Free Shipping Threshold",
           bullets: [
-            'Standard Shipping: usually 3-7 business days after processing',
-            'Custom or supplier-fulfilled items: may require additional processing time before shipment',
+            "Free Standard U.S. Shipping ($50+ Orders): Orders totaling $50.00 or more (before tax and after discounts) qualify for free standard shipping within the contiguous United States.",
+            "Orders Below $50.00: Orders below the $50.00 threshold carry a flat $30.00 shipping and protective packaging fee, clearly displayed in your cart and at checkout prior to payment.",
+            "Estimated Transit Times: Standard U.S. shipping typically arrives within 3–7 business days via USPS, UPS, or FedEx after dispatch.",
           ],
         },
         {
-          title: '4. Shipping Fees',
+          title: "3. Warm-Weather Soy Candle Care & Tracking",
           body: [
-            'Shipping costs are shown in the cart and checkout before payment. Orders of $50 or more qualify for free standard shipping. Orders below that threshold currently show a $30 shipping charge.',
+            "Once your order ships, you will receive a tracking number via email (and via SMS from 1-888-554-4521 if you opted in). During warm summer months, we recommend retrieving delivered packages promptly from outdoor mailboxes or porches to prevent natural soy wax softening.",
           ],
         },
         {
-          title: '5. Tracking Information',
+          title: "4. Damaged or Lost Shipments",
           body: [
-            'Once your order has shipped, you will receive a confirmation email with tracking information.',
-          ],
-        },
-        {
-          title: '6. Lost or Delayed Shipments',
-          body: [
-            'We are not responsible for delays caused by shipping carriers. However, we will assist customers in resolving shipping issues whenever possible.',
-          ],
-        },
-        {
-          title: '7. Incorrect Shipping Address',
-          body: [
-            'Customers are responsible for providing accurate shipping information. We are not responsible for orders shipped to incorrect addresses provided by the customer.',
-          ],
-        },
-        {
-          title: '8. Contact Information',
-          bullets: [
-            'Comfort Giggles',
-            'Email: hello@comfortgiggles.com',
-            'Phone: 1-202-800-7298',
-            'Address: 8 The Green Suite B, Dover, DE 19901',
-            'Contact Form: /contact',
+            "Every candle jar is packed with protective cushioning. If your candle arrives cracked, shattered, or damaged in transit, please email support@comfortgiggles.com within 7 calendar days of delivery with clear photos of the shipping box and candle so we can send a free replacement or issue a full refund.",
           ],
         },
       ]}
