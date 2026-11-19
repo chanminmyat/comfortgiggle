@@ -97,7 +97,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-CZY-111',
     price: '49.00',
     description:
-      '<p>Warm blanket. Messy mind. Light it anyway.</p><p>Hand-poured soy candle · 9 oz / 255 g. For warm blankets and questionable choices.</p>',
+      '<p>Warm blanket. Messy mind. Light it anyway.</p><p>Soy wax candle · 9 oz / 255 g. For warm blankets and questionable choices.</p>',
     short_description: 'Warm blanket. Messy mind. Light it anyway.',
     featured: true,
     total_sales: 1320,
@@ -115,7 +115,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-MCM-112',
     price: '49.00',
     description:
-      '<p>Plot twist: it\'s fine. I\'m fine.</p><p>Hand-poured soy candle · 9 oz / 255 g. Drama, scented.</p>',
+      '<p>Plot twist: it\'s fine. I\'m fine.</p><p>Soy wax candle · 9 oz / 255 g. Drama, scented.</p>',
     short_description: 'Drama, scented.',
     featured: true,
     total_sales: 1180,
@@ -133,7 +133,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-TRG-113',
     price: '49.00',
     description:
-      '<p>Smoldering patience and questionable decisions.</p><p>Hand-poured soy candle · 9 oz / 255 g. Small jar. Big attitude.</p>',
+      '<p>Smoldering patience and questionable decisions.</p><p>Soy wax candle · 9 oz / 255 g. Small jar. Big attitude.</p>',
     short_description: 'Small jar. Big attitude.',
     featured: false,
     total_sales: 890,
@@ -151,7 +151,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-OVR-114',
     price: '49.00',
     description:
-      '<p>Catastrophizing with a hint of "what if".</p><p>Hand-poured soy candle · 9 oz / 255 g. Warm light. Deep breaths.</p>',
+      '<p>Catastrophizing with a hint of "what if".</p><p>Soy wax candle · 9 oz / 255 g. Warm light. Deep breaths.</p>',
     short_description: 'Warm light. Deep breaths.',
     featured: false,
     total_sales: 940,
@@ -169,7 +169,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-DND-115',
     price: '49.00',
     description:
-      '<p>I\'m busy ignoring everyone and everything.</p><p>Hand-poured soy candle · 9 oz / 255 g. Boundaries, non-negotiable.</p>',
+      '<p>I\'m busy ignoring everyone and everything.</p><p>Soy wax candle · 9 oz / 255 g. Boundaries, non-negotiable.</p>',
     short_description: 'Boundaries, non-negotiable.',
     featured: false,
     total_sales: 1010,
@@ -187,7 +187,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-NRV-101',
     price: '49.00',
     description:
-      '<p>Congratulations. You found my last nerve and lit it on fire.</p><p>Hand-poured soy candle · 9 oz / 255 g. Burning calmly. Barely.</p>',
+      '<p>Congratulations. You found my last nerve and lit it on fire.</p><p>Soy wax candle · 9 oz / 255 g. Burning calmly. Barely.</p>',
     short_description: 'Burning calmly. Barely.',
     featured: true,
     total_sales: 1248,
@@ -205,7 +205,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-APL-102',
     price: '49.00',
     description:
-      '<p>I heard what you said. I considered your explanation. The answer is still no.</p><p>Hand-poured soy candle · 9 oz / 255 g. Smells like consequences.</p>',
+      '<p>I heard what you said. I considered your explanation. The answer is still no.</p><p>Soy wax candle · 9 oz / 255 g. Smells like consequences.</p>',
     short_description: 'Smells like consequences.',
     featured: true,
     total_sales: 963,
@@ -223,7 +223,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-SOC-103',
     price: '49.00',
     description:
-      '<p>I had one conversation. Now I need three business days to recover properly.</p><p>Hand-poured soy candle · 9 oz / 255 g. Recharging. Please do not make plans.</p>',
+      '<p>I had one conversation. Now I need three business days to recover properly.</p><p>Soy wax candle · 9 oz / 255 g. Recharging. Please do not make plans.</p>',
     short_description: 'Recharging. Please do not make plans.',
     featured: true,
     total_sales: 1105,
@@ -241,7 +241,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-RSP-104',
     price: '49.00',
     description:
-      '<p>A gentle reminder that no is a complete sentence — with excellent fragrance throw.</p><p>Hand-poured soy candle · 9 oz / 255 g. Soft tone. Solid boundary.</p>',
+      '<p>A gentle reminder that no is a complete sentence — with excellent fragrance throw.</p><p>Soy wax candle · 9 oz / 255 g. Soft tone. Solid boundary.</p>',
     short_description: 'Soft tone. Solid boundary.',
     featured: true,
     total_sales: 1421,
@@ -259,7 +259,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-PTY-105',
     price: '49.00',
     description:
-      '<p>Absolutely. But I was also correct, moisturized, and calm-ish.</p><p>Hand-poured soy candle · 9 oz / 255 g. Petty with purpose.</p>',
+      '<p>Absolutely. But I was also correct, moisturized, and calm-ish.</p><p>Soy wax candle · 9 oz / 255 g. Petty with purpose.</p>',
     short_description: 'Petty with purpose.',
     featured: true,
     total_sales: 732,
@@ -277,7 +277,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-CNL-106',
     price: '49.00',
     description:
-      '<p>Said maybe. Meant absolutely not. Stayed home and flourished.</p><p>Hand-poured soy candle · 9 oz / 255 g. Soft clothes. Hard no.</p>',
+      '<p>Said maybe. Meant absolutely not. Stayed home and flourished.</p><p>Soy wax candle · 9 oz / 255 g. Soft clothes. Hard no.</p>',
     short_description: 'Soft clothes. Hard no.',
     featured: false,
     total_sales: 689,
@@ -295,7 +295,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-DEL-107',
     price: '49.00',
     description:
-      '<p>Made a coffee. Answered one email. Called it a power day.</p><p>Hand-poured soy candle · 9 oz / 255 g. Thriving on technicalities.</p>',
+      '<p>Made a coffee. Answered one email. Called it a power day.</p><p>Soy wax candle · 9 oz / 255 g. Thriving on technicalities.</p>',
     short_description: 'Thriving on technicalities.',
     featured: false,
     total_sales: 540,
@@ -313,7 +313,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-GOS-108',
     price: '49.00',
     description:
-      '<p>I do not want drama. I just want the full story and proper background context.</p><p>Hand-poured soy candle · 9 oz / 255 g. Listening respectfully, judging quietly.</p>',
+      '<p>I do not want drama. I just want the full story and proper background context.</p><p>Soy wax candle · 9 oz / 255 g. Listening respectfully, judging quietly.</p>',
     short_description: 'Listening respectfully, judging quietly.',
     featured: false,
     total_sales: 612,
@@ -331,7 +331,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-PRT-109',
     price: '49.00',
     description:
-      '<p>Polite voice. Firm boundaries. Mentally leaving this conversation.</p><p>Hand-poured soy candle · 9 oz / 255 g. Smells like patience in a tight ponytail.</p>',
+      '<p>Polite voice. Firm boundaries. Mentally leaving this conversation.</p><p>Soy wax candle · 9 oz / 255 g. Smells like patience in a tight ponytail.</p>',
     short_description: 'Patience in a tight ponytail.',
     featured: false,
     total_sales: 458,
@@ -349,7 +349,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-UNA-110',
     price: '49.00',
     description:
-      '<p>Warm glow. Feelings buffering. Replies spiritually on airplane mode.</p><p>Hand-poured soy candle · 9 oz / 255 g. Handle with grace and low expectations.</p>',
+      '<p>Warm glow. Feelings buffering. Replies spiritually on airplane mode.</p><p>Soy wax candle · 9 oz / 255 g. Handle with grace and low expectations.</p>',
     short_description: 'Handle with grace and low expectations.',
     featured: false,
     total_sales: 521,
@@ -367,7 +367,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-BYH-116',
     price: '49.00',
     description:
-      '<p>That sounded supportive until I heard the tone.</p><p>Hand-poured soy candle · 9 oz / 255 g. Sweet words. Sharp edges.</p>',
+      '<p>That sounded supportive until I heard the tone.</p><p>Soy wax candle · 9 oz / 255 g. Sweet words. Sharp edges.</p>',
     short_description: 'Sweet words. Sharp edges.',
     featured: true,
     total_sales: 770,
@@ -385,7 +385,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-OOO-117',
     price: '49.00',
     description:
-      '<p>Available never. Responding slowly. Protecting my peace professionally.</p><p>Hand-poured soy candle · 9 oz / 255 g. Vacation mode, emotionally.</p>',
+      '<p>Available never. Responding slowly. Protecting my peace professionally.</p><p>Soy wax candle · 9 oz / 255 g. Vacation mode, emotionally.</p>',
     short_description: 'Vacation mode, emotionally.',
     featured: false,
     total_sales: 654,
@@ -403,7 +403,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-AVD-118',
     price: '49.00',
     description:
-      '<p>Unread texts. Closed blinds. One blanket. Excellent progress.</p><p>Hand-poured soy candle · 9 oz / 255 g. Productive in spirit only.</p>',
+      '<p>Unread texts. Closed blinds. One blanket. Excellent progress.</p><p>Soy wax candle · 9 oz / 255 g. Productive in spirit only.</p>',
     short_description: 'Productive in spirit only.',
     featured: false,
     total_sales: 712,
@@ -421,7 +421,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-KRE-119',
     price: '49.00',
     description:
-      '<p>Respectfully, your vibe arrived loud and underqualified.</p><p>Hand-poured soy candle · 9 oz / 255 g. Aromatic corrective action.</p>',
+      '<p>Respectfully, your vibe arrived loud and underqualified.</p><p>Soy wax candle · 9 oz / 255 g. Aromatic corrective action.</p>',
     short_description: 'Aromatic corrective action.',
     featured: false,
     total_sales: 583,
@@ -439,7 +439,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-RCA-120',
     price: '49.00',
     description:
-      '<p>No plan. No patience. Still somehow fully booked.</p><p>Hand-poured soy candle · 9 oz / 255 g. Bold energy. Questionable method.</p>',
+      '<p>No plan. No patience. Still somehow fully booked.</p><p>Soy wax candle · 9 oz / 255 g. Bold energy. Questionable method.</p>',
     short_description: 'Bold energy. Questionable method.',
     featured: true,
     total_sales: 845,
@@ -457,7 +457,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-CSE-121',
     price: '49.00',
     description:
-      '<p>I said nothing. My face, however, filed a full report.</p><p>Hand-poured soy candle · 9 oz / 255 g. Subtle? Not remotely.</p>',
+      '<p>I said nothing. My face, however, filed a full report.</p><p>Soy wax candle · 9 oz / 255 g. Subtle? Not remotely.</p>',
     short_description: 'Subtle? Not remotely.',
     featured: false,
     total_sales: 690,
@@ -475,7 +475,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-LTH-122',
     price: '49.00',
     description:
-      '<p>Soft glow. Strong opinions. Not everything deserves access.</p><p>Hand-poured soy candle · 9 oz / 255 g. For boundaries with ambiance.</p>',
+      '<p>Soft glow. Strong opinions. Not everything deserves access.</p><p>Soy wax candle · 9 oz / 255 g. For boundaries with ambiance.</p>',
     short_description: 'For boundaries with ambiance.',
     featured: false,
     total_sales: 628,
@@ -493,7 +493,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-EML-123',
     price: '49.00',
     description:
-      '<p>You scheduled a meeting. I brought a candle. We both know who came prepared.</p><p>Hand-poured soy candle · 9 oz / 255 g. Smells like muted notifications.</p>',
+      '<p>You scheduled a meeting. I brought a candle. We both know who came prepared.</p><p>Soy wax candle · 9 oz / 255 g. Smells like muted notifications.</p>',
     short_description: 'Smells like muted notifications.',
     featured: false,
     total_sales: 599,
@@ -619,7 +619,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-APP-007',
     price: '49.00',
     description:
-      '<p>A cozy autumn blend of crisp apple and warm cinnamon in an amber glass jar.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
+      '<p>A cozy autumn blend of crisp apple and warm cinnamon in an amber glass jar.</p><p>Soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Crisp apple & warm cinnamon.',
     featured: false,
     total_sales: 150,
@@ -637,7 +637,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-EUC-008',
     price: '49.00',
     description:
-      '<p>A refreshing spa blend of eucalyptus and cool mint in a clear glass tumbler.</p><p>Hand-poured soy candle · 8 oz / 226 g.</p>',
+      '<p>A refreshing spa blend of eucalyptus and cool mint in a clear glass tumbler.</p><p>Soy wax candle · 8 oz / 226 g.</p>',
     short_description: 'Refreshing eucalyptus & cool mint.',
     featured: true,
     total_sales: 170,
@@ -655,7 +655,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-COF-009',
     price: '49.00',
     description:
-      '<p>A rich, comforting blend of fresh coffee and sweet caramel in an amber glass jar.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
+      '<p>A rich, comforting blend of fresh coffee and sweet caramel in an amber glass jar.</p><p>Soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Rich coffee & sweet caramel.',
     featured: false,
     total_sales: 190,
@@ -673,7 +673,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-OCN-010',
     price: '49.00',
     description:
-      '<p>A clean, airy coastal scent of sea salt and fresh ocean air in a clear glass tumbler.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
+      '<p>A clean, airy coastal scent of sea salt and fresh ocean air in a clear glass tumbler.</p><p>Soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Clean, airy coastal sea breeze.',
     featured: false,
     total_sales: 160,
@@ -691,7 +691,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-ROS-011',
     price: '49.00',
     description:
-      '<p>A romantic, delicate rose blend in an elegant glass jar.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
+      '<p>A romantic, delicate rose blend in an elegant glass jar.</p><p>Soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Romantic, delicate rose.',
     featured: true,
     total_sales: 200,
@@ -745,7 +745,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-FIG-014',
     price: '49.00',
     description:
-      '<p>A rich, sophisticated blend of ripe fig and warm amber.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
+      '<p>A rich, sophisticated blend of ripe fig and warm amber.</p><p>Soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Ripe fig & warm amber.',
     featured: true,
     total_sales: 185,
@@ -763,7 +763,7 @@ const seeds: SeedProduct[] = [
     sku: 'CG-COC-015',
     price: '49.00',
     description:
-      '<p>A creamy, tropical blend of coconut and smooth vanilla.</p><p>Hand-poured soy candle · 9 oz / 255 g.</p>',
+      '<p>A creamy, tropical blend of coconut and smooth vanilla.</p><p>Soy wax candle · 9 oz / 255 g.</p>',
     short_description: 'Creamy coconut & smooth vanilla.',
     featured: false,
     total_sales: 195,

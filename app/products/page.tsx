@@ -40,7 +40,7 @@ function SeoProductCatalog() {
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">Shop</p>
           <h1 className="mt-3 font-display text-5xl uppercase tracking-wide text-bone md:text-6xl">Our Candle Collection</h1>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-bone/70">
-            Hand-poured soy candles, custom candles, and clean fragrances from Comfort Giggles.
+            Soy candles, custom candles, and clean fragrances from Comfort Giggles.
           </p>
         </div>
       </section>
@@ -287,7 +287,7 @@ function ShopContent() {
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">Shop</p>
             <h1 className="mt-3 font-display text-5xl uppercase tracking-wide text-bone md:text-6xl">Our Candle Collection</h1>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-bone/70">
-              Hand-poured with attitude and clean fragrances. Find the candle that fits
+              Made with attitude and clean fragrances. Find the candle that fits
               your mood.
             </p>
           </div>

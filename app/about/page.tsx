@@ -6,8 +6,8 @@ export default function AboutPage() {
   const values = [
     {
       icon: Award,
-      title: 'Handcrafted Quality',
-      description: 'We use premium wax blends, quality fragrance oils, and careful batch testing to ensure a consistent burn.',
+      title: 'Curated Quality',
+      description: 'We work with trusted manufacturing partners who use premium wax blends and quality fragrance oils, with careful batch testing to ensure a consistent burn.',
     },
     {
       icon: Users,
@@ -27,7 +27,7 @@ export default function AboutPage() {
   ];
 
   const stats = [
-    { value: '5+', label: 'Years Crafting Candles' },
+    { value: '5+', label: 'Years Curating Candles' },
     { value: '8k+', label: 'Happy Candle Buyers' },
     { value: '98%', label: 'Repeat Purchase Rate' },
   ];
@@ -52,7 +52,7 @@ export default function AboutPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-ember">About Us</p>
               <h1 className="mt-3 font-display text-6xl uppercase tracking-wide text-bone md:text-7xl">Our Story</h1>
               <p className="mt-4 max-w-md text-sm leading-7 text-bone/70">
-                Handcrafting cozy candle experiences with care, clean ingredients, and quality.
+                Curating cozy candle experiences with care, clean ingredients, and quality.
               </p>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function AboutPage() {
             <div className="mx-auto max-w-3xl space-y-4 text-sm leading-7 text-bone/70">
               <p>
                 Comfort Giggles began with a simple idea: everyday spaces feel better with the right
-                scent. We started small, hand-pouring candles in carefully tested batches for friends
+                scent. We started small, sourcing candles from trusted manufacturing partners in carefully tested batches for friends
                 and family who wanted cozy, clean-burning candles they could trust.
               </p>
               <p>

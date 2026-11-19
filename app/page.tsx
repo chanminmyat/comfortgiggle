@@ -22,7 +22,7 @@ import { useState } from 'react';
 
 const heroPerks = [
   { icon: Flame, title: 'Clean Burn', description: '100% soy wax' },
-  { icon: Hand, title: 'Hand Poured', description: 'In small batches' },
+  { icon: Hand, title: 'Small Batch', description: 'Made by trusted partners' },
   { icon: Sparkles, title: 'Made to Giggle', description: 'Attitude included' },
 ];
 
@@ -102,8 +102,8 @@ const favorites: Favorite[] = [
 const bottomPerks = [
   {
     icon: Flame,
-    title: 'Hand Poured with Attitude',
-    description: 'Made in small batches for big personalities.',
+    title: 'Small Batch with Attitude',
+    description: 'Made in small batches by trusted partners for big personalities.',
   },
   {
     icon: Leaf,
@@ -226,7 +226,7 @@ export default function Home() {
               </h1>
               <p className="mt-6 max-w-md text-base leading-7 text-charcoal/70">
                 Candles with attitude for moods, moments, and mild meltdowns.
-                Hand-poured, clean-burning, and never afraid to say what you're thinking.
+                Soy-wax, clean-burning, and never afraid to say what you're thinking.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
@@ -388,7 +388,7 @@ export default function Home() {
                   Say It Their Face.
                 </h2>
                 <p className="mt-5 max-w-md text-sm leading-7 text-charcoal/70">
-                  Add your own text, pick your scent, and we'll pour the perfect dose of
+                  Add your own text, pick your scent, and we'll add the perfect dose of
                   personality. The pettiest gift they'll actually love.
                 </p>
 
