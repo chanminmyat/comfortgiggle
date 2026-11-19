@@ -94,7 +94,7 @@ export function Header() {
                 <Search className="h-5 w-5" />
               </Link>
               <Link
-                href="/contact"
+                href="/account"
                 aria-label="Account"
                 className="hidden rounded-full p-2 text-ink/80 transition-colors hover:bg-sand hover:text-olive sm:inline-flex"
               >

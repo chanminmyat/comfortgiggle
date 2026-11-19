@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { findCheckoutIntent } from "../../../lib/checkout-intents";
 import { getPortalBaseUrl, getPortalToken } from "../../../lib/portal-security";
+import { ensureCustomerAccount } from "../../../lib/customer-account";
 
 function getAuthorizeNetEndpoint() {
   const environment =
@@ -207,6 +208,19 @@ export async function POST(request: Request) {
     if (responseCode !== "1" || !transactionId) {
       console.error("Authorize.Net payment failed", authorizePayload);
       return NextResponse.json({ error: getTransactionMessage(authorizePayload) }, { status: 402 });
+    }
+
+    try {
+      const billing = (intent.billingDetails || {}) as Record<string, unknown>;
+      await ensureCustomerAccount({
+        email: billing.email,
+        firstName: billing.firstName,
+        lastName: billing.lastName,
+        phone: billing.phone,
+        merchantSite: intent.merchantSite,
+      });
+    } catch (accountError) {
+      console.error("Customer account provisioning failed", accountError);
     }
 
     const siteUrl = getSiteUrl(request);

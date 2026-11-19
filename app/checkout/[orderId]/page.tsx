@@ -1,8 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Lock } from "lucide-react";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Lock } from "lucide-react";
 import { findCheckoutIntent } from "@/lib/checkout-intents";
 import { PayNowButton } from "./pay-now-button";
 import { AuthorizeNetCardForm } from "./authorize-net-card-form";
@@ -60,18 +57,19 @@ export default async function MerchantCheckoutPage({
 
   return (
     <div className="flex min-h-screen flex-col bg-soot font-sans text-bone">
-      <Header />
+      {/* Hosted payment page: brand only, no navigation away mid-payment. */}
+      <div className="border-b-2 border-charcoal bg-paper">
+        <div className="container mx-auto flex items-center justify-center px-4 py-3">
+          <img
+            src="/giggles/logo.jpeg"
+            alt="Comfort Giggles"
+            className="h-20 w-20 rounded-full object-cover mix-blend-multiply md:h-24 md:w-24"
+          />
+        </div>
+      </div>
 
       <main className="flex-1 py-10 md:py-14">
         <div className="container mx-auto px-4">
-          <Link
-            href="/cart"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-bone/60 transition-colors hover:text-ember"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Cart
-          </Link>
-
           <div className="mb-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ember">Secure Checkout</p>
             <h1 className="mt-3 font-display text-4xl text-bone md:text-5xl">Review and Pay</h1>
@@ -142,8 +140,6 @@ export default async function MerchantCheckoutPage({
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

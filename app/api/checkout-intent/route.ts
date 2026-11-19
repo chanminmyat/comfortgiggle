@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { saveCheckoutIntent } from "../../../lib/checkout-intents";
 import { verifyPortalRequest } from "../../../lib/portal-security";
+import { ensureCustomerAccount } from "../../../lib/customer-account";
 
 function absoluteUrl(request: Request, path: string) {
   const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL;
@@ -56,6 +57,23 @@ export async function POST(request: Request) {
     merchantSite: payload?.merchantSite || null,
     suggestedCheckoutUrl: payload?.suggestedCheckoutUrl || null,
   });
+
+  try {
+    const billing = (payload?.billingDetails || {}) as Record<string, unknown>;
+    const { created } = await ensureCustomerAccount({
+      email: billing.email,
+      firstName: billing.firstName,
+      lastName: billing.lastName,
+      phone: billing.phone,
+      merchantSite: payload?.merchantSite,
+    });
+    console.info("[checkout-intent] customer account", {
+      orderId: publicOrderId,
+      created,
+    });
+  } catch (error) {
+    console.error("[checkout-intent] customer account provisioning failed", error);
+  }
 
   return NextResponse.json({
     success: true,

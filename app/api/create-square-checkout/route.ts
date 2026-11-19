@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { findCheckoutIntent } from "../../../lib/checkout-intents";
 import { getPortalBaseUrl, getPortalToken } from "../../../lib/portal-security";
+import { ensureCustomerAccount } from "../../../lib/customer-account";
 
 function getSquareBaseUrl() {
   return process.env.SQUARE_ENVIRONMENT === "production"
@@ -66,6 +67,19 @@ export async function POST(request: Request) {
     const intent = await findCheckoutIntent(orderId);
     if (!intent) {
       return NextResponse.json({ error: "Checkout intent not found." }, { status: 404 });
+    }
+
+    try {
+      const billing = (intent.billingDetails || {}) as Record<string, unknown>;
+      await ensureCustomerAccount({
+        email: billing.email,
+        firstName: billing.firstName,
+        lastName: billing.lastName,
+        phone: billing.phone,
+        merchantSite: intent.merchantSite,
+      });
+    } catch (accountError) {
+      console.error("Customer account provisioning failed", accountError);
     }
 
     const accessToken = process.env.SQUARE_ACCESS_TOKEN;
