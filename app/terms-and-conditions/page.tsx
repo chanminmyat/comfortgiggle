@@ -17,7 +17,7 @@ export default function TermsAndConditionsPage() {
         {
           title: "2. Products, Candle Care & Accuracy",
           body: [
-            "We offer hand-poured 100% soy wax candles, custom-scented collections, and home fragrance accessories. Because soy wax is a natural material, slight variations in wax texture, frosting, or fragrance color may occur and do not affect burn performance. Customers agree to follow all standard candle safety and wick-trimming instructions provided on product labels.",
+            "We offer curated 100% soy wax candles, sourced through our manufacturing and fulfillment partners, along with custom-scented collections, and home fragrance accessories. Because soy wax is a natural material, slight variations in wax texture, frosting, or fragrance color may occur and do not affect burn performance. Customers agree to follow all standard candle safety and wick-trimming instructions provided on product labels.",
           ],
         },
         {

@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
         {
           title: "3. How We Use Your Information",
           bullets: [
-            "Order Fulfillment & Billing: To process payments under descriptor \"COMFORT GIGGLES\", hand-pour/pack orders, ship candles, and provide tracking updates.",
+            "Order Fulfillment & Billing: To process payments under descriptor \"COMFORT GIGGLES\", coordinate production and packing with our manufacturing and fulfillment partners, ship candles, and provide tracking updates.",
             "Transactional SMS Communications: To send secure checkout/invoice payment links, payment confirmations, and shipping alerts from 1-888-554-4521 when you have explicitly opted in.",
             "Compliance & Fraud Prevention: To verify customer identity, prevent unauthorized card transactions, resolve chargebacks, and fulfill tax and AML recordkeeping duties.",
           ],

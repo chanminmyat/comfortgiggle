@@ -11,7 +11,7 @@ export default function ShippingPolicyPage() {
         {
           title: "1. Order Processing Times",
           body: [
-            "Orders placed on www.comfortgiggles.com are processed within 1–3 business days (Monday through Saturday, excluding U.S. federal holidays) following payment confirmation. Custom or personalized candle orders may require an additional 1–2 business days for pouring and curing. Orders paid via ACH/Bank Transfer or Zelle are processed once funds clear.",
+            "Orders placed on www.comfortgiggles.com are processed within 1–3 business days (Monday through Saturday, excluding U.S. federal holidays) following payment confirmation. Custom or personalized candle orders may require an additional 1–2 business days for production by our manufacturing partners. Orders paid via ACH/Bank Transfer or Zelle are processed once funds clear.",
           ],
         },
         {

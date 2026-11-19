@@ -29,7 +29,7 @@ export default function CancellationPolicyPage() {
         {
           title: "4. Custom or Personalized Orders",
           body: [
-            "Custom-scented, custom-labeled, personalized, or special-order candles cannot be canceled once pouring, production, or fulfillment has begun.",
+            "Custom-scented, custom-labeled, personalized, or special-order candles cannot be canceled once production or fulfillment has begun.",
           ],
         },
         {
