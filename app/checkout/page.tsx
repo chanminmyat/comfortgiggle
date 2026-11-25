@@ -378,7 +378,7 @@ export default function CheckoutPage() {
                       className="mt-1 h-4 w-4 shrink-0 accent-ember"
                     />
                     <span>
-                      By checking this box, you agree to receive transactional text messages from Comfort Giggles LLC about your payments (payment links and reminders). Reply STOP to opt out. Reply HELP for help. Message and data rates may apply. Message frequency may vary. View our <Link href="/terms-and-conditions" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">Terms and Conditions</Link>. View our <Link href="/privacy-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">Privacy Policy</Link>.
+                      By checking this box, you agree to receive transactional text messages from Comfort Giggles LLC about your payments (payment links and reminders). Reply STOP to opt out. Reply HELP for help. Message and data rates may apply. Message frequency may vary. Your mobile number will not be sold or shared with third parties. View our <Link href="/terms-and-conditions" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">Terms and Conditions</Link>. View our <Link href="/privacy-policy" className="font-medium text-ember underline underline-offset-2 hover:text-ember-dark">Privacy Policy</Link>.
                     </span>
                   </label>
 
