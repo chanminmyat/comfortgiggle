@@ -96,10 +96,6 @@ export default function ContactPage() {
                     <input id="email" name="email" type="email" required className={fieldClass} />
                   </div>
                   <div>
-                    <label htmlFor="phone" className={labelClass}>Phone</label>
-                    <input id="phone" name="phone" type="tel" className={fieldClass} />
-                  </div>
-                  <div>
                     <label htmlFor="subject" className={labelClass}>Subject *</label>
                     <input id="subject" name="subject" required className={fieldClass} />
                   </div>
